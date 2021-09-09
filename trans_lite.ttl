@@ -1,26 +1,28 @@
-@prefix : <http://www.example.de/trans> .
+@prefix : <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans_lite.ttl> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dsi: <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix om-2: <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix scal: <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix schema: <http://schema.org/> .
 @prefix mathematics: <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn> .
-@base <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl> .
+@base <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans_lite.ttl> .
 
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl> rdf:type owl:Ontology ;
-                                                                owl:imports <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl> ,
-                                                                            mathematics: ,
-                                                                            om-2: ,
-                                                                            <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl> ,
-                                                                            <http://www.w3.org/ns/sosa/> ;
-                                                                rdfs:label "Sensor Dynamic Transfer Behavior Ontology (trans)"@en ;
-                                                                dc:date "2021/09/08" ;
-                                                                <http://purl.org/dc/terms/created> "2021/04/15" .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans_lite.ttl> rdf:type owl:Ontology ;
+                                                                     owl:imports dsi: ,
+                                                                                 mathematics: ,
+                                                                                 om-2: ,
+                                                                                 scal: ,
+                                                                                 <http://www.w3.org/ns/sosa/> ;
+                                                                     rdfs:label "Sensor Dynamic Transfer Behavior Ontology (trans)"@en ;
+                                                                     dc:date "2021/09/08" ;
+                                                                     <http://purl.org/dc/terms/created> "2021/04/15" .
 
 #################################################################
 #    Annotation properties
