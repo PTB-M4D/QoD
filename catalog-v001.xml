@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn" uri="file:/C:/Users/vedurm01/Documents/Ontology/SensorsSpecialIssue/onto/OntoMathPro.omn"/>
     <uri id="Imports Wizard Entry" name="https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl" uri="scal.ttl"/>
     <uri id="Imports Wizard Entry" name="https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl" uri="dsi.ttl"/>
     <uri id="User Entered Import Resolution" name="http://www.w3.org/ns/sosa/" uri="file:/C:/Users/vedurm01/Documents/Ontology/SensorsSpecialIssue/onto/sosa.ttl"/>
