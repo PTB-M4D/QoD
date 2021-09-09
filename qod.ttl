@@ -24,7 +24,6 @@
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl> rdf:type owl:Ontology ;
                                                               owl:imports <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#> ,
                                                                           <http://www.w3.org/ns/ssn/systems/> ;
-                                                              rdfs:seeAlso <https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology> ;
                                                               terms:created "2021-04-15" ;
                                                               terms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> .
 
@@ -74,14 +73,6 @@ skos:example rdf:type owl:AnnotationProperty .
 
 ###  http://xmlns.com/foaf/0.1/name
 foaf:name rdf:type owl:AnnotationProperty .
-
-
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageFactor
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageFactor> rdfs:range xsd:double .
-
-
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageProbability
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageProbability> rdfs:range xsd:double .
 
 
 #################################################################
@@ -1116,7 +1107,6 @@ sosa:Sensor rdf:type owl:Class ;
                                                       owl:onProperty <http://www.w3.org/ns/ssn/isPropertyOf> ;
                                                       owl:allValuesFrom sosa:FeatureOfInterest
                                                     ] ;
-                                    rdfs:comment "A quality of an entity. An aspect of an entity that is intrinsic to and cannot exist without the entity."@en ;
                                     rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
                                     rdfs:label "Property"@en ;
                                     skos:definition "A quality of an entity. An aspect of an entity that is intrinsic to and cannot exist without the entity."@en .
@@ -1231,10 +1221,8 @@ sosa:Sensor rdf:type owl:Class ;
 ###  http://www.w3.org/ns/ssn/systems/Condition
 <http://www.w3.org/ns/ssn/systems/Condition> rdf:type owl:Class ;
                                              rdfs:subClassOf <http://www.w3.org/ns/ssn/Property> ;
-                                             rdfs:comment "Used to specify ranges for qualities that act as conditions on a system/sensor's operation.  For example, wind speed of 10-60m/s may be used as the condition on a SystemProperty, for example, to state that a sensor has a particular accuracy in that condition."@en ;
                                              rdfs:isDefinedBy <http://www.w3.org/ns/ssn/systems/> ;
-                                             rdfs:label "Condition"@en ;
-                                             skos:definition "Used to specify ranges for qualities that act as conditions on a system/sensor's operation.  For example, wind speed of 10-60m/s may be used as the condition on a SystemProperty, for example, to state that a sensor has a particular accuracy in that condition."@en .
+                                             rdfs:label "Condition"@en .
 
 
 ###  http://www.w3.org/ns/ssn/systems/DetectionLimit
@@ -1281,7 +1269,6 @@ sosa:Sensor rdf:type owl:Class ;
 <http://www.w3.org/ns/ssn/systems/Latency> rdf:type owl:Class ;
                                            rdfs:subClassOf <http://www.w3.org/ns/ssn/systems/SystemProperty> ;
                                            rdfs:comment "The time between a command for an Observation (resp. Actuation) and the Sensor providing a Result (resp. the Actuator operating the Actuation), under the defined Conditions."@en ;
-                                           rdfs:isDefinedBy <http://www.w3.org/ns/ssn/systems/> ;
                                            rdfs:label "Latency"@en ;
                                            skos:definition "The time between a command for an Observation (resp. Actuation) and the Sensor providing a Result (resp. the Actuator operating the Actuation), under the defined Conditions."@en .
 
@@ -1335,10 +1322,7 @@ sosa:Sensor rdf:type owl:Class ;
                                                                                       ] ;
                                                                        owl:minCardinality "1"^^xsd:nonNegativeInteger
                                                                      ] ;
-                                                     rdfs:comment "An identifiable characteristic that represents how the System operates under the specified Conditions. May describe power ranges, power sources, standard configurations, attachments and the like."@en ;
-                                                     rdfs:isDefinedBy <http://www.w3.org/ns/ssn/systems/> ;
-                                                     rdfs:label "Operating Property"@en ;
-                                                     skos:definition "An identifiable characteristic that represents how the System operates under the specified Conditions. May describe power ranges, power sources, standard configurations, attachments and the like."@en .
+                                                     rdfs:label "Operating Property"@en .
 
 
 ###  http://www.w3.org/ns/ssn/systems/OperatingRange
@@ -1361,18 +1345,7 @@ sosa:Sensor rdf:type owl:Class ;
                                                                     owl:onProperty <http://www.w3.org/ns/ssn/systems/inCondition> ;
                                                                     owl:minCardinality "1"^^xsd:nonNegativeInteger
                                                                   ] ;
-                                                  rdfs:comment """Describes normal OperatingProperties of a System under some specified Conditions. For example, to the power requirement or maintenance schedule of a System under a specified temperature range.
-
-    In the absence of OperatingProperties, simply describes the Conditions in which a System is expected to operate.
-
-    The System continues to operate as defined using SystemCapability. If, however, the SurvivalRange is violated, the System is 'damaged' and SystemCapability specifications may no longer hold."""@en ;
-                                                  rdfs:isDefinedBy <http://www.w3.org/ns/ssn/systems/> ;
-                                                  rdfs:label "Operating Range"@en ;
-                                                  skos:definition """Describes normal OperatingProperties of a System under some specified Conditions. For example, to the power requirement or maintenance schedule of a System under a specified temperature range.
-
-    In the absence of OperatingProperties, it simply describes the Conditions in which a System is expected to operate.
-
-    The System continues to operate as defined using SystemCapability. If, however, the SurvivalRange is violated, the System is 'damaged' and SystemCapability specifications may no longer hold."""@en .
+                                                  rdfs:label "Operating Range"@en .
 
 
 ###  http://www.w3.org/ns/ssn/systems/Precision
@@ -1381,7 +1354,6 @@ sosa:Sensor rdf:type owl:Class ;
                                              rdfs:comment """As a Sensor Property: the closeness of agreement between replicate Observations on an unchanged or similar Property value: i.e., a measure of a Sensor's ability to consistently reproduce an Observation, under the defined Conditions.
 
       As an Actuator Property: the closeness of agreement between replicate Actuations for an unchanged or similar command: i.e., a measure of an Actuator's ability to consistently reproduce an Actuation, under the defined Conditions."""@en ;
-                                             rdfs:isDefinedBy <http://www.w3.org/ns/ssn/systems/> ;
                                              rdfs:label "Precision"@en ;
                                              skos:definition """As a Sensor Property: the closeness of agreement between replicate Observations on an unchanged or similar Property value: i.e., a measure of a Sensor's ability to consistently reproduce an Observation, under the defined Conditions.
 
@@ -1417,27 +1389,15 @@ sosa:Sensor rdf:type owl:Class ;
 ###  http://www.w3.org/ns/ssn/systems/Selectivity
 <http://www.w3.org/ns/ssn/systems/Selectivity> rdf:type owl:Class ;
                                                rdfs:subClassOf <http://www.w3.org/ns/ssn/systems/SystemProperty> ;
-                                               rdfs:comment """As a Sensor Property: Selectivity is a Property of a Sensor whereby it provides observed values for one or more ObservableProperties such that the Results for each ObservableProperty are independent of other Properties in the FeatureOfInterest being investigated,  under the defined Conditions.
-
-      As an Actuator Property: Selectivity is a Property of an Actuator whereby it acts on one or more ActuatableProperties such as the Results for each ActuatableProperty are independent of other Properties in the FeatureOfInterest being acted on, under the defined Conditions."""@en ;
-                                               rdfs:isDefinedBy <http://www.w3.org/ns/ssn/systems/> ;
-                                               rdfs:label "Selectivity"@en ;
-                                               skos:definition """As a Sensor Property: Selectivity is a Property of a Sensor whereby it provides observed values for one or more ObservableProperties such that the Results for each ObservableProperty are independent of other Properties in the FeatureOfInterest being investigated,  under the defined Conditions.
-
-      As an Actuator Property: Selectivity is a Property of an Actuator whereby it acts on one or more ActuatableProperties such as the Results for each ActuatableProperty are independent of other Properties in the FeatureOfInterest being acted on, under the defined Conditions."""@en .
+                                               rdfs:label "Selectivity"@en .
 
 
 ###  http://www.w3.org/ns/ssn/systems/Sensitivity
 <http://www.w3.org/ns/ssn/systems/Sensitivity> rdf:type owl:Class ;
                                                rdfs:subClassOf <http://www.w3.org/ns/ssn/systems/SystemProperty> ;
-                                               rdfs:comment """As a Sensor Property: Sensitivity is the quotient of the change in a Result of Observation and the corresponding change in a value of an ObservableProperty being observed, under the defined Conditions.
-
-       As an Actuator Property: Sensitivity is the quotient of the change in a command of Actuation and the corresponding change in a value of an ActuatableProperty being acted on, under the defined Conditions."""@en ;
                                                rdfs:isDefinedBy <http://www.w3.org/ns/ssn/systems/> ;
                                                rdfs:label "Sensitivity"@en ;
-                                               skos:definition """As a Sensor Property: Sensitivity is the quotient of the change in a Result of Observation and the corresponding change in a value of an ObservableProperty being observed, under the defined Conditions.
-
-       As an Actuator Property: Sensitivity is the quotient of the change in a command of Actuation and the corresponding change in a value of an ActuatableProperty being acted on, under the defined Conditions."""@en .
+                                               skos:definition "As a Sensor Property: Sensitivity is the quotient of the change in a Result of Observation and the corresponding change in a value of an ObservableProperty being observed, under the defined Conditions." .
 
 
 ###  http://www.w3.org/ns/ssn/systems/SurvivalProperty
@@ -1453,10 +1413,7 @@ sosa:Sensor rdf:type owl:Class ;
                                                                                      ] ;
                                                                       owl:minCardinality "1"^^xsd:nonNegativeInteger
                                                                     ] ;
-                                                    rdfs:comment "An identifiable characteristic that represents the extent of the System's useful life under the specified Conditions. May describe for example total battery life or number of recharges, or, for Sensors that are used only a fixed number of times, the number of observations that can be made before the sensing capability is depleted."@en ;
-                                                    rdfs:isDefinedBy <http://www.w3.org/ns/ssn/systems/> ;
-                                                    rdfs:label "Survival Property"@en ;
-                                                    skos:definition "An identifiable characteristic that represents the extent of the System's useful life under the specified Conditions. May describe for example total battery life or number of recharges, or, for Sensors that are used only a fixed number of times, the number of observations that can be made before the sensing capability is depleted."@en .
+                                                    rdfs:label "Survival Property"@en .
 
 
 ###  http://www.w3.org/ns/ssn/systems/SurvivalRange
@@ -1538,7 +1495,6 @@ sosa:Sensor rdf:type owl:Class ;
 
 ###  http://www.w3.org/ns/ssn/systems/SystemProperty
 <http://www.w3.org/ns/ssn/systems/SystemProperty> rdf:type owl:Class ;
-                                                  owl:equivalentClass :Indicator ;
                                                   rdfs:subClassOf <http://www.w3.org/ns/ssn/Property> ,
                                                                   [ rdf:type owl:Restriction ;
                                                                     owl:onProperty [ owl:inverseOf <http://www.w3.org/ns/ssn/systems/hasSystemProperty>
@@ -1550,10 +1506,8 @@ sosa:Sensor rdf:type owl:Class ;
                                                                                    ] ;
                                                                     owl:minCardinality "1"^^xsd:nonNegativeInteger
                                                                   ] ;
-                                                  rdfs:comment "An identifiable and observable characteristic that represents the System's ability to operate its primary purpose: a Sensor to make Observations, an Actuator to make Actuations, or a Sampler to make Samplings."@en ;
                                                   rdfs:isDefinedBy <http://www.w3.org/ns/ssn/systems/> ;
-                                                  rdfs:label "System Property"@en ;
-                                                  skos:definition "An identifiable and observable characteristic that represents the System's ability to operate its primary purpose: a Sensor to make Observations, an Actuator to make Actuations, or a Sampler to make Samplings."@en .
+                                                  rdfs:label "System Property"@en .
 
 
 ###  http://xmlns.com/foaf/0.1/Agent
@@ -1733,7 +1687,8 @@ foaf:Agent rdf:type owl:Class .
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#Indicator
 :Indicator rdf:type owl:Class ;
-           rdfs:subClassOf [ rdf:type owl:Restriction ;
+           rdfs:subClassOf <http://www.w3.org/ns/ssn/systems/SystemProperty> ,
+                           [ rdf:type owl:Restriction ;
                              owl:onProperty :hasMetric ;
                              owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                              owl:onClass :QualityMetric
@@ -2408,8 +2363,7 @@ sosa: rdf:type owl:NamedIndividual .
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPU9250
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPU9250> rdf:type owl:NamedIndividual ,
-                                                                                sosa:Sensor ;
-                                                                       <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#hasCalibrationModel> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUcalibrationModel> .
+                                                                                sosa:Sensor .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUDenominatorPolynomial
