@@ -105,38 +105,6 @@ om-2:hasValue rdf:type owl:ObjectProperty ;
               rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> .
 
 
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Interprets
-:Interprets rdf:type owl:ObjectProperty ;
-            owl:inverseOf :hasInterpretation ;
-            rdfs:domain :Interpretation ;
-            rdfs:range :QualityMetric .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#hasIndicator
-:hasIndicator rdf:type owl:ObjectProperty ;
-              rdfs:domain <http://www.w3.org/ns/ssn/System> ;
-              rdfs:range :Indicator .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#hasInterpretation
-:hasInterpretation rdf:type owl:ObjectProperty ;
-                   rdfs:domain :QualityMetric ;
-                   rdfs:range :Interpretation .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#hasMetric
-:hasMetric rdf:type owl:ObjectProperty ;
-           owl:inverseOf :isMetricOf ;
-           rdfs:domain :Indicator ;
-           rdfs:range :QualityMetric .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#isMetricOf
-:isMetricOf rdf:type owl:ObjectProperty ;
-            rdfs:domain :QualityMetric ;
-            rdfs:range :Indicator .
-
-
 ###  http://www.w3.org/ns/sosa/actsOnProperty
 sosa:actsOnProperty rdf:type owl:ObjectProperty ;
                     rdfs:isDefinedBy sosa: .
@@ -456,6 +424,38 @@ sosa:usedProcedure rdf:type owl:ObjectProperty ;
                                                                             rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> .
 
 
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#Interprets
+:Interprets rdf:type owl:ObjectProperty ;
+            owl:inverseOf :hasInterpretation ;
+            rdfs:domain :Interpretation ;
+            rdfs:range :QualityMetric .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#hasIndicator
+:hasIndicator rdf:type owl:ObjectProperty ;
+              rdfs:domain <http://www.w3.org/ns/ssn/System> ;
+              rdfs:range :Indicator .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#hasInterpretation
+:hasInterpretation rdf:type owl:ObjectProperty ;
+                   rdfs:domain :QualityMetric ;
+                   rdfs:range :Interpretation .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#hasMetric
+:hasMetric rdf:type owl:ObjectProperty ;
+           owl:inverseOf :isMetricOf ;
+           rdfs:domain :Indicator ;
+           rdfs:range :QualityMetric .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#isMetricOf
+:isMetricOf rdf:type owl:ObjectProperty ;
+            rdfs:domain :QualityMetric ;
+            rdfs:range :Indicator .
+
+
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#hasCalibrationModel
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#hasCalibrationModel> rdf:type owl:ObjectProperty ;
                                                                                   rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#CalibratedSensor> .
@@ -610,80 +610,6 @@ om-2:hasNumericalValue rdf:type owl:DatatypeProperty ;
                        rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> .
 
 
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#CriticalIf
-:CriticalIf rdf:type owl:DatatypeProperty ;
-            rdfs:domain :AccuracyInterpretation ,
-                        :BatteryInterpretation ,
-                        :CompletenessInterpretation ,
-                        :MeasurementUncertaintyInterpretation ,
-                        :RecencyInterpretation ,
-                        :TimelinessInterpretation ;
-            rdfs:range [ rdf:type rdfs:Datatype ;
-                         owl:unionOf ( rdf:XMLLiteral
-                                       <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
-                                       <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
-                                     )
-                       ] ;
-            owl:propertyDisjointWith :SufficientIf .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#CurrentIf
-:CurrentIf rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf owl:topDataProperty ;
-           rdfs:domain :RecencyInterpretation ;
-           rdfs:range [ rdf:type rdfs:Datatype ;
-                        owl:unionOf ( rdf:XMLLiteral
-                                      <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
-                                      <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
-                                    )
-                      ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#OutOfDateIf
-:OutOfDateIf rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf owl:topDataProperty ;
-             rdfs:domain :RecencyInterpretation ;
-             rdfs:range [ rdf:type rdfs:Datatype ;
-                          owl:unionOf ( rdf:XMLLiteral
-                                        <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
-                                        <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
-                                      )
-                        ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#SufficientIf
-:SufficientIf rdf:type owl:DatatypeProperty ;
-              rdfs:subPropertyOf owl:topDataProperty ;
-              rdfs:domain :AccuracyInterpretation ,
-                          :BatteryInterpretation ,
-                          :CompletenessInterpretation ,
-                          :MeasurementUncertaintyInterpretation ,
-                          :TimelinessInterpretation ;
-              rdfs:range [ rdf:type rdfs:Datatype ;
-                           owl:unionOf ( rdf:XMLLiteral
-                                         <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
-                                         <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
-                                       )
-                         ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#hasDate
-:hasDate rdf:type owl:DatatypeProperty ;
-         rdfs:domain :LastCalibrationDate ;
-         rdfs:range xsd:dateTime .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#hasLiteralExpression
-:hasLiteralExpression rdf:type owl:DatatypeProperty .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#hasTeXExpression
-:hasTeXExpression rdf:type owl:DatatypeProperty ;
-                  rdfs:subPropertyOf :hasLiteralExpression ;
-                  rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ;
-                  rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral> .
-
-
 ###  http://www.w3.org/ns/sosa/resultTime
 sosa:resultTime rdf:type owl:DatatypeProperty ;
                 rdfs:isDefinedBy sosa: .
@@ -710,6 +636,80 @@ sosa:resultTime rdf:type owl:DatatypeProperty ;
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasStandardUncertainty
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasStandardUncertainty> rdf:type owl:DatatypeProperty ;
                                                                                     rdfs:range xsd:float .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#CriticalIf
+:CriticalIf rdf:type owl:DatatypeProperty ;
+            rdfs:domain :AccuracyInterpretation ,
+                        :BatteryInterpretation ,
+                        :CompletenessInterpretation ,
+                        :MeasurementUncertaintyInterpretation ,
+                        :RecencyInterpretation ,
+                        :TimelinessInterpretation ;
+            rdfs:range [ rdf:type rdfs:Datatype ;
+                         owl:unionOf ( rdf:XMLLiteral
+                                       <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
+                                       <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
+                                     )
+                       ] ;
+            owl:propertyDisjointWith :SufficientIf .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#CurrentIf
+:CurrentIf rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty ;
+           rdfs:domain :RecencyInterpretation ;
+           rdfs:range [ rdf:type rdfs:Datatype ;
+                        owl:unionOf ( rdf:XMLLiteral
+                                      <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
+                                      <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
+                                    )
+                      ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#OutOfDateIf
+:OutOfDateIf rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:domain :RecencyInterpretation ;
+             rdfs:range [ rdf:type rdfs:Datatype ;
+                          owl:unionOf ( rdf:XMLLiteral
+                                        <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
+                                        <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
+                                      )
+                        ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#SufficientIf
+:SufficientIf rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:domain :AccuracyInterpretation ,
+                          :BatteryInterpretation ,
+                          :CompletenessInterpretation ,
+                          :MeasurementUncertaintyInterpretation ,
+                          :TimelinessInterpretation ;
+              rdfs:range [ rdf:type rdfs:Datatype ;
+                           owl:unionOf ( rdf:XMLLiteral
+                                         <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
+                                         <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
+                                       )
+                         ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#hasDate
+:hasDate rdf:type owl:DatatypeProperty ;
+         rdfs:domain :LastCalibrationDate ;
+         rdfs:range xsd:dateTime .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#hasLiteralExpression
+:hasLiteralExpression rdf:type owl:DatatypeProperty .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#hasTeXExpression
+:hasTeXExpression rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :hasLiteralExpression ;
+                  rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ;
+                  rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral> .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCovarianceMatrix
@@ -749,267 +749,6 @@ om-2:Date rdf:type owl:Class .
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/Measure
 om-2:Measure rdf:type owl:Class ;
              owl:equivalentClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Parameter> .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Accuracy
-:Accuracy rdf:type owl:Class ;
-          owl:equivalentClass <http://www.w3.org/ns/ssn/systems/Accuracy> ;
-          rdfs:subClassOf :Indicator ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty :hasMetric ;
-                            owl:allValuesFrom :AccuracyMetric
-                          ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#AccuracyInterpretation
-:AccuracyInterpretation rdf:type owl:Class ;
-                        rdfs:subClassOf :Interpretation ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty :Interprets ;
-                                          owl:allValuesFrom :AccuracyMetric
-                                        ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#AccuracyMetric
-:AccuracyMetric rdf:type owl:Class ;
-                rdfs:subClassOf :QualityMetric ,
-                                [ rdf:type owl:Restriction ;
-                                  owl:onProperty :hasInterpretation ;
-                                  owl:allValuesFrom :AccuracyInterpretation
-                                ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Battery
-:Battery rdf:type owl:Class ;
-         rdfs:subClassOf :Indicator ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty :hasMetric ;
-                           owl:allValuesFrom :BatteryLevelMetric
-                         ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#BatteryInterpretation
-:BatteryInterpretation rdf:type owl:Class ;
-                       rdfs:subClassOf :Interpretation ,
-                                       [ rdf:type owl:Restriction ;
-                                         owl:onProperty :Interprets ;
-                                         owl:allValuesFrom [ rdf:type owl:Class ;
-                                                             owl:unionOf ( :BatteryLevelMetric
-                                                                           <http://www.w3.org/ns/ssn/systems/BatteryLifetime>
-                                                                         )
-                                                           ]
-                                       ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#BatteryLevelInterpretation
-:BatteryLevelInterpretation rdf:type owl:Class ;
-                            rdfs:subClassOf :BatteryInterpretation .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#BatteryLevelMetric
-:BatteryLevelMetric rdf:type owl:Class ;
-                    owl:equivalentClass <http://www.w3.org/ns/ssn/systems/BatteryLifetime> ;
-                    rdfs:subClassOf :QualityMetric ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty :hasInterpretation ;
-                                      owl:allValuesFrom :BatteryInterpretation
-                                    ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#CalibrationData
-:CalibrationData rdf:type owl:Class ;
-                 rdfs:subClassOf :Indicator .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Completeness
-:Completeness rdf:type owl:Class ;
-              rdfs:subClassOf :Indicator ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasMetric ;
-                                owl:allValuesFrom :CompletenessMetric
-                              ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#CompletenessInterpretation
-:CompletenessInterpretation rdf:type owl:Class ;
-                            rdfs:subClassOf :Interpretation ,
-                                            [ rdf:type owl:Restriction ;
-                                              owl:onProperty :Interprets ;
-                                              owl:allValuesFrom :CompletenessMetric
-                                            ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#CompletenessMetric
-:CompletenessMetric rdf:type owl:Class ;
-                    rdfs:subClassOf :QualityMetric ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty :hasInterpretation ;
-                                      owl:allValuesFrom :CompletenessInterpretation
-                                    ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Consistency
-:Consistency rdf:type owl:Class ;
-             rdfs:subClassOf :Indicator ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :hasMetric ;
-                               owl:allValuesFrom :ConsistencyMetric
-                             ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#ConsistencyInterpretation
-:ConsistencyInterpretation rdf:type owl:Class ;
-                           rdfs:subClassOf :Interpretation ,
-                                           [ rdf:type owl:Restriction ;
-                                             owl:onProperty :Interprets ;
-                                             owl:allValuesFrom :ConsistencyMetric
-                                           ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#ConsistencyMetric
-:ConsistencyMetric rdf:type owl:Class ;
-                   rdfs:subClassOf :QualityMetric ,
-                                   [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasInterpretation ;
-                                     owl:allValuesFrom :ConsistencyInterpretation
-                                   ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Indicator
-:Indicator rdf:type owl:Class ;
-           owl:equivalentClass <http://www.w3.org/ns/ssn/systems/SystemProperty> ;
-           rdfs:subClassOf [ rdf:type owl:Restriction ;
-                             owl:onProperty :hasMetric ;
-                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onClass :QualityMetric
-                           ] ;
-           rdfs:comment "A property of a sensor or system that can be used to assess quality of data" .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Interpretation
-:Interpretation rdf:type owl:Class ;
-                rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                  owl:onProperty :Interprets ;
-                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                  owl:onClass :QualityMetric
-                                ] ;
-                rdfs:comment "Interpretation of the result of applying a quality metric for a given indicator" ;
-                skos:example """Low or sufficient battery level,
-
-value out of range""" .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#LastCalibrationDate
-:LastCalibrationDate rdf:type owl:Class ;
-                     rdfs:subClassOf :CalibrationData ,
-                                     [ rdf:type owl:Restriction ;
-                                       owl:onProperty :hasMetric ;
-                                       owl:allValuesFrom :RecencyMetric
-                                     ] ,
-                                     [ rdf:type owl:Restriction ;
-                                       owl:onProperty om-2:hasValue ;
-                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                       owl:onClass om-2:Date
-                                     ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MeasurementUncertainty
-:MeasurementUncertainty rdf:type owl:Class ;
-                        owl:equivalentClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> ;
-                        rdfs:subClassOf :QualityMetric ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty :hasInterpretation ;
-                                          owl:allValuesFrom :MeasurementUncertaintyInterpretation
-                                        ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MeasurementUncertaintyInterpretation
-:MeasurementUncertaintyInterpretation rdf:type owl:Class ;
-                                      rdfs:subClassOf :Interpretation ,
-                                                      [ rdf:type owl:Restriction ;
-                                                        owl:onProperty :Interprets ;
-                                                        owl:allValuesFrom :MeasurementUncertainty
-                                                      ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#QualityMetric
-:QualityMetric rdf:type owl:Class ;
-               rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                 owl:onProperty :hasInterpretation ;
-                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onClass :Interpretation
-                               ] ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty :isMetricOf ;
-                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onClass <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1547>
-                               ] ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> ;
-                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject>
-                               ] ;
-               rdfs:comment "A metric corresponding to a given quality indicator that assigns a value to it" .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#RecencyInterpretation
-:RecencyInterpretation rdf:type owl:Class ;
-                       rdfs:subClassOf :Interpretation ,
-                                       [ rdf:type owl:Restriction ;
-                                         owl:onProperty :Interprets ;
-                                         owl:allValuesFrom :RecencyMetric
-                                       ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#RecencyMetric
-:RecencyMetric rdf:type owl:Class ;
-               rdfs:subClassOf :QualityMetric ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty :hasInterpretation ;
-                                 owl:allValuesFrom :RecencyInterpretation
-                               ] ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty :isMetricOf ;
-                                 owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-                                 owl:onClass :CalibrationData
-                               ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#RemainingLifetimeInterpretation
-:RemainingLifetimeInterpretation rdf:type owl:Class ;
-                                 rdfs:subClassOf :BatteryInterpretation .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#SamplingRate
-:SamplingRate rdf:type owl:Class ;
-              rdfs:subClassOf :Indicator .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Timeliness
-:Timeliness rdf:type owl:Class ;
-            rdfs:subClassOf :Indicator ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasMetric ;
-                              owl:allValuesFrom :TimelinessMetric
-                            ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#TimelinessInterpretation
-:TimelinessInterpretation rdf:type owl:Class ;
-                          rdfs:subClassOf :Interpretation ,
-                                          [ rdf:type owl:Restriction ;
-                                            owl:onProperty :Interprets ;
-                                            owl:allValuesFrom :TimelinessMetric
-                                          ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#TimelinessMetric
-:TimelinessMetric rdf:type owl:Class ;
-                  rdfs:subClassOf :QualityMetric ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasInterpretation ;
-                                    owl:allValuesFrom :TimelinessInterpretation
-                                  ] .
 
 
 ###  http://www.w3.org/ns/sosa/ActuatableProperty
@@ -1453,6 +1192,7 @@ sosa:Sensor rdf:type owl:Class ;
 
 ###  http://www.w3.org/ns/ssn/systems/Accuracy
 <http://www.w3.org/ns/ssn/systems/Accuracy> rdf:type owl:Class ;
+                                            owl:equivalentClass :Accuracy ;
                                             rdfs:subClassOf <http://www.w3.org/ns/ssn/systems/SystemProperty> ;
                                             rdfs:comment "The closeness of agreement between the Result of an Observation (resp. the command of an Actuation) and the true value of the observed ObservableProperty (resp. of the acted on ActuatableProperty) under the defined Conditions."@en ;
                                             rdfs:isDefinedBy <http://www.w3.org/ns/ssn/systems/> ;
@@ -1480,6 +1220,7 @@ sosa:Sensor rdf:type owl:Class ;
 
 ###  http://www.w3.org/ns/ssn/systems/BatteryLifetime
 <http://www.w3.org/ns/ssn/systems/BatteryLifetime> rdf:type owl:Class ;
+                                                   owl:equivalentClass :BatteryLevelMetric ;
                                                    rdfs:subClassOf <http://www.w3.org/ns/ssn/systems/SurvivalProperty> ;
                                                    rdfs:comment "Total useful life of a System's battery in the specified Conditions."@en ;
                                                    rdfs:isDefinedBy <http://www.w3.org/ns/ssn/systems/> ;
@@ -1797,6 +1538,7 @@ sosa:Sensor rdf:type owl:Class ;
 
 ###  http://www.w3.org/ns/ssn/systems/SystemProperty
 <http://www.w3.org/ns/ssn/systems/SystemProperty> rdf:type owl:Class ;
+                                                  owl:equivalentClass :Indicator ;
                                                   rdfs:subClassOf <http://www.w3.org/ns/ssn/Property> ,
                                                                   [ rdf:type owl:Restriction ;
                                                                     owl:onProperty [ owl:inverseOf <http://www.w3.org/ns/ssn/systems/hasSystemProperty>
@@ -1863,7 +1605,265 @@ foaf:Agent rdf:type owl:Class .
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> rdf:type owl:Class ;
+                                                                         owl:equivalentClass :MeasurementUncertainty ;
                                                                          rdfs:comment "Uncertainty object as specified in the D-SI standard"@en .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#Accuracy
+:Accuracy rdf:type owl:Class ;
+          rdfs:subClassOf :Indicator ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasMetric ;
+                            owl:allValuesFrom :AccuracyMetric
+                          ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#AccuracyInterpretation
+:AccuracyInterpretation rdf:type owl:Class ;
+                        rdfs:subClassOf :Interpretation ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :Interprets ;
+                                          owl:allValuesFrom :AccuracyMetric
+                                        ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#AccuracyMetric
+:AccuracyMetric rdf:type owl:Class ;
+                rdfs:subClassOf :QualityMetric ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasInterpretation ;
+                                  owl:allValuesFrom :AccuracyInterpretation
+                                ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#Battery
+:Battery rdf:type owl:Class ;
+         rdfs:subClassOf :Indicator ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasMetric ;
+                           owl:allValuesFrom :BatteryLevelMetric
+                         ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#BatteryInterpretation
+:BatteryInterpretation rdf:type owl:Class ;
+                       rdfs:subClassOf :Interpretation ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :Interprets ;
+                                         owl:allValuesFrom [ rdf:type owl:Class ;
+                                                             owl:unionOf ( <http://www.w3.org/ns/ssn/systems/BatteryLifetime>
+                                                                           :BatteryLevelMetric
+                                                                         )
+                                                           ]
+                                       ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#BatteryLevelInterpretation
+:BatteryLevelInterpretation rdf:type owl:Class ;
+                            rdfs:subClassOf :BatteryInterpretation .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#BatteryLevelMetric
+:BatteryLevelMetric rdf:type owl:Class ;
+                    rdfs:subClassOf :QualityMetric ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasInterpretation ;
+                                      owl:allValuesFrom :BatteryInterpretation
+                                    ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#CalibrationData
+:CalibrationData rdf:type owl:Class ;
+                 rdfs:subClassOf :Indicator .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#Completeness
+:Completeness rdf:type owl:Class ;
+              rdfs:subClassOf :Indicator ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasMetric ;
+                                owl:allValuesFrom :CompletenessMetric
+                              ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#CompletenessInterpretation
+:CompletenessInterpretation rdf:type owl:Class ;
+                            rdfs:subClassOf :Interpretation ,
+                                            [ rdf:type owl:Restriction ;
+                                              owl:onProperty :Interprets ;
+                                              owl:allValuesFrom :CompletenessMetric
+                                            ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#CompletenessMetric
+:CompletenessMetric rdf:type owl:Class ;
+                    rdfs:subClassOf :QualityMetric ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasInterpretation ;
+                                      owl:allValuesFrom :CompletenessInterpretation
+                                    ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#Consistency
+:Consistency rdf:type owl:Class ;
+             rdfs:subClassOf :Indicator ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasMetric ;
+                               owl:allValuesFrom :ConsistencyMetric
+                             ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#ConsistencyInterpretation
+:ConsistencyInterpretation rdf:type owl:Class ;
+                           rdfs:subClassOf :Interpretation ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty :Interprets ;
+                                             owl:allValuesFrom :ConsistencyMetric
+                                           ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#ConsistencyMetric
+:ConsistencyMetric rdf:type owl:Class ;
+                   rdfs:subClassOf :QualityMetric ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasInterpretation ;
+                                     owl:allValuesFrom :ConsistencyInterpretation
+                                   ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#Indicator
+:Indicator rdf:type owl:Class ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasMetric ;
+                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onClass :QualityMetric
+                           ] ;
+           rdfs:comment "A property of a sensor or system that can be used to assess quality of data" .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#Interpretation
+:Interpretation rdf:type owl:Class ;
+                rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                  owl:onProperty :Interprets ;
+                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onClass :QualityMetric
+                                ] ;
+                rdfs:comment "Interpretation of the result of applying a quality metric for a given indicator" ;
+                skos:example """Low or sufficient battery level,
+
+value out of range""" .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#LastCalibrationDate
+:LastCalibrationDate rdf:type owl:Class ;
+                     rdfs:subClassOf :CalibrationData ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasMetric ;
+                                       owl:allValuesFrom :RecencyMetric
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty om-2:hasValue ;
+                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                       owl:onClass om-2:Date
+                                     ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MeasurementUncertainty
+:MeasurementUncertainty rdf:type owl:Class ;
+                        rdfs:subClassOf :QualityMetric ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasInterpretation ;
+                                          owl:allValuesFrom :MeasurementUncertaintyInterpretation
+                                        ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MeasurementUncertaintyInterpretation
+:MeasurementUncertaintyInterpretation rdf:type owl:Class ;
+                                      rdfs:subClassOf :Interpretation ,
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty :Interprets ;
+                                                        owl:allValuesFrom :MeasurementUncertainty
+                                                      ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#QualityMetric
+:QualityMetric rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasInterpretation ;
+                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :Interpretation
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :isMetricOf ;
+                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1547>
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> ;
+                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject>
+                               ] ;
+               rdfs:comment "A metric corresponding to a given quality indicator that assigns a value to it" .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#RecencyInterpretation
+:RecencyInterpretation rdf:type owl:Class ;
+                       rdfs:subClassOf :Interpretation ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :Interprets ;
+                                         owl:allValuesFrom :RecencyMetric
+                                       ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#RecencyMetric
+:RecencyMetric rdf:type owl:Class ;
+               rdfs:subClassOf :QualityMetric ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasInterpretation ;
+                                 owl:allValuesFrom :RecencyInterpretation
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :isMetricOf ;
+                                 owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :CalibrationData
+                               ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#RemainingLifetimeInterpretation
+:RemainingLifetimeInterpretation rdf:type owl:Class ;
+                                 rdfs:subClassOf :BatteryInterpretation .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#SamplingRate
+:SamplingRate rdf:type owl:Class ;
+              rdfs:subClassOf :Indicator .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#Timeliness
+:Timeliness rdf:type owl:Class ;
+            rdfs:subClassOf :Indicator ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasMetric ;
+                              owl:allValuesFrom :TimelinessMetric
+                            ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#TimelinessInterpretation
+:TimelinessInterpretation rdf:type owl:Class ;
+                          rdfs:subClassOf :Interpretation ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty :Interprets ;
+                                            owl:allValuesFrom :TimelinessMetric
+                                          ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#TimelinessMetric
+:TimelinessMetric rdf:type owl:Class ;
+                  rdfs:subClassOf :QualityMetric ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasInterpretation ;
+                                    owl:allValuesFrom :TimelinessInterpretation
+                                  ] .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#CalibratedSensor
