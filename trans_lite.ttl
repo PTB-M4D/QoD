@@ -1,0 +1,1523 @@
+@prefix : <http://www.example.de/trans> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix om-2: <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix schema: <http://schema.org/> .
+@prefix mathematics: <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn> .
+@base <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl> .
+
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl> rdf:type owl:Ontology ;
+                                                                owl:imports <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl> ,
+                                                                            mathematics: ,
+                                                                            om-2: ,
+                                                                            <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl> ,
+                                                                            <http://www.w3.org/ns/sosa/> ;
+                                                                rdfs:label "Sensor Dynamic Transfer Behavior Ontology (trans)"@en ;
+                                                                dc:date "2021/09/08" ;
+                                                                <http://purl.org/dc/terms/created> "2021/04/15" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://cll.niimm.ksu.ru/ontologies/mathematics#disjointWith
+<http://cll.niimm.ksu.ru/ontologies/mathematics#disjointWith> rdf:type owl:AnnotationProperty .
+
+
+###  http://schema.org/domainIncludes
+schema:domainIncludes rdf:type owl:AnnotationProperty .
+
+
+###  http://schema.org/rangeIncludes
+schema:rangeIncludes rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#comment
+rdfs:comment rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#label
+rdfs:label rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#deprecated
+owl:deprecated rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#minCardinality
+owl:minCardinality rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#versionInfo
+owl:versionInfo rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#definition
+skos:definition rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#example
+skos:example rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#hiddenLabel
+skos:hiddenLabel rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#note
+skos:note rdf:type owl:AnnotationProperty .
+
+
+###  http://www.wurvoc.org/vocabularies/WV/illustration
+<http://www.wurvoc.org/vocabularies/WV/illustration> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.wurvoc.org/vocabularies/WV/logo
+<http://www.wurvoc.org/vocabularies/WV/logo> rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/based_near
+<http://xmlns.com/foaf/0.1/based_near> rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/name
+<http://xmlns.com/foaf/0.1/name> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.example.de/trans##MathMLLiteral
+<http://www.example.de/trans##MathMLLiteral> rdf:type rdfs:Datatype .
+
+
+###  http://www.example.de/trans##TeXLiteral
+<http://www.example.de/trans##TeXLiteral> rdf:type rdfs:Datatype .
+
+
+###  http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral
+rdf:PlainLiteral rdf:type rdfs:Datatype .
+
+
+###  http://www.w3.org/2001/XMLSchema#string
+xsd:string rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.example.com/ns/dsi#hasUncertainty
+<http://www.example.com/ns/dsi#hasUncertainty> rdf:type owl:ObjectProperty ;
+                                               rdfs:domain <http://www.example.com/ns/dsi#MeasureWithUncertainty> ;
+                                               rdfs:range <http://www.example.com/ns/dsi#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae> ;
+                                               schema:domainIncludes <http://www.example.com/ns/dsi#MeasureWithUncertainty> ;
+                                               schema:rangeIncludes <http://www.example.com/ns/dsi#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae> ;
+                                               rdfs:comment "Relation between a MeasureWithUncertainty and the assigned Uncertainty."@en ;
+                                               rdfs:isDefinedBy <http://www.example.com/ns/dsi#> ;
+                                               rdfs:label "has uncertainty"@en .
+
+
+###  http://www.example.com/ns/scal#hasCalibrationModel
+<http://www.example.com/ns/scal#hasCalibrationModel> rdf:type owl:ObjectProperty ;
+                                                     rdfs:domain <http://www.example.com/ns/scal#CalibratedSensor> ;
+                                                     rdfs:range <http://www.example.de/trans##TransferModel> ;
+                                                     rdfs:comment "Relation between a CalibratedSensor and the CalibrationModel used to mathematically describe it."@en ;
+                                                     rdfs:label "has model"@en .
+
+
+###  http://www.example.com/ns/scal#hasEquation
+<http://www.example.com/ns/scal#hasEquation> rdf:type owl:ObjectProperty ;
+                                             schema:domainIncludes <http://www.example.com/ns/scal#EquationModel> ;
+                                             schema:rangeIncludes <http://www.example.com/ns/scal#Equation> ;
+                                             rdfs:comment "Relation between an EquationModel and its Equations(s)."@en ;
+                                             rdfs:isDefinedBy <http://www.example.com/ns/csd#> ;
+                                             rdfs:label "has equation"@en .
+
+
+###  http://www.example.com/ns/scal#hasEquationModel
+<http://www.example.com/ns/scal#hasEquationModel> rdf:type owl:ObjectProperty ;
+                                                  rdfs:isDefinedBy <http://www.example.com/ns/csd#> ;
+                                                  rdfs:label "has equation model"@en .
+
+
+###  http://www.example.com/ns/scal#hasLocation
+<http://www.example.com/ns/scal#hasLocation> rdf:type owl:ObjectProperty ;
+                                             schema:domainIncludes <http://www.w3.org/ns/sosa#Sensor> ;
+                                             schema:rangeIncludes <http://www.opengis.net/ont/geosparql#SpatialThing> ,
+                                                                  <http://www.w3.org/ns/sosa#FeatureOfInterest> ;
+                                             rdfs:comment "Relation between a Sensor and its location."@en ;
+                                             rdfs:isDefinedBy <http://www.example.com/ns/csd#> ;
+                                             rdfs:label "has location"@en .
+
+
+###  http://www.example.com/ns/scal#hasMathMLDefinition
+<http://www.example.com/ns/scal#hasMathMLDefinition> rdf:type owl:ObjectProperty ;
+                                                     schema:domainIncludes <http://www.example.com/ns/scal#Equation> ;
+                                                     schema:rangeIncludes xsd:string ;
+                                                     rdfs:comment "Relation between an Equation and its MathML-representation string."@en ;
+                                                     rdfs:isDefinedBy <http://www.example.com/ns/csd#> ;
+                                                     rdfs:label "has MathML definition"@en .
+
+
+###  http://www.example.com/ns/scal#hasParameter
+<http://www.example.com/ns/scal#hasParameter> rdf:type owl:ObjectProperty ;
+                                              schema:domainIncludes <http://www.example.com/ns/scal#EquationModel> ;
+                                              schema:rangeIncludes <http://www.example.com/ns/csd#MeasureWithUncertainty> ,
+                                                                   <http://www.example.com/ns/scal#Parameter> ,
+                                                                   <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> ;
+                                              rdfs:comment "Relation between an EquationModel and the Parameter(s) used in the mathematical expression."@en ;
+                                              rdfs:isDefinedBy <http://www.example.com/ns/csd#> ;
+                                              rdfs:label "has parameter"@en .
+
+
+###  http://www.example.com/ns/scal#hasVariable
+<http://www.example.com/ns/scal#hasVariable> rdf:type owl:ObjectProperty ;
+                                             schema:domainIncludes <http://www.example.com/ns/scal#EquationModel> ;
+                                             schema:rangeIncludes <http://www.example.com/ns/scal#Variable> ,
+                                                                  <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ;
+                                             rdfs:comment "Relation between an EquationModel and the Variables(s) used in the mathematical expression."@en ;
+                                             rdfs:isDefinedBy <http://www.example.com/ns/csd#> ;
+                                             rdfs:label "has variable"@en .
+
+
+###  http://www.example.de/trans##hasArrayDefinition
+<http://www.example.de/trans##hasArrayDefinition> rdf:type owl:ObjectProperty ;
+                                                  rdfs:subPropertyOf <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                  rdfs:domain <http://www.example.de/trans##MathematicalObject> ;
+                                                  rdfs:range <http://www.example.de/trans##Array> .
+
+
+###  http://www.example.de/trans##hasBehavior
+<http://www.example.de/trans##hasBehavior> rdf:type owl:ObjectProperty ;
+                                           rdfs:domain <http://www.example.de/trans##TransferModel> ;
+                                           rdfs:range <http://www.example.de/trans##QualitativeBehavior> .
+
+
+###  http://www.example.de/trans##hasCoefficients
+<http://www.example.de/trans##hasCoefficients> rdf:type owl:ObjectProperty ;
+                                               rdfs:subPropertyOf <http://www.example.de/trans##hasArrayDefinition> ;
+                                               rdfs:domain <http://www.example.de/trans##MathematicalObject> ;
+                                               rdfs:range <http://www.example.de/trans##Array> ;
+                                               rdfs:comment "A polynomial is defined by its coefficients stored in an array." .
+
+
+###  http://www.example.de/trans##hasCoordinates
+<http://www.example.de/trans##hasCoordinates> rdf:type owl:ObjectProperty ;
+                                              rdfs:subPropertyOf <http://www.example.de/trans##hasArrayDefinition> .
+
+
+###  http://www.example.de/trans##hasCovarianceMatrix
+<http://www.example.de/trans##hasCovarianceMatrix> rdf:type owl:ObjectProperty ;
+                                                   rdfs:subPropertyOf <http://www.example.de/trans##hasArrayDefinition> ;
+                                                   rdfs:domain <http://www.example.de/trans##MultivariateUncertainty> .
+
+
+###  http://www.example.de/trans##hasDenominator
+<http://www.example.de/trans##hasDenominator> rdf:type owl:ObjectProperty ;
+                                              rdfs:domain <http://www.example.de/trans##RationalFraction> .
+
+
+###  http://www.example.de/trans##hasFeedthroughMatrix
+<http://www.example.de/trans##hasFeedthroughMatrix> rdf:type owl:ObjectProperty ;
+                                                    rdfs:subPropertyOf <http://www.example.de/trans##hasArrayDefinition> ;
+                                                    rdfs:domain <http://www.example.de/trans##StateSpaceMatrixNotation> ;
+                                                    rdfs:range <http://www.example.de/trans##Array> .
+
+
+###  http://www.example.de/trans##hasFrequencyArray
+<http://www.example.de/trans##hasFrequencyArray> rdf:type owl:ObjectProperty ;
+                                                 rdfs:subPropertyOf <http://www.example.de/trans##hasCoordinates> ;
+                                                 rdfs:domain <http://www.example.de/trans##FrequencySpectrum> .
+
+
+###  http://www.example.de/trans##hasFrequencyStructure
+<http://www.example.de/trans##hasFrequencyStructure> rdf:type owl:ObjectProperty ;
+                                                     rdfs:subPropertyOf <http://www.example.de/trans##hasValueStructure> ;
+                                                     rdfs:domain <http://www.example.de/trans##TransferModel> ;
+                                                     rdfs:range <http://www.example.de/trans##DimensionStructure> .
+
+
+###  http://www.example.de/trans##hasInputMatrix
+<http://www.example.de/trans##hasInputMatrix> rdf:type owl:ObjectProperty ;
+                                              rdfs:subPropertyOf <http://www.example.de/trans##hasArrayDefinition> ;
+                                              rdfs:domain <http://www.example.de/trans##StateSpaceMatrixNotation> ;
+                                              rdfs:range <http://www.example.de/trans##Array> .
+
+
+###  http://www.example.de/trans##hasNumerator
+<http://www.example.de/trans##hasNumerator> rdf:type owl:ObjectProperty ;
+                                            rdfs:domain <http://www.example.de/trans##RationalFraction> .
+
+
+###  http://www.example.de/trans##hasOutputMatrix
+<http://www.example.de/trans##hasOutputMatrix> rdf:type owl:ObjectProperty ;
+                                               rdfs:subPropertyOf <http://www.example.de/trans##hasArrayDefinition> ;
+                                               rdfs:domain <http://www.example.de/trans##StateSpaceMatrixNotation> ;
+                                               rdfs:range <http://www.example.de/trans##Array> .
+
+
+###  http://www.example.de/trans##hasPolynomialRoots
+<http://www.example.de/trans##hasPolynomialRoots> rdf:type owl:ObjectProperty ;
+                                                  rdfs:subPropertyOf <http://www.example.de/trans##hasArrayDefinition> ;
+                                                  rdfs:range <http://www.example.de/trans##Array> ;
+                                                  rdfs:comment "A polynomial is defined by its roots stored in an array." .
+
+
+###  http://www.example.de/trans##hasSystemMatrix
+<http://www.example.de/trans##hasSystemMatrix> rdf:type owl:ObjectProperty ;
+                                               rdfs:subPropertyOf <http://www.example.de/trans##hasArrayDefinition> ;
+                                               rdfs:domain <http://www.example.de/trans##StateSpaceMatrixNotation> ;
+                                               rdfs:range <http://www.example.de/trans##Array> .
+
+
+###  http://www.example.de/trans##hasTimeArray
+<http://www.example.de/trans##hasTimeArray> rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf <http://www.example.de/trans##hasCoordinates> ;
+                                            rdfs:domain <http://www.example.de/trans##TimeSeries> .
+
+
+###  http://www.example.de/trans##hasTimeStructure
+<http://www.example.de/trans##hasTimeStructure> rdf:type owl:ObjectProperty ;
+                                                rdfs:subPropertyOf <http://www.example.de/trans##hasValueStructure> ;
+                                                rdfs:domain <http://www.example.de/trans##TransferModel> ;
+                                                rdfs:range <http://www.example.de/trans##DimensionStructure> .
+
+
+###  http://www.example.de/trans##hasValueArray
+<http://www.example.de/trans##hasValueArray> rdf:type owl:ObjectProperty ;
+                                             rdfs:subPropertyOf <http://www.example.de/trans##hasArrayDefinition> .
+
+
+###  http://www.example.de/trans##hasValueStructure
+<http://www.example.de/trans##hasValueStructure> rdf:type owl:ObjectProperty ,
+                                                          owl:FunctionalProperty ;
+                                                 rdfs:domain <http://www.example.de/trans##TransferModel> ;
+                                                 rdfs:range <http://www.example.de/trans##DimensionStructure> .
+
+
+###  http://www.example.de/trans##isDefinedInDomain
+<http://www.example.de/trans##isDefinedInDomain> rdf:type owl:ObjectProperty ;
+                                                 rdfs:subPropertyOf owl:topObjectProperty ;
+                                                 rdfs:domain <http://www.example.de/trans##TransferModel> ;
+                                                 rdfs:range <http://www.example.de/trans##AnalyticDomain> .
+
+
+###  http://www.example.de/trans##isExpressedBy
+<http://www.example.de/trans##isExpressedBy> rdf:type owl:ObjectProperty ;
+                                             rdfs:range <http://www.example.de/trans##MathematicalObject> .
+
+
+###  http://www.example.de/trans##isOfFamily
+<http://www.example.de/trans##isOfFamily> rdf:type owl:ObjectProperty ;
+                                          rdfs:range <http://www.example.de/trans##FilterType> .
+
+
+###  http://www.example.de/trans##isOfSystemType
+<http://www.example.de/trans##isOfSystemType> rdf:type owl:ObjectProperty ;
+                                              rdfs:domain <http://www.example.de/trans##TransferModel> ;
+                                              rdfs:range <http://www.example.de/trans##SystemType> .
+
+
+###  http://www.w3.org/2002/07/owl#topObjectProperty
+owl:topObjectProperty rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/sosa/actsOnProperty
+<http://www.w3.org/ns/sosa/actsOnProperty> rdf:type owl:ObjectProperty ;
+                                           owl:inverseOf <http://www.w3.org/ns/sosa/isActedOnBy> ;
+                                           schema:domainIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_76ba8f5a_fff2_4414_8468_e706d16211f1> ;
+                                           schema:rangeIncludes <http://www.w3.org/ns/sosa/ActuatableProperty> ;
+                                           rdfs:comment "Relation between an Actuation and the property of a FeatureOfInterest it is acting upon."@en ;
+                                           rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                           rdfs:label "acts on property"@en ;
+                                           skos:definition "Relation between an Actuation and the property of a FeatureOfInterest it is acting upon."@en ;
+                                           skos:example "In the activity (Actuation) of automatically closing a window if the temperature in a room drops below 20 degrees Celsius, the property on which the Actuator acts upon is the state of the window as it changes from being open to being closed. "@en .
+
+
+###  http://www.w3.org/ns/sosa/hasFeatureOfInterest
+<http://www.w3.org/ns/sosa/hasFeatureOfInterest> rdf:type owl:ObjectProperty ;
+                                                 owl:inverseOf <http://www.w3.org/ns/sosa/isFeatureOfInterestOf> ;
+                                                 schema:domainIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_76ba8f5a_fff2_4414_8468_e706d16211f1> ,
+                                                                       <http://www.w3.org/ns/sosa/OWLClassImpl_c30a6a20_de09_4343_a9b7_294badd65193> ,
+                                                                       <http://www.w3.org/ns/sosa/OWLClassImpl_fc7516a4_a818_49dd_abb9_72228b5597f2> ;
+                                                 schema:rangeIncludes <http://www.w3.org/ns/sosa/FeatureOfInterest> ,
+                                                                      <http://www.w3.org/ns/sosa/OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd> ;
+                                                 rdfs:comment "A relation between an Observation and the entity whose quality was observed, or between an Actuation and the entity whose property was modified, or between an act of Sampling and the entity that was sampled."@en ;
+                                                 rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                                 rdfs:label "has feature of interest"@en ;
+                                                 skos:definition "A relation between an Observation and the entity whose quality was observed, or between an Actuation and the entity whose property was modified, or between an act of Sampling and the entity that was sampled."@en ;
+                                                 skos:example "For example, in an Observation of the weight of a person, the FeatureOfInterest is the person and the property is its weight."@en .
+
+
+###  http://www.w3.org/ns/sosa/hasResult
+<http://www.w3.org/ns/sosa/hasResult> rdf:type owl:ObjectProperty ;
+                                      owl:inverseOf <http://www.w3.org/ns/sosa/isResultOf> ;
+                                      schema:domainIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_76ba8f5a_fff2_4414_8468_e706d16211f1> ,
+                                                            <http://www.w3.org/ns/sosa/OWLClassImpl_c30a6a20_de09_4343_a9b7_294badd65193> ,
+                                                            <http://www.w3.org/ns/sosa/OWLClassImpl_fc7516a4_a818_49dd_abb9_72228b5597f2> ;
+                                      schema:rangeIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd> ,
+                                                           <http://www.w3.org/ns/sosa/OWLClassImpl_f8dae9b6_5094_43d9_a267_1f31d5992472> ;
+                                      rdfs:comment "Relation linking an Observation or Actuation or act of Sampling and a Result or Sample."@en ;
+                                      rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                      rdfs:label "has result"@en ;
+                                      skos:definition "Relation linking an Observation or Actuation or act of Sampling and a Result or Sample."@en .
+
+
+###  http://www.w3.org/ns/sosa/hasSample
+<http://www.w3.org/ns/sosa/hasSample> rdf:type owl:ObjectProperty ;
+                                      owl:inverseOf <http://www.w3.org/ns/sosa/isSampleOf> ;
+                                      schema:domainIncludes <http://www.w3.org/ns/sosa/FeatureOfInterest> ;
+                                      schema:rangeIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd> ;
+                                      rdfs:comment "Relation between a FeatureOfInterest and the Sample used to represent it."@en ;
+                                      rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                      rdfs:label "has sample"@en ;
+                                      skos:definition "Relation between a FeatureOfInterest and the Sample used to represent it."@en .
+
+
+###  http://www.w3.org/ns/sosa/hosts
+<http://www.w3.org/ns/sosa/hosts> rdf:type owl:ObjectProperty ;
+                                  owl:inverseOf <http://www.w3.org/ns/sosa/isHostedBy> .
+
+
+###  http://www.w3.org/ns/sosa/isActedOnBy
+<http://www.w3.org/ns/sosa/isActedOnBy> rdf:type owl:ObjectProperty ;
+                                        schema:domainIncludes <http://www.w3.org/ns/sosa/ActuatableProperty> ;
+                                        schema:rangeIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_76ba8f5a_fff2_4414_8468_e706d16211f1> ;
+                                        rdfs:comment "Relation between an ActuatableProperty of a FeatureOfInterest and an Actuation changing its state."@en ;
+                                        rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                        rdfs:label "is acted on by"@en ;
+                                        skos:definition "Relation between an ActuatableProperty of a FeatureOfInterest and an Actuation changing its state."@en ;
+                                        skos:example "In the activity (Actuation) of automatically closing a window if the temperature in a room drops below 20 degrees Celsius, the property on which the Actuator acts upon is the state of the window as it changes from being open to being closed. "@en .
+
+
+###  http://www.w3.org/ns/sosa/isFeatureOfInterestOf
+<http://www.w3.org/ns/sosa/isFeatureOfInterestOf> rdf:type owl:ObjectProperty ;
+                                                  schema:domainIncludes <http://www.w3.org/ns/sosa/FeatureOfInterest> ,
+                                                                        <http://www.w3.org/ns/sosa/OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd> ;
+                                                  schema:rangeIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_76ba8f5a_fff2_4414_8468_e706d16211f1> ,
+                                                                       <http://www.w3.org/ns/sosa/OWLClassImpl_c30a6a20_de09_4343_a9b7_294badd65193> ,
+                                                                       <http://www.w3.org/ns/sosa/OWLClassImpl_fc7516a4_a818_49dd_abb9_72228b5597f2> ;
+                                                  rdfs:comment "A relation between a FeatureOfInterest and an Observation about it, an Actuation acting on it, or an act of Sampling that sampled it."@en ;
+                                                  rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                                  rdfs:label "is feature of interest of"@en ;
+                                                  skos:definition "A relation between a FeatureOfInterest and an Observation about it, an Actuation acting on it, or an act of Sampling that sampled it."@en .
+
+
+###  http://www.w3.org/ns/sosa/isHostedBy
+<http://www.w3.org/ns/sosa/isHostedBy> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/sosa/isObservedBy
+<http://www.w3.org/ns/sosa/isObservedBy> rdf:type owl:ObjectProperty ;
+                                         owl:inverseOf <http://www.w3.org/ns/sosa/observes> ;
+                                         schema:domainIncludes <http://www.w3.org/ns/sosa/ObservableProperty> ;
+                                         schema:rangeIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_28ce790f_8a49_4961_93fa_6944a0d00033> ;
+                                         rdfs:comment "Relation between an ObservableProperty and the Sensor able to observe it."@en ;
+                                         rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                         rdfs:label "is observed by"@en ;
+                                         skos:definition "Relation between an ObservableProperty and the Sensor able to observe it."@en .
+
+
+###  http://www.w3.org/ns/sosa/isResultOf
+<http://www.w3.org/ns/sosa/isResultOf> rdf:type owl:ObjectProperty ;
+                                       schema:domainIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd> ,
+                                                             <http://www.w3.org/ns/sosa/OWLClassImpl_f8dae9b6_5094_43d9_a267_1f31d5992472> ;
+                                       schema:rangeIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_76ba8f5a_fff2_4414_8468_e706d16211f1> ,
+                                                            <http://www.w3.org/ns/sosa/OWLClassImpl_c30a6a20_de09_4343_a9b7_294badd65193> ,
+                                                            <http://www.w3.org/ns/sosa/OWLClassImpl_fc7516a4_a818_49dd_abb9_72228b5597f2> ;
+                                       rdfs:comment "Relation linking a Result to the Observation or Actuation or act of Sampling that created or caused it."@en ;
+                                       rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                       rdfs:label "is result of"@en ;
+                                       skos:definition "Relation linking a Result to the Observation or Actuation or act of Sampling that created or caused it."@en .
+
+
+###  http://www.w3.org/ns/sosa/isSampleOf
+<http://www.w3.org/ns/sosa/isSampleOf> rdf:type owl:ObjectProperty ;
+                                       schema:domainIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd> ;
+                                       schema:rangeIncludes <http://www.w3.org/ns/sosa/FeatureOfInterest> ;
+                                       rdfs:comment "Relation from a Sample to the FeatureOfInterest that it is intended to be representative of."@en ;
+                                       rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                       rdfs:label "is sample of"@en ;
+                                       skos:definition "Relation from a Sample to the FeatureOfInterest that it is intended to be representative of."@en .
+
+
+###  http://www.w3.org/ns/sosa/madeActuation
+<http://www.w3.org/ns/sosa/madeActuation> rdf:type owl:ObjectProperty ;
+                                          owl:inverseOf <http://www.w3.org/ns/sosa/madeByActuator> ;
+                                          schema:domainIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_469f12d2_b0e5_4426_91f4_16e9d18d8832> ;
+                                          schema:rangeIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_76ba8f5a_fff2_4414_8468_e706d16211f1> ;
+                                          rdfs:comment "Relation between an Actuator and the Actuation it has made."@en ;
+                                          rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                          rdfs:label "made actuation"@en ;
+                                          skos:definition "Relation between an Actuator and the Actuation it has made."@en .
+
+
+###  http://www.w3.org/ns/sosa/madeByActuator
+<http://www.w3.org/ns/sosa/madeByActuator> rdf:type owl:ObjectProperty ;
+                                           schema:domainIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_76ba8f5a_fff2_4414_8468_e706d16211f1> ;
+                                           schema:rangeIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_469f12d2_b0e5_4426_91f4_16e9d18d8832> ;
+                                           rdfs:comment "Relation linking an Actuation to the Actuator that made that Actuation."@en ;
+                                           rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                           rdfs:label "made by actuator"@en ;
+                                           skos:definition "Relation linking an Actuation to the Actuator that made that Actuation."@en .
+
+
+###  http://www.w3.org/ns/sosa/madeBySampler
+<http://www.w3.org/ns/sosa/madeBySampler> rdf:type owl:ObjectProperty ;
+                                          owl:inverseOf <http://www.w3.org/ns/sosa/madeSampling> ;
+                                          schema:domainIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_c30a6a20_de09_4343_a9b7_294badd65193> ;
+                                          schema:rangeIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_7dca06dd_f0b0_4b8d_b9db_4952d5231102> ;
+                                          rdfs:comment "Relation linking an act of Sampling to the Sampler (sampling device or entity) that made it."@en ;
+                                          rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                          rdfs:label "made by sampler"@en ;
+                                          skos:definition "Relation linking an act of Sampling to the Sampler (sampling device or entity) that made it."@en .
+
+
+###  http://www.w3.org/ns/sosa/madeBySensor
+<http://www.w3.org/ns/sosa/madeBySensor> rdf:type owl:ObjectProperty ;
+                                         owl:inverseOf <http://www.w3.org/ns/sosa/madeObservation> ;
+                                         schema:domainIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_fc7516a4_a818_49dd_abb9_72228b5597f2> ;
+                                         schema:rangeIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_28ce790f_8a49_4961_93fa_6944a0d00033> ;
+                                         rdfs:comment "Relation between an Observation and the Sensor which made the Observation."@en ;
+                                         rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                         rdfs:label "made by sensor"@en ;
+                                         skos:definition "Relation between an Observation and the Sensor which made the Observation."@en .
+
+
+###  http://www.w3.org/ns/sosa/madeObservation
+<http://www.w3.org/ns/sosa/madeObservation> rdf:type owl:ObjectProperty ;
+                                            schema:domainIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_28ce790f_8a49_4961_93fa_6944a0d00033> ;
+                                            schema:rangeIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_fc7516a4_a818_49dd_abb9_72228b5597f2> ;
+                                            rdfs:comment "Relation between a Sensor and an Observation made by the Sensor."@en ;
+                                            rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                            rdfs:label "made observation"@en ;
+                                            skos:definition "Relation between a Sensor and an Observation made by the Sensor."@en .
+
+
+###  http://www.w3.org/ns/sosa/madeSampling
+<http://www.w3.org/ns/sosa/madeSampling> rdf:type owl:ObjectProperty ;
+                                         schema:domainIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_7dca06dd_f0b0_4b8d_b9db_4952d5231102> ;
+                                         schema:rangeIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_c30a6a20_de09_4343_a9b7_294badd65193> ;
+                                         rdfs:comment "Relation between a Sampler (sampling device or entity) and the Sampling act it performed."@en ;
+                                         rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                         rdfs:label "made sampling"@en ;
+                                         skos:definition "Relation between a Sampler (sampling device or entity) and the Sampling act it performed."@en .
+
+
+###  http://www.w3.org/ns/sosa/observedProperty
+<http://www.w3.org/ns/sosa/observedProperty> rdf:type owl:ObjectProperty ;
+                                             schema:domainIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_fc7516a4_a818_49dd_abb9_72228b5597f2> ;
+                                             schema:rangeIncludes <http://www.w3.org/ns/sosa/ObservableProperty> ;
+                                             rdfs:comment "Relation linking an Observation to the property that was observed. The ObservableProperty should be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation."@en ;
+                                             rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                             rdfs:label "observed property"@en ;
+                                             skos:definition "Relation linking an Observation to the property that was observed. The ObservableProperty should be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation."@en .
+
+
+###  http://www.w3.org/ns/sosa/observes
+<http://www.w3.org/ns/sosa/observes> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/sosa/phenomenonTime
+<http://www.w3.org/ns/sosa/phenomenonTime> rdf:type owl:ObjectProperty ;
+                                           schema:domainIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_76ba8f5a_fff2_4414_8468_e706d16211f1> ,
+                                                                 <http://www.w3.org/ns/sosa/OWLClassImpl_c30a6a20_de09_4343_a9b7_294badd65193> ,
+                                                                 <http://www.w3.org/ns/sosa/OWLClassImpl_fc7516a4_a818_49dd_abb9_72228b5597f2> ;
+                                           schema:rangeIncludes <http://www.w3.org/2006/time#TemporalEntity> ;
+                                           rdfs:comment "The time that the Result of an Observation, Actuation or Sampling applies to the FeatureOfInterest. Not necessarily the same as the resultTime. May be an Interval or an Instant, or some other compound TemporalEntity."@en ;
+                                           rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                           rdfs:label "phenomenon time"@en ;
+                                           skos:definition "The time that the Result of an Observation, Actuation or Sampling applies to the FeatureOfInterest. Not necessarily the same as the resultTime. May be an Interval or an Instant, or some other compound TemporalEntity."@en .
+
+
+###  http://www.w3.org/ns/sosa/usedProcedure
+<http://www.w3.org/ns/sosa/usedProcedure> rdf:type owl:ObjectProperty ;
+                                          schema:domainIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_76ba8f5a_fff2_4414_8468_e706d16211f1> ,
+                                                                <http://www.w3.org/ns/sosa/OWLClassImpl_c30a6a20_de09_4343_a9b7_294badd65193> ,
+                                                                <http://www.w3.org/ns/sosa/OWLClassImpl_fc7516a4_a818_49dd_abb9_72228b5597f2> ;
+                                          schema:rangeIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_b2da77fc_af11_4823_b938_18af2d33365b> ;
+                                          rdfs:comment "A relation to link to a re-usable Procedure used in making an Observation, an Actuation, or a Sample, typically through a Sensor, Actuator or Sampler."@en ;
+                                          rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                          rdfs:label "used procedure"@en ;
+                                          skos:definition "A relation to link to a re-usable Procedure used in making an Observation, an Actuation, or a Sample, typically through a Sensor, Actuator or Sampler."@en .
+
+
+###  http://www.wurvoc.org/bibliography/om-2/OWLObjectPropertyImpl_a5c93e56_401a_49fb_8a5b_838e6534e6e4
+<http://www.wurvoc.org/bibliography/om-2/OWLObjectPropertyImpl_a5c93e56_401a_49fb_8a5b_838e6534e6e4> rdf:type owl:ObjectProperty ,
+                                                                                                              owl:FunctionalProperty ;
+                                                                                                     rdfs:label "reference"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.example.com/ns/dsi#hasCoverageFactor
+<http://www.example.com/ns/dsi#hasCoverageFactor> rdf:type owl:DatatypeProperty ;
+                                                  rdfs:range xsd:double .
+
+
+###  http://www.example.com/ns/dsi#hasCoverageProbability
+<http://www.example.com/ns/dsi#hasCoverageProbability> rdf:type owl:DatatypeProperty ;
+                                                       rdfs:range xsd:double .
+
+
+###  http://www.example.com/ns/dsi#hasDistribution
+<http://www.example.com/ns/dsi#hasDistribution> rdf:type owl:DatatypeProperty ;
+                                                schema:domainIncludes <http://www.example.com/ns/dsi#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae> ;
+                                                schema:rangeIncludes xsd:string ;
+                                                rdfs:comment "Relation between an Uncertainty and the uncertainty distribution (as string)."@en ;
+                                                rdfs:isDefinedBy <http://www.example.com/ns/dsi#> ;
+                                                rdfs:label "has uncertainty distribution"@en .
+
+
+###  http://www.example.com/ns/dsi#hasIntervalMax
+<http://www.example.com/ns/dsi#hasIntervalMax> rdf:type owl:DatatypeProperty ;
+                                               rdfs:range xsd:double .
+
+
+###  http://www.example.com/ns/dsi#hasIntervalMin
+<http://www.example.com/ns/dsi#hasIntervalMin> rdf:type owl:DatatypeProperty ;
+                                               rdfs:range xsd:double .
+
+
+###  http://www.example.com/ns/dsi#hasStandardUncertainty
+<http://www.example.com/ns/dsi#hasStandardUncertainty> rdf:type owl:DatatypeProperty ;
+                                                       rdfs:range xsd:float .
+
+
+###  http://www.example.de/trans##hasMathMLexpression
+<http://www.example.de/trans##hasMathMLexpression> rdf:type owl:DatatypeProperty ;
+                                                   rdfs:range <http://www.example.de/trans##MathMLLiteral> .
+
+
+###  http://www.example.de/trans##hasTeXExpression
+<http://www.example.de/trans##hasTeXExpression> rdf:type owl:DatatypeProperty ;
+                                                rdfs:range <http://www.example.de/trans##TeXLiteral> .
+
+
+###  http://www.w3.org/ns/sosa/hasSimpleResult
+<http://www.w3.org/ns/sosa/hasSimpleResult> rdf:type owl:DatatypeProperty ;
+                                            schema:domainIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_76ba8f5a_fff2_4414_8468_e706d16211f1> ,
+                                                                  <http://www.w3.org/ns/sosa/OWLClassImpl_c30a6a20_de09_4343_a9b7_294badd65193> ,
+                                                                  <http://www.w3.org/ns/sosa/OWLClassImpl_fc7516a4_a818_49dd_abb9_72228b5597f2> ;
+                                            rdfs:comment "The simple value of an Observation or Actuation or act of Sampling."@en ;
+                                            rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                            rdfs:label "has simple result"@en ;
+                                            skos:definition "The simple value of an Observation or Actuation or act of Sampling."@en ;
+                                            skos:example "For instance, the values 23 or true."@en .
+
+
+###  http://www.w3.org/ns/sosa/resultTime
+<http://www.w3.org/ns/sosa/resultTime> rdf:type owl:DatatypeProperty ;
+                                       rdfs:range xsd:dateTime ;
+                                       schema:domainIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_76ba8f5a_fff2_4414_8468_e706d16211f1> ,
+                                                             <http://www.w3.org/ns/sosa/OWLClassImpl_c30a6a20_de09_4343_a9b7_294badd65193> ,
+                                                             <http://www.w3.org/ns/sosa/OWLClassImpl_fc7516a4_a818_49dd_abb9_72228b5597f2> ;
+                                       rdfs:comment "The result time is the instant of time when the Observation, Actuation or Sampling activity was completed."@en ;
+                                       rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                       rdfs:label "result time"@en ;
+                                       skos:definition "The result time is the instant of time when the Observation, Actuation or Sampling activity was completed."@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/ontology/bibo/Standard
+<http://purl.org/ontology/bibo/Standard> rdf:type owl:Class .
+
+
+###  http://www.example.com/ns/dsi#ExpandedUncertainty
+<http://www.example.com/ns/dsi#ExpandedUncertainty> rdf:type owl:Class ;
+                                                    rdfs:subClassOf <http://www.example.de/trans##UnivariateUncertainty> ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <http://www.example.com/ns/dsi#hasCoverageFactor> ;
+                                                                      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                      owl:onDataRange xsd:double
+                                                                    ] ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <http://www.example.com/ns/dsi#hasCoverageProbability> ;
+                                                                      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                      owl:onDataRange xsd:double
+                                                                    ] ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <http://www.example.com/ns/dsi#hasDistribution> ;
+                                                                      owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                    ] ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue> ;
+                                                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                      owl:onDataRange xsd:double
+                                                                    ] ;
+                                                    rdfs:comment "Expanded Uncertainty Specification as in Digital-SI"@en ;
+                                                    rdfs:isDefinedBy <http://www.example.com/ns/dsi#> .
+
+
+###  http://www.example.com/ns/dsi#MeasureWithUncertainty
+<http://www.example.com/ns/dsi#MeasureWithUncertainty> rdf:type owl:Class ;
+                                                       rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <http://www.example.com/ns/dsi#hasUncertainty> ;
+                                                                         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                         owl:onClass <http://www.example.com/ns/dsi#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae>
+                                                                       ] ;
+                                                       rdfs:comment "Extended om:Measure with uncertainty quantification as in Digital-SI"@en ;
+                                                       rdfs:isDefinedBy <http://www.example.com/ns/dsi#> ;
+                                                       rdfs:label "Measure with Uncertainty"@en .
+
+
+###  http://www.example.com/ns/dsi#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae
+<http://www.example.com/ns/dsi#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae> rdf:type owl:Class ;
+                                                                                  rdfs:comment "Uncertainty object as specified in the D-SI standard"@en ;
+                                                                                  rdfs:isDefinedBy <http://www.example.com/ns/dsi#> ;
+                                                                                  rdfs:label "Uncertainty"@en .
+
+
+###  http://www.example.com/ns/scal#CalibratedSensor
+<http://www.example.com/ns/scal#CalibratedSensor> rdf:type owl:Class ;
+                                                  rdfs:subClassOf <http://www.w3.org/ns/sosa/OWLClassImpl_28ce790f_8a49_4961_93fa_6944a0d00033> ;
+                                                  rdfs:isDefinedBy <http://www.example.com/ns/csd#> ;
+                                                  rdfs:label "Calibrated Sensor"@en .
+
+
+###  http://www.example.com/ns/scal#CalibrationModel
+<http://www.example.com/ns/scal#CalibrationModel> rdf:type owl:Class ;
+                                                  rdfs:isDefinedBy <http://www.example.com/ns/csd#> ;
+                                                  rdfs:label "Mathematical Calibration Model"@en .
+
+
+###  http://www.example.com/ns/scal#Equation
+<http://www.example.com/ns/scal#Equation> rdf:type owl:Class ;
+                                          rdfs:comment "Define an equation by some representation."@en .
+
+
+###  http://www.example.com/ns/scal#EquationModel
+<http://www.example.com/ns/scal#EquationModel> rdf:type owl:Class ;
+                                               rdfs:subClassOf <http://www.example.com/ns/scal#CalibrationModel> ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <http://www.example.com/ns/scal#hasEquation> ;
+                                                                 owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <http://www.example.com/ns/scal#hasParameter> ;
+                                                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <http://www.example.com/ns/scal#hasVariable> ;
+                                                                 owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ;
+                                               rdfs:comment "Define a model via an equation with parameters and variables."@en .
+
+
+###  http://www.example.com/ns/scal#Parameter
+<http://www.example.com/ns/scal#Parameter> rdf:type owl:Class ;
+                                           rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> ;
+                                           rdfs:comment "Define a parameter."@en ;
+                                           rdfs:isDefinedBy <http://www.example.com/ns/csd#> .
+
+
+###  http://www.example.com/ns/scal#Variable
+<http://www.example.com/ns/scal#Variable> rdf:type owl:Class ;
+                                          rdfs:subClassOf <http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity> ;
+                                          rdfs:isDefinedBy <http://www.example.com/ns/csd#> ;
+                                          rdfs:label "Define a variable."@en .
+
+
+###  http://www.example.de/trans##AnalyticDomain
+<http://www.example.de/trans##AnalyticDomain> rdf:type owl:Class ;
+                                              rdfs:comment "The domain in which the transfer behavior is represented/analyzed"@en .
+
+
+###  http://www.example.de/trans##Array
+<http://www.example.de/trans##Array> rdf:type owl:Class ;
+                                     rdfs:subClassOf <http://www.example.de/trans##MathematicalObject> ,
+                                                     <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> ,
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue> ;
+                                                       owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                           owl:unionOf ( <http://www.example.de/trans##MathMLLiteral>
+                                                                                         <http://www.example.de/trans##TeXLiteral>
+                                                                                         rdf:XMLLiteral
+                                                                                       )
+                                                                         ]
+                                                     ] .
+
+
+###  http://www.example.de/trans##ArrayWithUncertainty
+<http://www.example.de/trans##ArrayWithUncertainty> rdf:type owl:Class ;
+                                                    rdfs:subClassOf <http://www.example.com/ns/dsi#MeasureWithUncertainty> ,
+                                                                    <http://www.example.de/trans##Array> ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <http://www.example.com/ns/dsi#hasUncertainty> ;
+                                                                      owl:allValuesFrom <http://www.example.de/trans##UnivariateUncertainty>
+                                                                    ] .
+
+
+###  http://www.example.de/trans##BandPass
+<http://www.example.de/trans##BandPass> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://www.example.de/trans##FrequencyBehavior> .
+
+
+###  http://www.example.de/trans##BandStop
+<http://www.example.de/trans##BandStop> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://www.example.de/trans##FrequencyBehavior> .
+
+
+###  http://www.example.de/trans##Bessel
+<http://www.example.de/trans##Bessel> rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://www.example.de/trans##FilterType> .
+
+
+###  http://www.example.de/trans##Butterworth
+<http://www.example.de/trans##Butterworth> rdf:type owl:Class ;
+                                           rdfs:subClassOf <http://www.example.de/trans##FilterType> .
+
+
+###  http://www.example.de/trans##Chebyshev
+<http://www.example.de/trans##Chebyshev> rdf:type owl:Class ;
+                                         rdfs:subClassOf <http://www.example.de/trans##FilterType> .
+
+
+###  http://www.example.de/trans##Continuous
+<http://www.example.de/trans##Continuous> rdf:type owl:Class ;
+                                          rdfs:subClassOf <http://www.example.de/trans##DimensionStructure> ;
+                                          owl:disjointWith <http://www.example.de/trans##Discrete> ;
+                                          rdfs:comment "The values along a dimension are represented by continuous points."@en .
+
+
+###  http://www.example.de/trans##ContinuousImpulseResponseModel
+<http://www.example.de/trans##ContinuousImpulseResponseModel> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <http://www.example.de/trans##ImpulseResponseModel> ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <http://www.example.de/trans##hasBehavior> ;
+                                                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass <http://www.example.de/trans##Dynamic>
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <http://www.example.de/trans##isDefinedInDomain> ;
+                                                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass <http://www.example.de/trans##TimeDomain>
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <http://www.example.de/trans##isExpressedBy> ;
+                                                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass <http://www.example.de/trans##MathematicalObject>
+                                                                              ] ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <http://www.example.de/trans##isOfSystemType> ;
+                                                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass <http://www.example.de/trans##LinearSystem>
+                                                                              ] .
+
+
+###  http://www.example.de/trans##DimensionStructure
+<http://www.example.de/trans##DimensionStructure> rdf:type owl:Class .
+
+
+###  http://www.example.de/trans##Discrete
+<http://www.example.de/trans##Discrete> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://www.example.de/trans##DimensionStructure> ;
+                                        rdfs:comment "The values along a dimension are represented by discrete points."@en .
+
+
+###  http://www.example.de/trans##Dynamic
+<http://www.example.de/trans##Dynamic> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://www.example.de/trans##TemporalBehavior> ;
+                                       rdfs:comment "System response can depend on the history of input values."@en .
+
+
+###  http://www.example.de/trans##EllipsoidalRegion
+<http://www.example.de/trans##EllipsoidalRegion> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <http://www.example.de/trans##MultivariateUncertainty> .
+
+
+###  http://www.example.de/trans##Elliptic
+<http://www.example.de/trans##Elliptic> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://www.example.de/trans##FilterType> ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <http://www.example.de/trans##isExpressedBy> ;
+                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                          owl:onClass <http://www.example.de/trans##EllipticRationalFunction>
+                                                        ] .
+
+
+###  http://www.example.de/trans##EllipticRationalFunction
+<http://www.example.de/trans##EllipticRationalFunction> rdf:type owl:Class ;
+                                                        rdfs:subClassOf <http://www.example.de/trans##RationalFraction> .
+
+
+###  http://www.example.de/trans##FilterType
+<http://www.example.de/trans##FilterType> rdf:type owl:Class ;
+                                          rdfs:subClassOf <http://www.example.de/trans##TransferModel> ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <http://www.example.de/trans##hasBehavior> ;
+                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onClass <http://www.example.de/trans##FrequencyBehavior>
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <http://www.example.de/trans##isDefinedInDomain> ;
+                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onClass <http://www.example.de/trans##FrequencyDomain>
+                                                          ] .
+
+
+###  http://www.example.de/trans##FiniteImpulseResponseModel
+<http://www.example.de/trans##FiniteImpulseResponseModel> rdf:type owl:Class ;
+                                                          rdfs:subClassOf <http://www.example.de/trans##ImpulseResponseModel> ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty <http://www.example.de/trans##isDefinedInDomain> ;
+                                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                            owl:onClass [ rdf:type owl:Class ;
+                                                                                          owl:unionOf ( <http://www.example.de/trans##FrequencyDomain>
+                                                                                                        <http://www.example.de/trans##TimeDomain>
+                                                                                                      )
+                                                                                        ]
+                                                                          ] .
+
+
+###  http://www.example.de/trans##FrequencyBehavior
+<http://www.example.de/trans##FrequencyBehavior> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <http://www.example.de/trans##QualitativeBehavior> .
+
+
+###  http://www.example.de/trans##FrequencyDomain
+<http://www.example.de/trans##FrequencyDomain> rdf:type owl:Class ;
+                                               rdfs:subClassOf <http://www.example.de/trans##AnalyticDomain> .
+
+
+###  http://www.example.de/trans##FrequencySpectrum
+<http://www.example.de/trans##FrequencySpectrum> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <http://www.example.de/trans##MathematicalObject> ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <http://www.example.de/trans##hasFrequencyArray> ;
+                                                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                   owl:onClass <http://www.example.de/trans##Array>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <http://www.example.de/trans##hasValueArray> ;
+                                                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                   owl:onClass <http://www.example.de/trans##Array>
+                                                                 ] .
+
+
+###  http://www.example.de/trans##HighPass
+<http://www.example.de/trans##HighPass> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://www.example.de/trans##FrequencyBehavior> .
+
+
+###  http://www.example.de/trans##ImpulseResponseModel
+<http://www.example.de/trans##ImpulseResponseModel> rdf:type owl:Class ;
+                                                    rdfs:subClassOf <http://www.example.de/trans##TransferModel> ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <http://www.example.de/trans##isDefinedInDomain> ;
+                                                                      owl:allValuesFrom <http://www.example.de/trans##AnalyticDomain>
+                                                                    ] .
+
+
+###  http://www.example.de/trans##InfiniteImpulseResponseModel
+<http://www.example.de/trans##InfiniteImpulseResponseModel> rdf:type owl:Class ;
+                                                            rdfs:subClassOf <http://www.example.de/trans##ImpulseResponseModel> ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <http://www.example.de/trans##isDefinedInDomain> ;
+                                                                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                              owl:onClass [ rdf:type owl:Class ;
+                                                                                            owl:unionOf ( <http://www.example.de/trans##FrequencyDomain>
+                                                                                                          <http://www.example.de/trans##TimeDomain>
+                                                                                                        )
+                                                                                          ]
+                                                                            ] ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <http://www.example.de/trans##isExpressedBy> ;
+                                                                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                              owl:onClass [ rdf:type owl:Class ;
+                                                                                            owl:unionOf ( <http://www.example.de/trans##LinearDifferenceEquation>
+                                                                                                          <http://www.example.de/trans##RationalFraction>
+                                                                                                        )
+                                                                                          ]
+                                                                            ] .
+
+
+###  http://www.example.de/trans##LTISystem
+<http://www.example.de/trans##LTISystem> rdf:type owl:Class ;
+                                         rdfs:subClassOf <http://www.example.de/trans##LinearSystem> .
+
+
+###  http://www.example.de/trans##LinearAffineModel
+<http://www.example.de/trans##LinearAffineModel> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <http://www.example.de/trans##TransferModel> ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <http://www.example.de/trans##hasBehavior> ;
+                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                   owl:onClass <http://www.example.de/trans##Static>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <http://www.example.de/trans##isDefinedInDomain> ;
+                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                   owl:onClass <http://www.example.de/trans##TimeDomain>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <http://www.example.de/trans##isExpressedBy> ;
+                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                   owl:onClass <http://www.example.de/trans##MathematicalObject>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <http://www.example.de/trans##isOfSystemType> ;
+                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                   owl:onClass <http://www.example.de/trans##NonlinearSystem>
+                                                                 ] .
+
+
+###  http://www.example.de/trans##LinearDifferenceEquation
+<http://www.example.de/trans##LinearDifferenceEquation> rdf:type owl:Class ;
+                                                        rdfs:subClassOf <http://www.example.de/trans##MathematicalObject> ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://www.example.de/trans##hasCoefficients> ;
+                                                                          owl:qualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                                                          owl:onClass <http://www.example.de/trans##Array>
+                                                                        ] .
+
+
+###  http://www.example.de/trans##LinearStateSpaceModel
+<http://www.example.de/trans##LinearStateSpaceModel> rdf:type owl:Class ;
+                                                     rdfs:subClassOf <http://www.example.de/trans##StateSpaceModel> ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://www.example.de/trans##isExpressedBy> ;
+                                                                       owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                       owl:onClass <http://www.example.de/trans##StateSpaceMatrixNotation>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <http://www.example.de/trans##isOfSystemType> ;
+                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                       owl:onClass <http://www.example.de/trans##LinearSystem>
+                                                                     ] .
+
+
+###  http://www.example.de/trans##LinearSystem
+<http://www.example.de/trans##LinearSystem> rdf:type owl:Class ;
+                                            rdfs:subClassOf <http://www.example.de/trans##SystemType> ;
+                                            owl:disjointWith <http://www.example.de/trans##NonlinearSystem> .
+
+
+###  http://www.example.de/trans##LowPass
+<http://www.example.de/trans##LowPass> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://www.example.de/trans##FrequencyBehavior> .
+
+
+###  http://www.example.de/trans##MathematicalObject
+<http://www.example.de/trans##MathematicalObject> rdf:type owl:Class ;
+                                                  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty <http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> ;
+                                                                    owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure>
+                                                                  ] .
+
+
+###  http://www.example.de/trans##MultivariateUncertainty
+<http://www.example.de/trans##MultivariateUncertainty> rdf:type owl:Class ;
+                                                       rdfs:subClassOf <http://www.example.com/ns/dsi#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae> .
+
+
+###  http://www.example.de/trans##NonLinearStateSpaceModel
+<http://www.example.de/trans##NonLinearStateSpaceModel> rdf:type owl:Class ;
+                                                        rdfs:subClassOf <http://www.example.de/trans##StateSpaceModel> ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://www.example.de/trans##isOfSystemType> ;
+                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                          owl:onClass <http://www.example.de/trans##NonlinearSystem>
+                                                                        ] .
+
+
+###  http://www.example.de/trans##NonlinearSystem
+<http://www.example.de/trans##NonlinearSystem> rdf:type owl:Class ;
+                                               rdfs:subClassOf <http://www.example.de/trans##SystemType> .
+
+
+###  http://www.example.de/trans##Parameter
+<http://www.example.de/trans##Parameter> rdf:type owl:Class ;
+                                         owl:equivalentClass <http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> .
+
+
+###  http://www.example.de/trans##QualitativeBehavior
+<http://www.example.de/trans##QualitativeBehavior> rdf:type owl:Class .
+
+
+###  http://www.example.de/trans##RationalFraction
+<http://www.example.de/trans##RationalFraction> rdf:type owl:Class ;
+                                                rdfs:subClassOf <http://www.example.de/trans##MathematicalObject> ;
+                                                rdfs:comment "A rational fraction given by its numerator- and denominator-polynomial."@en .
+
+
+###  http://www.example.de/trans##RectangularRegion
+<http://www.example.de/trans##RectangularRegion> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <http://www.example.de/trans##MultivariateUncertainty> .
+
+
+###  http://www.example.de/trans##StateSpaceMatrixNotation
+<http://www.example.de/trans##StateSpaceMatrixNotation> rdf:type owl:Class ;
+                                                        rdfs:subClassOf <http://www.example.de/trans##MathematicalObject> ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://www.example.de/trans##hasFeedthroughMatrix> ;
+                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                          owl:onClass <http://www.example.de/trans##Array>
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://www.example.de/trans##hasInputMatrix> ;
+                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                          owl:onClass <http://www.example.de/trans##Array>
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://www.example.de/trans##hasOutputMatrix> ;
+                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                          owl:onClass <http://www.example.de/trans##Array>
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <http://www.example.de/trans##hasSystemMatrix> ;
+                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                          owl:onClass <http://www.example.de/trans##Array>
+                                                                        ] ;
+                                                        rdfs:comment """Depending on chosen time-dimension structure (continuous / discrete) the matrices represent a system of differential or difference equations. 
+
+continuous:
+x_dot = A*x + B*u
+y = C*x + D*u
+
+discrete:
+x[n+1] = A*x[n] + B*u[n]
+y[n] = C*x[n] + D*u[n]
+
+with internal state x, state's time derivate x_dot, input u, output y."""@en ,
+                                                                     "State Space Model represented by its system Matrix A, input matrix B, output matrix C and feedthrough matrix D."@en .
+
+
+###  http://www.example.de/trans##StateSpaceModel
+<http://www.example.de/trans##StateSpaceModel> rdf:type owl:Class ;
+                                               rdfs:subClassOf <http://www.example.de/trans##TransferModel> ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <http://www.example.de/trans##hasBehavior> ;
+                                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                 owl:onClass <http://www.example.de/trans##Dynamic>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <http://www.example.de/trans##isDefinedInDomain> ;
+                                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                 owl:onClass <http://www.example.de/trans##TimeDomain>
+                                                               ] .
+
+
+###  http://www.example.de/trans##Static
+<http://www.example.de/trans##Static> rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://www.example.de/trans##TemporalBehavior> ;
+                                      rdfs:comment "System response is only dependent on the last input value."@en .
+
+
+###  http://www.example.de/trans##StepResponseModel
+<http://www.example.de/trans##StepResponseModel> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <http://www.example.de/trans##TransferModel> ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <http://www.example.de/trans##hasBehavior> ;
+                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                   owl:onClass <http://www.example.de/trans##Dynamic>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <http://www.example.de/trans##isDefinedInDomain> ;
+                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                   owl:onClass <http://www.example.de/trans##TimeDomain>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <http://www.example.de/trans##isExpressedBy> ;
+                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                   owl:onClass <http://www.example.de/trans##MathematicalObject>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <http://www.example.de/trans##isOfSystemType> ;
+                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                   owl:onClass <http://www.example.de/trans##LinearSystem>
+                                                                 ] .
+
+
+###  http://www.example.de/trans##SystemType
+<http://www.example.de/trans##SystemType> rdf:type owl:Class .
+
+
+###  http://www.example.de/trans##TemporalBehavior
+<http://www.example.de/trans##TemporalBehavior> rdf:type owl:Class ;
+                                                rdfs:subClassOf <http://www.example.de/trans##QualitativeBehavior> .
+
+
+###  http://www.example.de/trans##TimeDomain
+<http://www.example.de/trans##TimeDomain> rdf:type owl:Class ;
+                                          rdfs:subClassOf <http://www.example.de/trans##AnalyticDomain> .
+
+
+###  http://www.example.de/trans##TimeSeries
+<http://www.example.de/trans##TimeSeries> rdf:type owl:Class ;
+                                          rdfs:subClassOf <http://www.example.de/trans##MathematicalObject> ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <http://www.example.de/trans##hasValueArray> ;
+                                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onClass <http://www.example.de/trans##Array>
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <http://www.example.de/trans##hasTimeArray> ;
+                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onClass <http://www.example.de/trans##Array>
+                                                          ] .
+
+
+###  http://www.example.de/trans##TransferModel
+<http://www.example.de/trans##TransferModel> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://www.example.de/trans##FilterType> ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://www.example.de/trans##hasBehavior> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://www.example.de/trans##QualitativeBehavior>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://www.example.de/trans##hasValueStructure> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://www.example.de/trans##DimensionStructure>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://www.example.de/trans##isExpressedBy> ;
+                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://www.example.de/trans##MathematicalObject>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <http://www.example.de/trans##isOfSystemType> ;
+                                                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                               owl:onClass <http://www.example.de/trans##LinearSystem>
+                                                             ] ;
+                                             rdfs:seeAlso <http://www.example.com/ns/scal#EquationModel> .
+
+
+###  http://www.example.de/trans##UnivariateUncertainty
+<http://www.example.de/trans##UnivariateUncertainty> rdf:type owl:Class ;
+                                                     rdfs:subClassOf <http://www.example.com/ns/dsi#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae> .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Measure
+
+###  http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq
+rdf:Seq rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/time#TemporalEntity
+<http://www.w3.org/2006/time#TemporalEntity> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/sosa/ActuatableProperty
+<http://www.w3.org/ns/sosa/ActuatableProperty> rdf:type owl:Class ;
+                                               rdfs:comment "An actuatable quality (property, characteristic) of a FeatureOfInterest."@en ;
+                                               rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                               rdfs:label "Actuatable Property"@en ;
+                                               skos:definition "An actuatable quality (property, characteristic) of a FeatureOfInterest."@en ;
+                                               skos:example "A window actuator acts by changing the state between a frame and a window. The ability of the window to be opened and closed is its ActuatableProperty."@en .
+
+
+###  http://www.w3.org/ns/sosa/FeatureOfInterest
+<http://www.w3.org/ns/sosa/FeatureOfInterest> rdf:type owl:Class ;
+                                              rdfs:comment "The thing whose property is being estimated or calculated in the course of an Observation to arrive at a Result or whose property is being manipulated by an Actuator, or which is being sampled or transformed in an act of Sampling."@en ;
+                                              rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                              rdfs:label "Feature Of Interest"@en ;
+                                              skos:definition "The thing whose property is being estimated or calculated in the course of an Observation to arrive at a Result or whose property is being manipulated by an Actuator, or which is being sampled or transformed in an act of Sampling."@en ;
+                                              skos:example "When measuring the height of a tree, the height is the observed ObservableProperty, 20m may be the Result of the Observation, and the tree is the FeatureOfInterest. A window is a FeatureOfInterest for an automatic window control Actuator."@en .
+
+
+###  http://www.w3.org/ns/sosa/OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd
+<http://www.w3.org/ns/sosa/OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd> rdf:type owl:Class ;
+                                                                              rdfs:comment "A Sample is the result from an act of Sampling."@en ,
+                                                                                           "Feature which is intended to be representative of a FeatureOfInterest on which Observations may be made."@en ,
+                                                                                           "Physical samples are sometimes known as 'specimens'."@en ,
+                                                                                           """Samples are artifacts of an observational strategy, and have no significant function outside of their role in the observation process. The characteristics of the samples themselves are of little interest, except perhaps to the manager of a sampling campaign.
+
+A Sample is intended to sample some FatureOfInterest, so there is an expectation of at least one isSampleOf property. However, in some cases the identity, and even the exact type, of the sampled feature may not be known when observations are made using the sampling features."""@en ;
+                                                                              rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                                                              rdfs:label "Sample"@en ;
+                                                                              skos:definition "Feature which is intended to be representative of a FeatureOfInterest on which Observations may be made."@en ;
+                                                                              skos:example "A 'station' is essentially an identifiable locality where a sensor system or Procedure may be deployed and an observation made. In the context of the observation model, it connotes the 'world in the vicinity of the station', so the observed properties relate to the physical medium at the station, and not to any physical artifact such as a mooring, buoy, benchmark, monument, well, etc."@en ,
+                                                                                           "A statistical sample is often designed to be characteristic of an entire population, so that observations can be made regarding the sample that provide a good estimate of the properties of the population."@en ;
+                                                                              skos:note "A transient sample, such as a ships-track or flight-line, might be identified and described, but is unlikely to be revisited exactly."@en .
+
+
+###  http://www.w3.org/ns/sosa/OWLClassImpl_28ce790f_8a49_4961_93fa_6944a0d00033
+<http://www.w3.org/ns/sosa/OWLClassImpl_28ce790f_8a49_4961_93fa_6944a0d00033> rdf:type owl:Class ;
+                                                                              rdfs:comment "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
+                                                                              rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                                                              rdfs:label "Sensor"@en ;
+                                                                              skos:definition "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
+                                                                              skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smart phone (which acts as Platform). Other examples of sensors include the human eyes."@en .
+
+
+###  http://www.w3.org/ns/sosa/OWLClassImpl_469f12d2_b0e5_4426_91f4_16e9d18d8832
+<http://www.w3.org/ns/sosa/OWLClassImpl_469f12d2_b0e5_4426_91f4_16e9d18d8832> rdf:type owl:Class ;
+                                                                              rdfs:comment "A device that is used by, or implements, an (Actuation) Procedure that changes the state of the world."@en ;
+                                                                              rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                                                              rdfs:label "Actuator"@en ;
+                                                                              skos:definition "A device that is used by, or implements, an (Actuation) Procedure that changes the state of the world."@en ;
+                                                                              skos:example "A window actuator for automatic window control, i.e., opening or closing the window."@en .
+
+
+###  http://www.w3.org/ns/sosa/OWLClassImpl_76ba8f5a_fff2_4414_8468_e706d16211f1
+<http://www.w3.org/ns/sosa/OWLClassImpl_76ba8f5a_fff2_4414_8468_e706d16211f1> rdf:type owl:Class ;
+                                                                              rdfs:comment "An Actuation carries out an (Actuation) Procedure to change the state of the world using an Actuator."@en ;
+                                                                              rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                                                              rdfs:label "Actuation"@en ;
+                                                                              skos:definition "An Actuation carries out an (Actuation) Procedure to change the state of the world using an Actuator."@en ;
+                                                                              skos:example "The activity of automatically closing a window if the temperature in a room drops below 20 degree Celsius. The activity is the Actuation and the device that closes the window is the Actuator. The Procedure is the rule, plan, or specification that defines the conditions that triggers the Actuation, here a drop in temperature. "@en .
+
+
+###  http://www.w3.org/ns/sosa/OWLClassImpl_7dca06dd_f0b0_4b8d_b9db_4952d5231102
+<http://www.w3.org/ns/sosa/OWLClassImpl_7dca06dd_f0b0_4b8d_b9db_4952d5231102> rdf:type owl:Class ;
+                                                                              rdfs:comment "A device that is used by, or implements, a Sampling Procedure to create or transform one or more samples."@en ;
+                                                                              rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                                                              rdfs:label "Sampler"@en ;
+                                                                              skos:definition "A device that is used by, or implements, a Sampling Procedure to create or transform one or more samples."@en ;
+                                                                              skos:example "A ball mill, diamond drill, hammer, hypodermic syringe and needle, image Sensor or a soil auger can all act as sampling devices (i.e., be Samplers). However, sometimes the distinction between the Sampler and the Sensor is not evident, as they are packaged as a unit. A Sampler need not be a physical device."@en .
+
+
+###  http://www.w3.org/ns/sosa/OWLClassImpl_88b55516_cda6_4915_bdc5_59a11f003aae
+<http://www.w3.org/ns/sosa/OWLClassImpl_88b55516_cda6_4915_bdc5_59a11f003aae> rdf:type owl:Class ;
+                                                                              rdfs:comment "A Platform is an entity that hosts other entities, particularly Sensors, Actuators, Samplers, and other Platforms."@en ;
+                                                                              rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                                                              rdfs:label "Platform"@en ;
+                                                                              skos:definition "A Platform is an entity that hosts other entities, particularly Sensors, Actuators, Samplers, and other Platforms."@en ;
+                                                                              skos:example "A post, buoy, vehicle, ship, aircraft, satellite, cell-phone, human or animal may act as platforms for (technical or biological) sensors or actuators."@en .
+
+
+###  http://www.w3.org/ns/sosa/OWLClassImpl_b2da77fc_af11_4823_b938_18af2d33365b
+<http://www.w3.org/ns/sosa/OWLClassImpl_b2da77fc_af11_4823_b938_18af2d33365b> rdf:type owl:Class ;
+                                                                              rdfs:comment "A workflow, protocol, plan, algorithm, or computational method specifying how to make an Observation, create a Sample, or make a change to the state of the world (via an Actuator). A Procedure is re-usable, and might be involved in many Observations, Samplings, or Actuations. It explains the steps to be carried out to arrive at reproducible results."@en ;
+                                                                              rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                                                              rdfs:label "Procedure"@en ;
+                                                                              skos:definition "A workflow, protocol, plan, algorithm, or computational method specifying how to make an Observation, create a Sample, or make a change to the state of the world (via an Actuator). A Procedure is re-usable, and might be involved in many Observations, Samplings, or Actuations. It explains the steps to be carried out to arrive at reproducible results."@en ;
+                                                                              skos:example "The measured wind speed differs depending on the height of the sensor above the surface, e.g., due to friction. Consequently, procedures for measuring wind speed define a standard height for anemometers above ground, typically 10m for meteorological measures and 2m in Agrometeorology. This definition of height, sensor placement, and so forth are defined by the Procedure."@en ;
+                                                                              skos:note "Many observations may be created via the same Procedure, the same way as many tables are assembled using the same instructions (as information objects, not their concrete realization)."@en .
+
+
+###  http://www.w3.org/ns/sosa/OWLClassImpl_c30a6a20_de09_4343_a9b7_294badd65193
+<http://www.w3.org/ns/sosa/OWLClassImpl_c30a6a20_de09_4343_a9b7_294badd65193> rdf:type owl:Class ;
+                                                                              rdfs:comment "An act of Sampling carries out a sampling Procedure to create or transform one or more samples."@en ;
+                                                                              rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                                                              rdfs:label "Sampling"@en ;
+                                                                              skos:definition "An act of Sampling carries out a sampling Procedure to create or transform one or more samples."@en ;
+                                                                              skos:example "Crushing a rock sample in a ball mill."@en ,
+                                                                                           "Digging a pit through a soil sequence."@en ,
+                                                                                           "Dividing a field site into quadrants."@en ,
+                                                                                           "Drawing blood from a patient."@en ,
+                                                                                           "Drilling an observation well."@en ,
+                                                                                           "Establishing a station for environmental monitoring."@en ,
+                                                                                           "Registering an image of the landscape."@en ,
+                                                                                           "Selecting a subset of a population."@en ,
+                                                                                           "Sieving a powder to separate the subset finer than 100-mesh."@en ,
+                                                                                           "Splitting a piece of drill-core to create two new samples."@en ,
+                                                                                           "Taking a diamond-drill core from a rock outcrop."@en .
+
+
+###  http://www.w3.org/ns/sosa/OWLClassImpl_f8dae9b6_5094_43d9_a267_1f31d5992472
+<http://www.w3.org/ns/sosa/OWLClassImpl_f8dae9b6_5094_43d9_a267_1f31d5992472> rdf:type owl:Class ;
+                                                                              rdfs:comment "The Result of an Observation, Actuation, or act of Sampling. To store an observation's simple result value one can use the hasSimpleResult property."@en ;
+                                                                              rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                                                              rdfs:label "Result"@en ;
+                                                                              skos:definition "The Result of an Observation, Actuation, or act of Sampling. To store an observation's simple result value one can use the hasSimpleResult property."@en ;
+                                                                              skos:example "The value 20 as the height of a certain tree together with the unit, e.g., Meter."@en .
+
+
+###  http://www.w3.org/ns/sosa/OWLClassImpl_fc7516a4_a818_49dd_abb9_72228b5597f2
+<http://www.w3.org/ns/sosa/OWLClassImpl_fc7516a4_a818_49dd_abb9_72228b5597f2> rdf:type owl:Class ;
+                                                                              rdfs:comment "Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to an ObservableProperty to describe what the result is an estimate of, and to a FeatureOfInterest to detail what that property was associated with."@en ;
+                                                                              rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                                                              rdfs:label "Observation"@en ;
+                                                                              skos:definition "Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to an ObservableProperty to describe what the result is an estimate of, and to a FeatureOfInterest to detail what that property was associated with."@en ;
+                                                                              skos:example "The activity of estimating the intensity of an Earthquake using the Mercalli intensity scale is an Observation as is measuring the moment magnitude, i.e., the energy released by said earthquake."@en .
+
+
+###  http://www.w3.org/ns/sosa/ObservableProperty
+<http://www.w3.org/ns/sosa/ObservableProperty> rdf:type owl:Class ;
+                                               rdfs:comment "An observable quality (property, characteristic) of a FeatureOfInterest."@en ;
+                                               rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+                                               rdfs:label "Observable Property"@en ;
+                                               skos:definition "An observable quality (property, characteristic) of a FeatureOfInterest."@en ;
+                                               skos:example "The height of a tree, the depth of a water body, or the temperature of a surface are examples of observable properties, while the value of a classic car is not (directly) observable but asserted."@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.example.de/trans##DenominatorArray
+<http://www.example.de/trans##DenominatorArray> rdf:type owl:NamedIndividual ,
+                                                         <http://www.example.de/trans##ArrayWithUncertainty> ;
+                                                <http://www.example.com/ns/dsi#hasUncertainty> <http://www.example.de/trans##DenominatorUncertainty> ;
+                                                <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> <http://www.ontology-of-units-of-measure.org/resource/om-2/OWLNamedIndividualImpl_87ed9e1e_1e6b_492b_8c21_6f8cf0996e37> ;
+                                                <http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue> """<vector><cn>1.00</cn><cn>355.71</cn>
+<cn>71865.05</cn><cn>6361231.00</cn>
+<cn>-2555989.83</cn><cn>102273.71</cn>
+<cn>6653441.80</cn><cn>-3131762.12</cn></vector>"""^^<http://www.example.de/trans##MathMLLiteral> .
+
+
+###  http://www.example.de/trans##DenominatorUncertainty
+<http://www.example.de/trans##DenominatorUncertainty> rdf:type owl:NamedIndividual ,
+                                                               <http://www.example.de/trans##EllipsoidalRegion> ;
+                                                      <http://www.example.de/trans##hasCovarianceMatrix> <http://www.example.de/trans##covMatDenominator> .
+
+
+###  http://www.example.de/trans##MPU9250
+<http://www.example.de/trans##MPU9250> rdf:type owl:NamedIndividual ,
+                                                <http://www.example.com/ns/scal#CalibratedSensor> ;
+                                       <http://www.example.com/ns/scal#hasCalibrationModel> <http://www.example.de/trans##MPUcalibrationModel> ;
+                                       <http://www.w3.org/ns/sosa/isHostedBy> <http://www.example.de/trans##SmartupUnit> ;
+                                       <http://www.w3.org/ns/sosa/observes> <http://www.ontology-of-units-of-measure.org/resource/om-2/AngularVelocity> .
+
+
+###  http://www.example.de/trans##MPUDenominatorPolynomial
+<http://www.example.de/trans##MPUDenominatorPolynomial> rdf:type owl:NamedIndividual ,
+                                                                 <http://cll.niimm.ksu.ru/ontologies/mathematics#E1995> ;
+                                                        <http://www.example.de/trans##hasCoefficients> <http://www.example.de/trans##DenominatorArray> .
+
+
+###  http://www.example.de/trans##MPUNumeratorPolynomial
+<http://www.example.de/trans##MPUNumeratorPolynomial> rdf:type owl:NamedIndividual ,
+                                                               <http://cll.niimm.ksu.ru/ontologies/mathematics#E1995> ;
+                                                      <http://www.example.de/trans##hasCoefficients> <http://www.example.de/trans##NumeratorArray> .
+
+
+###  http://www.example.de/trans##MPURationalFraction
+<http://www.example.de/trans##MPURationalFraction> rdf:type owl:NamedIndividual ,
+                                                            <http://www.example.de/trans##RationalFraction> ;
+                                                   <http://www.example.de/trans##hasDenominator> <http://www.example.de/trans##MPUDenominatorPolynomial> ;
+                                                   <http://www.example.de/trans##hasNumerator> <http://www.example.de/trans##MPUNumeratorPolynomial> .
+
+
+###  http://www.example.de/trans##MPUcalibrationModel
+<http://www.example.de/trans##MPUcalibrationModel> rdf:type owl:NamedIndividual ,
+                                                            <http://www.example.com/ns/scal#CalibrationModel> ,
+                                                            <http://www.example.de/trans##InfiniteImpulseResponseModel> ;
+                                                   <http://www.example.de/trans##isExpressedBy> <http://www.example.de/trans##MPURationalFraction> .
+
+
+###  http://www.example.de/trans##MPUobservation
+<http://www.example.de/trans##MPUobservation> rdf:type owl:NamedIndividual ,
+                                                       <http://www.w3.org/ns/sosa/OWLClassImpl_fc7516a4_a818_49dd_abb9_72228b5597f2> ;
+                                              <http://www.w3.org/ns/sosa/hasResult> <http://www.example.de/trans##MPUresult> ;
+                                              <http://www.w3.org/ns/sosa/madeBySensor> <http://www.example.de/trans##MPU9250> ;
+                                              <http://www.w3.org/ns/sosa/resultTime> "2021-02-16T13:00:00Z"^^xsd:dateTime .
+
+
+###  http://www.example.de/trans##MPUresult
+<http://www.example.de/trans##MPUresult> rdf:type owl:NamedIndividual ,
+                                                  <http://www.example.com/ns/dsi#MeasureWithUncertainty> ,
+                                                  <http://www.w3.org/ns/sosa/OWLClassImpl_f8dae9b6_5094_43d9_a267_1f31d5992472> ;
+                                         <http://www.example.com/ns/dsi#hasUncertainty> <http://www.example.de/trans##MPUresultuncertainty> ;
+                                         <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> <http://www.ontology-of-units-of-measure.org/resource/om-2/radianPerSecond-Time> ;
+                                         <http://www.w3.org/ns/sosa/isResultOf> <http://www.example.de/trans##MPUobservation> ;
+                                         <http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue> "1.0"^^xsd:double .
+
+
+###  http://www.example.de/trans##MPUresultuncertainty
+<http://www.example.de/trans##MPUresultuncertainty> rdf:type owl:NamedIndividual ,
+                                                             <http://www.example.com/ns/dsi#ExpandedUncertainty> ;
+                                                    <http://www.example.com/ns/dsi#hasCoverageFactor> "2.0"^^xsd:double ;
+                                                    <http://www.example.com/ns/dsi#hasCoverageProbability> "0.95"^^xsd:double ;
+                                                    <http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue> "0.1"^^xsd:double .
+
+
+###  http://www.example.de/trans##NumeratorArray
+<http://www.example.de/trans##NumeratorArray> rdf:type owl:NamedIndividual ,
+                                                       <http://www.example.de/trans##ArrayWithUncertainty> ;
+                                              <http://www.example.com/ns/dsi#hasUncertainty> <http://www.example.de/trans##NumeratorUncertainty> ;
+                                              <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> <http://www.ontology-of-units-of-measure.org/resource/om-2/OWLNamedIndividualImpl_87ed9e1e_1e6b_492b_8c21_6f8cf0996e37> ;
+                                              <http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue> """<vector><cn>0.04</cn><cn>33.76</cn>
+<cn>-19885.32</cn><cn>6428406.45</cn>
+<cn>-3393935.03</cn><cn>-153413.50</cn>
+<cn>-6432435.78</cn><cn>3054910.80</cn></vector>"""^^<http://www.example.de/trans##MathMLLiteral> .
+
+
+###  http://www.example.de/trans##NumeratorUncertainty
+<http://www.example.de/trans##NumeratorUncertainty> rdf:type owl:NamedIndividual ,
+                                                             <http://www.example.de/trans##EllipsoidalRegion> ;
+                                                    <http://www.example.de/trans##hasCovarianceMatrix> <http://www.example.de/trans##covMatNumerator> .
+
+
+###  http://www.example.de/trans##SmartupUnit
+<http://www.example.de/trans##SmartupUnit> rdf:type owl:NamedIndividual ,
+                                                    <http://www.w3.org/ns/sosa/OWLClassImpl_88b55516_cda6_4915_bdc5_59a11f003aae> .
+
+
+###  http://www.example.de/trans##covMatDenominator
+<http://www.example.de/trans##covMatDenominator> rdf:type owl:NamedIndividual ;
+                                                 <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> <http://www.ontology-of-units-of-measure.org/resource/om-2/OWLNamedIndividualImpl_87ed9e1e_1e6b_492b_8c21_6f8cf0996e37> ;
+                                                 <http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue> """<matrix>
+<matrixrow><cn>0.006</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn>
+<cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn></matrixrow>
+<matrixrow><cn>0.0</cn><cn>0.720</cn><cn>0.0</cn><cn>0.0</cn>
+<cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn></matrixrow>
+<matrixrow><cn>0.0</cn><cn>0.0</cn><cn>126.719</cn><cn>0.0</cn>
+<cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn></matrixrow>
+<matrixrow><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>667.265</cn>
+<cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn></matrixrow>
+<matrixrow><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn>
+<cn>10754.486</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn></matrixrow>
+<matrixrow><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn>
+<cn>0.0</cn><cn>1047.130</cn><cn>0.0</cn><cn>0.0</cn></matrixrow>
+<matrixrow><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn>
+<cn>0.0</cn><cn>0.0</cn><cn>183.267</cn><cn>0.0</cn></matrixrow>
+<matrixrow><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn>
+<cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>61.542</cn></matrixrow>
+</matrix>"""^^<http://www.example.de/trans##MathMLLiteral> .
+
+
+###  http://www.example.de/trans##covMatNumerator
+<http://www.example.de/trans##covMatNumerator> rdf:type owl:NamedIndividual ;
+                                               <http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> <http://www.ontology-of-units-of-measure.org/resource/om-2/OWLNamedIndividualImpl_87ed9e1e_1e6b_492b_8c21_6f8cf0996e37> ;
+                                               <http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue> """<matrix>
+<matrixrow><cn>0.003</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn>
+<cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn></matrixrow>
+<matrixrow><cn>0.0</cn><cn>0.441</cn><cn>0.0</cn><cn>0.0</cn>
+<cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn></matrixrow>
+<matrixrow><cn>0.0</cn><cn>0.0</cn><cn>103.623</cn><cn>0.0</cn>
+<cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn></matrixrow>
+<matrixrow><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>669.321</cn>
+<cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn></matrixrow>
+<matrixrow><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn>
+<cn>10696.986</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn></matrixrow>
+<matrixrow><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn>
+<cn>0.0</cn><cn>1175.445</cn><cn>0.0</cn><cn>0.0</cn></matrixrow>
+<matrixrow><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn>
+<cn>0.0</cn><cn>0.0</cn><cn>166.493</cn><cn>0.0</cn></matrixrow>
+<matrixrow><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn>
+<cn>0.0</cn><cn>0.0</cn><cn>0.0</cn><cn>63.049</cn></matrixrow>
+</matrix>"""^^<http://www.example.de/trans##MathMLLiteral> .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( <http://www.example.de/trans##BandPass>
+                <http://www.example.de/trans##BandStop>
+                <http://www.example.de/trans##HighPass>
+                <http://www.example.de/trans##LowPass>
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( <http://www.example.de/trans##Bessel>
+                <http://www.example.de/trans##Butterworth>
+                <http://www.example.de/trans##Chebyshev>
+                <http://www.example.de/trans##Elliptic>
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
