@@ -425,7 +425,7 @@ sosa:usedProcedure rdf:type owl:ObjectProperty ;
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#hasIndicator
 :hasIndicator rdf:type owl:ObjectProperty ;
               rdfs:domain <http://www.w3.org/ns/ssn/System> ;
-              rdfs:range :Indicator .
+              rdfs:range :QualityIndicator .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#hasInterpretation
@@ -437,14 +437,14 @@ sosa:usedProcedure rdf:type owl:ObjectProperty ;
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#hasMetric
 :hasMetric rdf:type owl:ObjectProperty ;
            owl:inverseOf :isMetricOf ;
-           rdfs:domain :Indicator ;
+           rdfs:domain :QualityIndicator ;
            rdfs:range :QualityMetric .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#isMetricOf
 :isMetricOf rdf:type owl:ObjectProperty ;
             rdfs:domain :QualityMetric ;
-            rdfs:range :Indicator .
+            rdfs:range :QualityIndicator .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#hasCalibrationModel
@@ -1172,7 +1172,7 @@ sosa:Sensor rdf:type owl:Class ;
                                                   [ rdf:type owl:Restriction ;
                                                     owl:onProperty :hasIndicator ;
                                                     owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-                                                    owl:onClass :Indicator
+                                                    owl:onClass :QualityIndicator
                                                   ] ;
                                   rdfs:comment "System is a unit of abstraction for pieces of infrastructure that implement Procedures. A System may have components, its subsystems, which are other systems."@en ;
                                   rdfs:isDefinedBy <http://www.w3.org/ns/ssn/> ;
@@ -1565,7 +1565,7 @@ foaf:Agent rdf:type owl:Class .
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#Accuracy
 :Accuracy rdf:type owl:Class ;
-          rdfs:subClassOf :Indicator ,
+          rdfs:subClassOf :QualityIndicator ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :hasMetric ;
                             owl:allValuesFrom :AccuracyMetric
@@ -1592,7 +1592,7 @@ foaf:Agent rdf:type owl:Class .
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#Battery
 :Battery rdf:type owl:Class ;
-         rdfs:subClassOf :Indicator ,
+         rdfs:subClassOf :QualityIndicator ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :hasMetric ;
                            owl:allValuesFrom :BatteryLevelMetric
@@ -1628,12 +1628,12 @@ foaf:Agent rdf:type owl:Class .
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#CalibrationData
 :CalibrationData rdf:type owl:Class ;
-                 rdfs:subClassOf :Indicator .
+                 rdfs:subClassOf :QualityIndicator .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#Completeness
 :Completeness rdf:type owl:Class ;
-              rdfs:subClassOf :Indicator ,
+              rdfs:subClassOf :QualityIndicator ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasMetric ;
                                 owl:allValuesFrom :CompletenessMetric
@@ -1660,7 +1660,7 @@ foaf:Agent rdf:type owl:Class .
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#Consistency
 :Consistency rdf:type owl:Class ;
-             rdfs:subClassOf :Indicator ,
+             rdfs:subClassOf :QualityIndicator ,
                              [ rdf:type owl:Restriction ;
                                owl:onProperty :hasMetric ;
                                owl:allValuesFrom :ConsistencyMetric
@@ -1683,17 +1683,6 @@ foaf:Agent rdf:type owl:Class .
                                      owl:onProperty :hasInterpretation ;
                                      owl:allValuesFrom :ConsistencyInterpretation
                                    ] .
-
-
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#Indicator
-:Indicator rdf:type owl:Class ;
-           rdfs:subClassOf <http://www.w3.org/ns/ssn/systems/SystemProperty> ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :hasMetric ;
-                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                             owl:onClass :QualityMetric
-                           ] ;
-           rdfs:comment "A property of a sensor or system that can be used to assess quality of data" .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#Interpretation
@@ -1739,6 +1728,17 @@ value out of range""" .
                                                         owl:onProperty :Interprets ;
                                                         owl:allValuesFrom :MeasurementUncertainty
                                                       ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#QualityIndicator
+:QualityIndicator rdf:type owl:Class ;
+                  rdfs:subClassOf <http://www.w3.org/ns/ssn/systems/SystemProperty> ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasMetric ;
+                                    owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :QualityMetric
+                                  ] ;
+                  rdfs:comment "A property of a sensor or system that can be used to assess quality of data" .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#QualityMetric
@@ -1791,12 +1791,12 @@ value out of range""" .
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#SamplingRate
 :SamplingRate rdf:type owl:Class ;
-              rdfs:subClassOf :Indicator .
+              rdfs:subClassOf :QualityIndicator .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#Timeliness
 :Timeliness rdf:type owl:Class ;
-            rdfs:subClassOf :Indicator ,
+            rdfs:subClassOf :QualityIndicator ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :hasMetric ;
                               owl:allValuesFrom :TimelinessMetric
