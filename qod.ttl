@@ -629,63 +629,6 @@ sosa:resultTime rdf:type owl:DatatypeProperty ;
                                                                                     rdfs:range xsd:float .
 
 
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#CriticalIf
-:CriticalIf rdf:type owl:DatatypeProperty ;
-            rdfs:domain :AccuracyInterpretation ,
-                        :BatteryInterpretation ,
-                        :CompletenessInterpretation ,
-                        :MeasurementUncertaintyInterpretation ,
-                        :RecencyInterpretation ,
-                        :TimelinessInterpretation ;
-            rdfs:range [ rdf:type rdfs:Datatype ;
-                         owl:unionOf ( rdf:XMLLiteral
-                                       <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
-                                       <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
-                                     )
-                       ] ;
-            owl:propertyDisjointWith :SufficientIf .
-
-
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#CurrentIf
-:CurrentIf rdf:type owl:DatatypeProperty ;
-           rdfs:subPropertyOf owl:topDataProperty ;
-           rdfs:domain :RecencyInterpretation ;
-           rdfs:range [ rdf:type rdfs:Datatype ;
-                        owl:unionOf ( rdf:XMLLiteral
-                                      <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
-                                      <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
-                                    )
-                      ] .
-
-
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#OutOfDateIf
-:OutOfDateIf rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf owl:topDataProperty ;
-             rdfs:domain :RecencyInterpretation ;
-             rdfs:range [ rdf:type rdfs:Datatype ;
-                          owl:unionOf ( rdf:XMLLiteral
-                                        <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
-                                        <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
-                                      )
-                        ] .
-
-
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#SufficientIf
-:SufficientIf rdf:type owl:DatatypeProperty ;
-              rdfs:subPropertyOf owl:topDataProperty ;
-              rdfs:domain :AccuracyInterpretation ,
-                          :BatteryInterpretation ,
-                          :CompletenessInterpretation ,
-                          :MeasurementUncertaintyInterpretation ,
-                          :TimelinessInterpretation ;
-              rdfs:range [ rdf:type rdfs:Datatype ;
-                           owl:unionOf ( rdf:XMLLiteral
-                                         <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
-                                         <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
-                                       )
-                         ] .
-
-
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#hasDate
 :hasDate rdf:type owl:DatatypeProperty ;
          rdfs:domain :LastCalibrationDate ;
@@ -701,6 +644,43 @@ sosa:resultTime rdf:type owl:DatatypeProperty ;
                   rdfs:subPropertyOf :hasLiteralExpression ;
                   rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ;
                   rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#isCriticalIf
+:isCriticalIf rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Interpretation ;
+              rdfs:range [ rdf:type rdfs:Datatype ;
+                           owl:unionOf ( rdf:XMLLiteral
+                                         <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
+                                         <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
+                                       )
+                         ] ;
+              owl:propertyDisjointWith :isGoodIf ,
+                                       :isSufficientIf .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#isGoodIf
+:isGoodIf rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Interpretation ;
+          rdfs:range [ rdf:type rdfs:Datatype ;
+                       owl:unionOf ( rdf:XMLLiteral
+                                     <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
+                                     <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
+                                   )
+                     ] ;
+          owl:propertyDisjointWith :isSufficientIf .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#isSufficientIf
+:isSufficientIf rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty ;
+                rdfs:domain :Interpretation ;
+                rdfs:range [ rdf:type rdfs:Datatype ;
+                             owl:unionOf ( rdf:XMLLiteral
+                                           <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
+                                           <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
+                                         )
+                           ] .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCovarianceMatrix
