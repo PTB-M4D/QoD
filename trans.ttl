@@ -140,10 +140,6 @@ xsd:string a rdfs:Datatype .
 # #################################################################
 # 
 # 
-# http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue
-
-<http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue> a owl:ObjectProperty .
-# 
 # http://www.w3.org/2002/07/owl#topObjectProperty
 
 owl:topObjectProperty a owl:ObjectProperty .
@@ -357,10 +353,6 @@ owl:topObjectProperty a owl:ObjectProperty .
 <http://www.wurvoc.org/bibliography/om-2/OWLObjectPropertyImpl_a5c93e56_401a_49fb_8a5b_838e6534e6e4> a owl:ObjectProperty , owl:FunctionalProperty ;
 	rdfs:label "reference"@en .
 # 
-# https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasUncertainty
-
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasUncertainty> a owl:ObjectProperty .
-# 
 # https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasArrayDefinition
 
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasArrayDefinition> a owl:ObjectProperty ;
@@ -507,10 +499,6 @@ owl:topObjectProperty a owl:ObjectProperty .
 # #################################################################
 # 
 # 
-# http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue
-
-<http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue> a owl:DatatypeProperty .
-# 
 # http://www.w3.org/ns/sosa/hasSimpleResult
 
 <http://www.w3.org/ns/sosa/hasSimpleResult> a owl:DatatypeProperty ;
@@ -556,8 +544,7 @@ owl:topObjectProperty a owl:ObjectProperty .
 # 
 # http://www.ontology-of-units-of-measure.org/resource/om-2/Measure
 
-<http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> a owl:Class ;
-	owl:equivalentClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Parameter> .
+<http://www.ontology-of-units-of-measure.org/resource/om-2/Measure> owl:equivalentClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Parameter> .
 # 
 # http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq
 
@@ -687,10 +674,6 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 	rdfs:label "Observable Property"@en ;
 	skos:definition "An observable quality (property, characteristic) of a FeatureOfInterest."@en ;
 	skos:example "The height of a tree, the depth of a water body, or the temperature of a surface are examples of observable properties, while the value of a classic car is not (directly) observable but asserted."@en .
-# 
-# https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1995
-
-<https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1995> a owl:Class .
 # 
 # https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#ExpandedUncertainty
 
@@ -1264,10 +1247,6 @@ _:genid53 a owl:Restriction ;
 # #
 # #################################################################
 # 
-# 
-# http://www.ontology-of-units-of-measure.org/resource/om-2/AngularVelocity
-
-<http://www.ontology-of-units-of-measure.org/resource/om-2/AngularVelocity> a owl:NamedIndividual .
 # 
 # https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#DenominatorArray
 
