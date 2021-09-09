@@ -10,163 +10,149 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sosa: <http://www.w3.org/ns/sosa#> .
 @prefix schema: <http://schema.org/> .
+@base <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl> .
 
-<http://www.example.de/scal> a owl:Ontology .
-# 
-# 
-# #################################################################
-# #
-# #    Annotation properties
-# #
-# #################################################################
-# 
-# 
-# http://schema.org/domainIncludes
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl> rdf:type owl:Ontology .
 
-schema:domainIncludes a owl:AnnotationProperty .
-# 
-# http://schema.org/rangeIncludes
+#################################################################
+#    Annotation properties
+#################################################################
 
-schema:rangeIncludes a owl:AnnotationProperty .
-# 
-# 
-# 
-# #################################################################
-# #
-# #    Object Properties
-# #
-# #################################################################
-# 
-# 
-# http://www.example.com/ns/scal#hasCalibrationModel
+###  http://schema.org/domainIncludes
+schema:domainIncludes rdf:type owl:AnnotationProperty .
 
-<http://www.example.com/ns/scal#hasCalibrationModel> a owl:ObjectProperty ;
-	schema:rangeIncludes <http://www.example.com/ns/scal#CalibrationModel> .
-# 
-# http://www.example.com/ns/scal#hasEquation
 
-<http://www.example.com/ns/scal#hasEquation> a owl:ObjectProperty ;
-	schema:domainIncludes <http://www.example.com/ns/scal#EquationModel> ;
-	schema:rangeIncludes <http://www.example.com/ns/scal#Equation> ;
-	rdfs:comment "Relation between an EquationModel and its Equations(s)."@en ;
-	rdfs:isDefinedBy <http://www.example.com/ns/csd#> ;
-	rdfs:label "has equation"@en .
-# 
-# http://www.example.com/ns/scal#hasEquationModel
+###  http://schema.org/rangeIncludes
+schema:rangeIncludes rdf:type owl:AnnotationProperty .
 
-<http://www.example.com/ns/scal#hasEquationModel> a owl:ObjectProperty ;
-	rdfs:isDefinedBy <http://www.example.com/ns/csd#> ;
-	rdfs:label "has equation model"@en .
-# 
-# http://www.example.com/ns/scal#hasLocation
 
-<http://www.example.com/ns/scal#hasLocation> a owl:ObjectProperty ;
-	schema:domainIncludes sosa:Sensor ;
-	schema:rangeIncludes geo:SpatialThing , sosa:FeatureOfInterest ;
-	rdfs:comment "Relation between a Sensor and its location."@en ;
-	rdfs:isDefinedBy <http://www.example.com/ns/csd#> ;
-	rdfs:label "has location"@en .
-# 
-# http://www.example.com/ns/scal#hasMathMLDefinition
+#################################################################
+#    Object Properties
+#################################################################
 
-<http://www.example.com/ns/scal#hasMathMLDefinition> a owl:ObjectProperty ;
-	schema:domainIncludes <http://www.example.com/ns/scal#Equation> ;
-	schema:rangeIncludes xsd:string ;
-	rdfs:comment "Relation between an Equation and its MathML-representation string."@en ;
-	rdfs:isDefinedBy <http://www.example.com/ns/csd#> ;
-	rdfs:label "has MathML definition"@en .
-# 
-# http://www.example.com/ns/scal#hasParameter
+###  http://www.example.com/ns/scal#hasCalibrationModel
+<http://www.example.com/ns/scal#hasCalibrationModel> rdf:type owl:ObjectProperty ;
+                                                     schema:rangeIncludes <http://www.example.com/ns/scal#CalibrationModel> .
 
-<http://www.example.com/ns/scal#hasParameter> a owl:ObjectProperty ;
-	schema:domainIncludes <http://www.example.com/ns/scal#EquationModel> ;
-	schema:rangeIncludes csd:MeasureWithUncertainty , <http://www.example.com/ns/scal#Parameter> , om:Measure ;
-	rdfs:comment "Relation between an EquationModel and the Parameter(s) used in the mathematical expression."@en ;
-	rdfs:isDefinedBy <http://www.example.com/ns/csd#> ;
-	rdfs:label "has parameter"@en .
-# 
-# http://www.example.com/ns/scal#hasVariable
 
-<http://www.example.com/ns/scal#hasVariable> a owl:ObjectProperty ;
-	schema:domainIncludes <http://www.example.com/ns/scal#EquationModel> ;
-	schema:rangeIncludes <http://www.example.com/ns/scal#Variable> , om:Quantity ;
-	rdfs:comment "Relation between an EquationModel and the Variables(s) used in the mathematical expression."@en ;
-	rdfs:isDefinedBy <http://www.example.com/ns/csd#> ;
-	rdfs:label "has variable"@en .
-# 
-# 
-# 
-# #################################################################
-# #
-# #    Classes
-# #
-# #################################################################
-# 
-# 
-# http://www.example.com/ns/scal#CalibratedSensor
+###  http://www.example.com/ns/scal#hasEquation
+<http://www.example.com/ns/scal#hasEquation> rdf:type owl:ObjectProperty ;
+                                             schema:domainIncludes <http://www.example.com/ns/scal#EquationModel> ;
+                                             schema:rangeIncludes <http://www.example.com/ns/scal#Equation> ;
+                                             rdfs:comment "Relation between an EquationModel and its Equations(s)."@en ;
+                                             rdfs:isDefinedBy csd: ;
+                                             rdfs:label "has equation"@en .
 
-<http://www.example.com/ns/scal#CalibratedSensor> a owl:Class ;
-	rdfs:isDefinedBy <http://www.example.com/ns/csd#> ;
-	rdfs:label "Calibrated Sensor"@en .
-# 
-# http://www.example.com/ns/scal#CalibrationModel
 
-<http://www.example.com/ns/scal#CalibrationModel> a owl:Class ;
-	rdfs:isDefinedBy <http://www.example.com/ns/csd#> ;
-	rdfs:label "Mathematical Calibration Model"@en .
-# 
-# http://www.example.com/ns/scal#Equation
+###  http://www.example.com/ns/scal#hasEquationModel
+<http://www.example.com/ns/scal#hasEquationModel> rdf:type owl:ObjectProperty ;
+                                                  rdfs:isDefinedBy csd: ;
+                                                  rdfs:label "has equation model"@en .
 
-<http://www.example.com/ns/scal#Equation> a owl:Class ;
-	rdfs:isDefinedBy <http://www.example.com/ns/scal#> .
-# 
-# http://www.example.com/ns/scal#EquationModel
 
-<http://www.example.com/ns/scal#EquationModel> a owl:Class ;
-	rdfs:subClassOf <http://www.example.com/ns/scal#CalibrationModel> , _:genid1 .
+###  http://www.example.com/ns/scal#hasLocation
+<http://www.example.com/ns/scal#hasLocation> rdf:type owl:ObjectProperty ;
+                                             schema:domainIncludes sosa:Sensor ;
+                                             schema:rangeIncludes geo:SpatialThing ,
+                                                                  sosa:FeatureOfInterest ;
+                                             rdfs:comment "Relation between a Sensor and its location."@en ;
+                                             rdfs:isDefinedBy csd: ;
+                                             rdfs:label "has location"@en .
 
-_:genid1 a owl:Restriction ;
-	owl:onProperty <http://www.example.com/ns/scal#hasEquation> ;
-	owl:minCardinality "1"^^xsd:nonNegativeInteger .
 
-<http://www.example.com/ns/scal#EquationModel> rdfs:subClassOf _:genid2 .
+###  http://www.example.com/ns/scal#hasMathMLDefinition
+<http://www.example.com/ns/scal#hasMathMLDefinition> rdf:type owl:ObjectProperty ;
+                                                     schema:domainIncludes <http://www.example.com/ns/scal#Equation> ;
+                                                     schema:rangeIncludes xsd:string ;
+                                                     rdfs:comment "Relation between an Equation and its MathML-representation string."@en ;
+                                                     rdfs:isDefinedBy csd: ;
+                                                     rdfs:label "has MathML definition"@en .
 
-_:genid2 a owl:Restriction ;
-	owl:onProperty <http://www.example.com/ns/scal#hasParameter> ;
-	owl:minCardinality "0"^^xsd:nonNegativeInteger .
 
-<http://www.example.com/ns/scal#EquationModel> rdfs:subClassOf _:genid3 .
+###  http://www.example.com/ns/scal#hasParameter
+<http://www.example.com/ns/scal#hasParameter> rdf:type owl:ObjectProperty ;
+                                              schema:domainIncludes <http://www.example.com/ns/scal#EquationModel> ;
+                                              schema:rangeIncludes csd:MeasureWithUncertainty ,
+                                                                   <http://www.example.com/ns/scal#Parameter> ,
+                                                                   om:Measure ;
+                                              rdfs:comment "Relation between an EquationModel and the Parameter(s) used in the mathematical expression."@en ;
+                                              rdfs:isDefinedBy csd: ;
+                                              rdfs:label "has parameter"@en .
 
-_:genid3 a owl:Restriction ;
-	owl:onProperty <http://www.example.com/ns/scal#hasVariable> ;
-	owl:minCardinality "1"^^xsd:nonNegativeInteger .
 
-<http://www.example.com/ns/scal#EquationModel> rdfs:isDefinedBy <http://www.example.com/ns/csd#> .
-# 
-# http://www.example.com/ns/scal#Parameter
+###  http://www.example.com/ns/scal#hasVariable
+<http://www.example.com/ns/scal#hasVariable> rdf:type owl:ObjectProperty ;
+                                             schema:domainIncludes <http://www.example.com/ns/scal#EquationModel> ;
+                                             schema:rangeIncludes <http://www.example.com/ns/scal#Variable> ,
+                                                                  om:Quantity ;
+                                             rdfs:comment "Relation between an EquationModel and the Variables(s) used in the mathematical expression."@en ;
+                                             rdfs:isDefinedBy csd: ;
+                                             rdfs:label "has variable"@en .
 
-<http://www.example.com/ns/scal#Parameter> a owl:Class ;
-	rdfs:subClassOf om:Measure ;
-	rdfs:comment "Define a parameter."@en ;
-	rdfs:isDefinedBy <http://www.example.com/ns/csd#> .
-# 
-# http://www.example.com/ns/scal#Variable
 
-<http://www.example.com/ns/scal#Variable> a owl:Class ;
-	rdfs:subClassOf om:Quantity ;
-	rdfs:isDefinedBy <http://www.example.com/ns/csd#> ;
-	rdfs:label "Define a variable."@en .
-# 
-# http://www.ontology-of-units-of-measure.org/resource/om-2/Measure
+#################################################################
+#    Classes
+#################################################################
 
-om:Measure a owl:Class .
-# 
-# http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity
+###  http://www.example.com/ns/scal#CalibratedSensor
+<http://www.example.com/ns/scal#CalibratedSensor> rdf:type owl:Class ;
+                                                  rdfs:isDefinedBy csd: ;
+                                                  rdfs:label "Calibrated Sensor"@en .
 
-om:Quantity a owl:Class .
-# 
-# http://www.w3.org/ns/sosa/Sensor
 
-<http://www.w3.org/ns/sosa/Sensor> a owl:Class .
-# 
-# Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
+###  http://www.example.com/ns/scal#CalibrationModel
+<http://www.example.com/ns/scal#CalibrationModel> rdf:type owl:Class ;
+                                                  rdfs:isDefinedBy csd: ;
+                                                  rdfs:label "Mathematical Calibration Model"@en .
+
+
+###  http://www.example.com/ns/scal#Equation
+<http://www.example.com/ns/scal#Equation> rdf:type owl:Class ;
+                                          rdfs:isDefinedBy <http://www.example.com/ns/scal#> .
+
+
+###  http://www.example.com/ns/scal#EquationModel
+<http://www.example.com/ns/scal#EquationModel> rdf:type owl:Class ;
+                                               rdfs:subClassOf <http://www.example.com/ns/scal#CalibrationModel> ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <http://www.example.com/ns/scal#hasEquation> ;
+                                                                 owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <http://www.example.com/ns/scal#hasParameter> ;
+                                                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <http://www.example.com/ns/scal#hasVariable> ;
+                                                                 owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ;
+                                               rdfs:isDefinedBy csd: .
+
+
+###  http://www.example.com/ns/scal#Parameter
+<http://www.example.com/ns/scal#Parameter> rdf:type owl:Class ;
+                                           rdfs:subClassOf om:Measure ;
+                                           rdfs:comment "Define a parameter."@en ;
+                                           rdfs:isDefinedBy csd: .
+
+
+###  http://www.example.com/ns/scal#Variable
+<http://www.example.com/ns/scal#Variable> rdf:type owl:Class ;
+                                          rdfs:subClassOf om:Quantity ;
+                                          rdfs:isDefinedBy csd: ;
+                                          rdfs:label "Define a variable."@en .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Measure
+om:Measure rdf:type owl:Class .
+
+
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity
+om:Quantity rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/sosa/Sensor
+<http://www.w3.org/ns/sosa/Sensor> rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

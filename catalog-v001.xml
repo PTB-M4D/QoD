@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
-    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1631136880030" name="http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod" uri="qod_ontology.ttl"/>
-    </group>
+    <uri id="Imports Wizard Entry" name="https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl" uri="scal.ttl"/>
+    <uri id="Imports Wizard Entry" name="https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl" uri="dsi.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/ns/sosa/" uri="file:/C:/Users/vedurm01/Documents/Ontology/SensorsSpecialIssue/onto/sosa.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://www.example.de/scal" uri="scal.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://www.example.de/dsi" uri="dsi.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://ontomathpro.org/ontology#" uri="file:/C:/Users/vedurm01/Documents/Ontology/SensorsSpecialIssue/onto/OntoMathPro.ttl"/>
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base=""/>
 </catalog>
