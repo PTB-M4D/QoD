@@ -19,14 +19,14 @@
 @prefix trans: <https://github.com/PTB-M4D/QoD/raw/main/trans.ttl> .
 @prefix schema: <http://schema.org/> .
 @prefix mathematics: <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn> .
-@base <http://www.example.de/qod> .
+@base <https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl> .
 
-<http://www.example.de/qod> rdf:type owl:Ontology ;
-                             owl:imports <http://www.example.de/trans> ,
-                                         <http://www.w3.org/ns/ssn/systems/> ;
-                             rdfs:seeAlso <https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology> ;
-                             terms:created "2021-04-15" ;
-                             terms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl> rdf:type owl:Ontology ;
+                                                              owl:imports <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#> ,
+                                                                          <http://www.w3.org/ns/ssn/systems/> ;
+                                                              rdfs:seeAlso <https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology> ;
+                                                              terms:created "2021-04-15" ;
+                                                              terms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> .
 
 #################################################################
 #    Annotation properties
@@ -77,13 +77,11 @@ foaf:name rdf:type owl:AnnotationProperty .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageFactor
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageFactor> rdf:type owl:AnnotationProperty ;
-                                                                               rdfs:range xsd:double .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageFactor> rdfs:range xsd:double .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageProbability
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageProbability> rdf:type owl:AnnotationProperty ;
-                                                                                    rdfs:range xsd:double .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageProbability> rdfs:range xsd:double .
 
 
 #################################################################
@@ -490,8 +488,7 @@ sosa:usedProcedure rdf:type owl:ObjectProperty ;
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCovarianceMatrix
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCovarianceMatrix> rdf:type owl:ObjectProperty ;
-                                                                                   rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MultivariateUncertainty> .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCovarianceMatrix> rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MultivariateUncertainty> .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasDenominator
