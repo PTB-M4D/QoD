@@ -25,11 +25,11 @@
 <http://www.example.de/qod> rdf:type owl:Ontology ;
                              owl:imports <http://www.example.de/trans> ,
                                          <http://www.w3.org/ns/ssn/systems/> ;
-                             terms:created "2017-04-17"^^xsd:date ,
-                                           "2017-05-14"^^xsd:date ;
+                             rdfs:seeAlso <https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology> ;
                              terms:license <http://www.opengeospatial.org/ogc/Software> ,
                                            <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
-                             rdfs:seeAlso <https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology> .
+                             terms:created "2017-05-14"^^xsd:date ,
+                                           "2017-04-17"^^xsd:date .
 
 #################################################################
 #    Annotation properties
@@ -83,214 +83,68 @@ foaf:name rdf:type owl:AnnotationProperty .
 #    Datatypes
 #################################################################
 
-###  http://www.example.de/trans#MathMLLiteral
-trans:MathMLLiteral rdf:type rdfs:Datatype .
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> rdf:type rdfs:Datatype .
 
 
-###  http://www.example.de/trans#TeXLiteral
-trans:TeXLiteral rdf:type rdfs:Datatype .
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral> rdf:type rdfs:Datatype .
 
 
 #################################################################
 #    Object Properties
 #################################################################
 
-###  http://www.example.com/ns/dsi#hasUncertainty
-dsi:hasUncertainty rdfs:domain om-2:Measure ;
-                   rdfs:range dsi:Uncertainty .
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue
+om-2:hasValue rdf:type owl:ObjectProperty ;
+              rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> .
 
 
-###  http://www.example.com/ns/scal#hasCalibrationModel
-scal:hasCalibrationModel rdf:type owl:ObjectProperty ;
-                         rdfs:domain scal:CalibratedSensor .
-
-
-###  http://www.example.de/qod#Interprets
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Interprets
 :Interprets rdf:type owl:ObjectProperty ;
             owl:inverseOf :hasInterpretation ;
             rdfs:domain :Interpretation ;
             rdfs:range :QualityMetric .
 
 
-###  http://www.example.de/qod#hasIndicator
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#hasIndicator
 :hasIndicator rdf:type owl:ObjectProperty ;
               rdfs:domain <http://www.w3.org/ns/ssn/System> ;
               rdfs:range :Indicator .
 
 
-###  http://www.example.de/qod#hasInterpretation
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#hasInterpretation
 :hasInterpretation rdf:type owl:ObjectProperty ;
                    rdfs:domain :QualityMetric ;
                    rdfs:range :Interpretation .
 
 
-###  http://www.example.de/qod#hasMetric
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#hasMetric
 :hasMetric rdf:type owl:ObjectProperty ;
            owl:inverseOf :isMetricOf ;
            rdfs:domain :Indicator ;
            rdfs:range :QualityMetric .
 
 
-###  http://www.example.de/qod#isMetricOf
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#isMetricOf
 :isMetricOf rdf:type owl:ObjectProperty ;
             rdfs:domain :QualityMetric ;
             rdfs:range :Indicator .
 
 
-###  http://www.example.de/trans#hasArrayDefinition
-trans:hasArrayDefinition rdf:type owl:ObjectProperty ;
-                         rdfs:subPropertyOf om-2:hasValue ;
-                         rdfs:domain trans:MathematicalObject ;
-                         rdfs:range trans:Array .
-
-
-###  http://www.example.de/trans#hasBehavior
-trans:hasBehavior rdf:type owl:ObjectProperty ;
-                  rdfs:domain trans:TransferModel ;
-                  rdfs:range trans:QualitativeBehavior .
-
-
-###  http://www.example.de/trans#hasCoefficients
-trans:hasCoefficients rdf:type owl:ObjectProperty ;
-                      rdfs:subPropertyOf trans:hasArrayDefinition ;
-                      rdfs:domain trans:MathematicalObject ;
-                      rdfs:range trans:Array ;
-                      rdfs:comment "A polynomial is defined by its coefficients stored in an array." .
-
-
-###  http://www.example.de/trans#hasCoordinates
-trans:hasCoordinates rdf:type owl:ObjectProperty ;
-                     rdfs:subPropertyOf trans:hasArrayDefinition .
-
-
-###  http://www.example.de/trans#hasCovarianceMatrix
-trans:hasCovarianceMatrix rdfs:domain trans:MultivariateUncertainty .
-
-
-###  http://www.example.de/trans#hasDenominator
-trans:hasDenominator rdf:type owl:ObjectProperty ;
-                     rdfs:domain trans:RationalFraction ;
-                     rdfs:range trans:Polynomial .
-
-
-###  http://www.example.de/trans#hasFeedthroughMatrix
-trans:hasFeedthroughMatrix rdf:type owl:ObjectProperty ;
-                           rdfs:subPropertyOf trans:hasArrayDefinition ;
-                           rdfs:domain trans:StateSpaceMatrixNotation ;
-                           rdfs:range trans:Array .
-
-
-###  http://www.example.de/trans#hasFrequencyArray
-trans:hasFrequencyArray rdf:type owl:ObjectProperty ;
-                        rdfs:subPropertyOf trans:hasCoordinates ;
-                        rdfs:domain trans:FrequencySpectrum .
-
-
-###  http://www.example.de/trans#hasFrequencyStructure
-trans:hasFrequencyStructure rdf:type owl:ObjectProperty ;
-                            rdfs:subPropertyOf trans:hasValueStructure ;
-                            rdfs:domain trans:TransferModel ;
-                            rdfs:range trans:DimensionStructure .
-
-
-###  http://www.example.de/trans#hasInputMatrix
-trans:hasInputMatrix rdf:type owl:ObjectProperty ;
-                     rdfs:subPropertyOf trans:hasArrayDefinition ;
-                     rdfs:domain trans:StateSpaceMatrixNotation ;
-                     rdfs:range trans:Array .
-
-
-###  http://www.example.de/trans#hasNumerator
-trans:hasNumerator rdf:type owl:ObjectProperty ;
-                   rdfs:domain trans:RationalFraction ;
-                   rdfs:range trans:Polynomial .
-
-
-###  http://www.example.de/trans#hasOutputMatrix
-trans:hasOutputMatrix rdf:type owl:ObjectProperty ;
-                      rdfs:subPropertyOf trans:hasArrayDefinition ;
-                      rdfs:domain trans:StateSpaceMatrixNotation ;
-                      rdfs:range trans:Array .
-
-
-###  http://www.example.de/trans#hasPolynomialRoots
-trans:hasPolynomialRoots rdf:type owl:ObjectProperty ;
-                         rdfs:subPropertyOf trans:hasArrayDefinition ;
-                         rdfs:domain trans:Polynomial ;
-                         rdfs:range trans:Array ;
-                         rdfs:comment "A polynomial is defined by its roots stored in an array." .
-
-
-###  http://www.example.de/trans#hasSystemMatrix
-trans:hasSystemMatrix rdf:type owl:ObjectProperty ;
-                      rdfs:subPropertyOf trans:hasArrayDefinition ;
-                      rdfs:domain trans:StateSpaceMatrixNotation ;
-                      rdfs:range trans:Array .
-
-
-###  http://www.example.de/trans#hasTimeArray
-trans:hasTimeArray rdf:type owl:ObjectProperty ;
-                   rdfs:subPropertyOf trans:hasCoordinates ;
-                   rdfs:domain trans:TimeSeries .
-
-
-###  http://www.example.de/trans#hasTimeStructure
-trans:hasTimeStructure rdf:type owl:ObjectProperty ;
-                       rdfs:subPropertyOf trans:hasValueStructure ;
-                       rdfs:domain trans:TransferModel ;
-                       rdfs:range trans:DimensionStructure .
-
-
-###  http://www.example.de/trans#hasValueArray
-trans:hasValueArray rdf:type owl:ObjectProperty ;
-                    rdfs:subPropertyOf trans:hasArrayDefinition .
-
-
-###  http://www.example.de/trans#hasValueStructure
-trans:hasValueStructure rdf:type owl:ObjectProperty ,
-                                 owl:FunctionalProperty ;
-                        rdfs:domain trans:TransferModel ;
-                        rdfs:range trans:DimensionStructure .
-
-
-###  http://www.example.de/trans#isDefinedInDomain
-trans:isDefinedInDomain rdf:type owl:ObjectProperty ;
-                        rdfs:subPropertyOf owl:topObjectProperty ;
-                        rdfs:domain trans:TransferModel ;
-                        rdfs:range trans:AnalyticDomain .
-
-
-###  http://www.example.de/trans#isExpressedBy
-trans:isExpressedBy rdf:type owl:ObjectProperty ;
-                    rdfs:domain trans:TransferModel ;
-                    rdfs:range trans:MathematicalObject .
-
-
-###  http://www.example.de/trans#isOfFamily
-trans:isOfFamily rdf:type owl:ObjectProperty ;
-                 rdfs:range trans:FilterType .
-
-
-###  http://www.example.de/trans#isOfSystemType
-trans:isOfSystemType rdf:type owl:ObjectProperty ;
-                     rdfs:domain trans:TransferModel ;
-                     rdfs:range trans:SystemType .
-
-
-###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasValue
-om-2:hasValue rdfs:domain trans:MathematicalObject .
-
-
 ###  http://www.w3.org/ns/sosa/actsOnProperty
-sosa:actsOnProperty rdfs:isDefinedBy sosa: .
+sosa:actsOnProperty rdf:type owl:ObjectProperty ;
+                    rdfs:isDefinedBy sosa: .
 
 
 ###  http://www.w3.org/ns/sosa/hasFeatureOfInterest
-sosa:hasFeatureOfInterest rdfs:isDefinedBy sosa: .
+sosa:hasFeatureOfInterest rdf:type owl:ObjectProperty ;
+                          rdfs:isDefinedBy sosa: .
 
 
 ###  http://www.w3.org/ns/sosa/hasResult
-sosa:hasResult rdfs:isDefinedBy sosa: .
+sosa:hasResult rdf:type owl:ObjectProperty ;
+               rdfs:isDefinedBy sosa: .
 
 
 ###  http://www.w3.org/ns/sosa/hasSample
@@ -300,66 +154,85 @@ sosa:hasSample rdf:type owl:ObjectProperty ,
 
 
 ###  http://www.w3.org/ns/sosa/hosts
-sosa:hosts owl:propertyChainAxiom ( <http://www.w3.org/ns/ssn/inDeployment>
+sosa:hosts rdf:type owl:ObjectProperty ;
+           owl:propertyChainAxiom ( <http://www.w3.org/ns/ssn/inDeployment>
                                     <http://www.w3.org/ns/ssn/deployedSystem>
                                   ) .
 
 
 ###  http://www.w3.org/ns/sosa/isActedOnBy
-sosa:isActedOnBy rdfs:isDefinedBy sosa: .
+sosa:isActedOnBy rdf:type owl:ObjectProperty ;
+                 rdfs:isDefinedBy sosa: .
+
+
+###  http://www.w3.org/ns/sosa/isHostedBy
+sosa:isHostedBy rdf:type owl:ObjectProperty .
 
 
 ###  http://www.w3.org/ns/sosa/isObservedBy
-sosa:isObservedBy rdfs:isDefinedBy sosa: .
+sosa:isObservedBy rdf:type owl:ObjectProperty ;
+                  rdfs:isDefinedBy sosa: .
 
 
 ###  http://www.w3.org/ns/sosa/isResultOf
-sosa:isResultOf rdfs:isDefinedBy sosa: .
+sosa:isResultOf rdf:type owl:ObjectProperty ;
+                rdfs:isDefinedBy sosa: .
 
 
 ###  http://www.w3.org/ns/sosa/isSampleOf
-sosa:isSampleOf rdf:type owl:FunctionalProperty ;
+sosa:isSampleOf rdf:type owl:ObjectProperty ,
+                         owl:FunctionalProperty ;
                 rdfs:isDefinedBy sosa: .
 
 
 ###  http://www.w3.org/ns/sosa/madeActuation
-sosa:madeActuation rdfs:isDefinedBy sosa: .
+sosa:madeActuation rdf:type owl:ObjectProperty ;
+                   rdfs:isDefinedBy sosa: .
 
 
 ###  http://www.w3.org/ns/sosa/madeByActuator
-sosa:madeByActuator rdfs:isDefinedBy sosa: .
+sosa:madeByActuator rdf:type owl:ObjectProperty ;
+                    rdfs:isDefinedBy sosa: .
 
 
 ###  http://www.w3.org/ns/sosa/madeBySampler
-sosa:madeBySampler rdfs:isDefinedBy sosa: .
+sosa:madeBySampler rdf:type owl:ObjectProperty ;
+                   rdfs:isDefinedBy sosa: .
 
 
 ###  http://www.w3.org/ns/sosa/madeBySensor
-sosa:madeBySensor rdfs:isDefinedBy sosa: .
+sosa:madeBySensor rdf:type owl:ObjectProperty ;
+                  rdfs:isDefinedBy sosa: .
 
 
 ###  http://www.w3.org/ns/sosa/madeObservation
-sosa:madeObservation rdfs:isDefinedBy sosa: .
+sosa:madeObservation rdf:type owl:ObjectProperty ;
+                     rdfs:isDefinedBy sosa: .
 
 
 ###  http://www.w3.org/ns/sosa/madeSampling
-sosa:madeSampling rdfs:isDefinedBy sosa: .
+sosa:madeSampling rdf:type owl:ObjectProperty ;
+                  rdfs:isDefinedBy sosa: .
 
 
 ###  http://www.w3.org/ns/sosa/observedProperty
-sosa:observedProperty rdfs:isDefinedBy sosa: .
+sosa:observedProperty rdf:type owl:ObjectProperty ;
+                      rdfs:isDefinedBy sosa: .
 
 
 ###  http://www.w3.org/ns/sosa/observes
-sosa:observes rdfs:subPropertyOf <http://www.w3.org/ns/ssn/forProperty> .
+sosa:observes rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf <http://www.w3.org/ns/ssn/forProperty> .
 
 
 ###  http://www.w3.org/ns/sosa/phenomenonTime
-sosa:phenomenonTime rdfs:isDefinedBy sosa: .
+sosa:phenomenonTime rdf:type owl:ObjectProperty ;
+                    rdfs:isDefinedBy sosa: .
 
 
 ###  http://www.w3.org/ns/sosa/usedProcedure
-sosa:usedProcedure owl:propertyChainAxiom ( sosa:madeByActuator
+sosa:usedProcedure rdf:type owl:ObjectProperty ;
+                   owl:propertyChainAxiom ( sosa:madeByActuator
                                             <http://www.w3.org/ns/ssn/implements>
                                           ) ,
                                           ( sosa:madeBySampler
@@ -572,31 +445,163 @@ sosa:usedProcedure owl:propertyChainAxiom ( sosa:madeByActuator
                                                         skos:definition "Relation linking an Observation to the adjudged quality of the Result. This is complimentary to the SystemCapability information recorded for the Sensor that made the Observation."@en .
 
 
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasUncertainty
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasUncertainty> rdf:type owl:ObjectProperty ;
+                                                                            rdfs:domain om-2:Measure ;
+                                                                            rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#hasCalibrationModel
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#hasCalibrationModel> rdf:type owl:ObjectProperty ;
+                                                                                  rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#CalibratedSensor> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasArrayDefinition
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasArrayDefinition> rdf:type owl:ObjectProperty ;
+                                                                                  rdfs:subPropertyOf om-2:hasValue ;
+                                                                                  rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ;
+                                                                                  rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasBehavior
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasBehavior> rdf:type owl:ObjectProperty ;
+                                                                           rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TransferModel> ;
+                                                                           rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#QualitativeBehavior> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCoefficients
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCoefficients> rdf:type owl:ObjectProperty ;
+                                                                               rdfs:subPropertyOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasArrayDefinition> ;
+                                                                               rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ;
+                                                                               rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array> ;
+                                                                               rdfs:comment "A polynomial is defined by its coefficients stored in an array." .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCoordinates
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCoordinates> rdf:type owl:ObjectProperty ;
+                                                                              rdfs:subPropertyOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasArrayDefinition> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasDenominator
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasDenominator> rdf:type owl:ObjectProperty ;
+                                                                              rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#RationalFraction> ;
+                                                                              rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Polynomial> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasFeedthroughMatrix
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasFeedthroughMatrix> rdf:type owl:ObjectProperty ;
+                                                                                    rdfs:subPropertyOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasArrayDefinition> ;
+                                                                                    rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#StateSpaceMatrixNotation> ;
+                                                                                    rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasFrequencyArray
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasFrequencyArray> rdf:type owl:ObjectProperty ;
+                                                                                 rdfs:subPropertyOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCoordinates> ;
+                                                                                 rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FrequencySpectrum> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasFrequencyStructure
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasFrequencyStructure> rdf:type owl:ObjectProperty ;
+                                                                                     rdfs:subPropertyOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasValueStructure> ;
+                                                                                     rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TransferModel> ;
+                                                                                     rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#DimensionStructure> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasInputMatrix
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasInputMatrix> rdf:type owl:ObjectProperty ;
+                                                                              rdfs:subPropertyOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasArrayDefinition> ;
+                                                                              rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#StateSpaceMatrixNotation> ;
+                                                                              rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasNumerator
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasNumerator> rdf:type owl:ObjectProperty ;
+                                                                            rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#RationalFraction> ;
+                                                                            rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Polynomial> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasOutputMatrix
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasOutputMatrix> rdf:type owl:ObjectProperty ;
+                                                                               rdfs:subPropertyOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasArrayDefinition> ;
+                                                                               rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#StateSpaceMatrixNotation> ;
+                                                                               rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasPolynomialRoots
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasPolynomialRoots> rdf:type owl:ObjectProperty ;
+                                                                                  rdfs:subPropertyOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasArrayDefinition> ;
+                                                                                  rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Polynomial> ;
+                                                                                  rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array> ;
+                                                                                  rdfs:comment "A polynomial is defined by its roots stored in an array." .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasSystemMatrix
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasSystemMatrix> rdf:type owl:ObjectProperty ;
+                                                                               rdfs:subPropertyOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasArrayDefinition> ;
+                                                                               rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#StateSpaceMatrixNotation> ;
+                                                                               rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasTimeArray
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasTimeArray> rdf:type owl:ObjectProperty ;
+                                                                            rdfs:subPropertyOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCoordinates> ;
+                                                                            rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TimeSeries> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasTimeStructure
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasTimeStructure> rdf:type owl:ObjectProperty ;
+                                                                                rdfs:subPropertyOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasValueStructure> ;
+                                                                                rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TransferModel> ;
+                                                                                rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#DimensionStructure> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasValueArray
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasValueArray> rdf:type owl:ObjectProperty ;
+                                                                             rdfs:subPropertyOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasArrayDefinition> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasValueStructure
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasValueStructure> rdf:type owl:ObjectProperty ,
+                                                                                          owl:FunctionalProperty ;
+                                                                                 rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TransferModel> ;
+                                                                                 rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#DimensionStructure> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isDefinedInDomain
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isDefinedInDomain> rdf:type owl:ObjectProperty ;
+                                                                                 rdfs:subPropertyOf owl:topObjectProperty ;
+                                                                                 rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TransferModel> ;
+                                                                                 rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#AnalyticDomain> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> rdf:type owl:ObjectProperty ;
+                                                                             rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TransferModel> ;
+                                                                             rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isOfFamily
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isOfFamily> rdf:type owl:ObjectProperty ;
+                                                                          rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FilterType> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isOfSystemType
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isOfSystemType> rdf:type owl:ObjectProperty ;
+                                                                              rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TransferModel> ;
+                                                                              rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#SystemType> .
+
+
 #################################################################
 #    Data properties
 #################################################################
 
-###  http://www.example.com/ns/dsi#hasCoverageFactor
-dsi:hasCoverageFactor rdfs:range xsd:double .
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue
+om-2:hasNumericalValue rdf:type owl:DatatypeProperty ;
+                       rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> .
 
 
-###  http://www.example.com/ns/dsi#hasCoverageProbability
-dsi:hasCoverageProbability rdfs:range xsd:double .
-
-
-###  http://www.example.com/ns/dsi#hasIntervalMax
-dsi:hasIntervalMax rdfs:range xsd:double .
-
-
-###  http://www.example.com/ns/dsi#hasIntervalMin
-dsi:hasIntervalMin rdfs:range xsd:double .
-
-
-###  http://www.example.com/ns/dsi#hasStandardUncertainty
-dsi:hasStandardUncertainty rdfs:range xsd:float .
-
-
-###  http://www.example.de/qod#CriticalIf
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#CriticalIf
 :CriticalIf rdf:type owl:DatatypeProperty ;
             rdfs:domain :AccuracyInterpretation ,
                         :BatteryInterpretation ,
@@ -605,39 +610,39 @@ dsi:hasStandardUncertainty rdfs:range xsd:float .
                         :RecencyInterpretation ,
                         :TimelinessInterpretation ;
             rdfs:range [ rdf:type rdfs:Datatype ;
-                         owl:unionOf ( trans:MathMLLiteral
-                                       trans:TeXLiteral
-                                       rdf:XMLLiteral
+                         owl:unionOf ( rdf:XMLLiteral
+                                       <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
+                                       <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
                                      )
                        ] ;
             owl:propertyDisjointWith :SufficientIf .
 
 
-###  http://www.example.de/qod#CurrentIf
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#CurrentIf
 :CurrentIf rdf:type owl:DatatypeProperty ;
            rdfs:subPropertyOf owl:topDataProperty ;
            rdfs:domain :RecencyInterpretation ;
            rdfs:range [ rdf:type rdfs:Datatype ;
-                        owl:unionOf ( trans:MathMLLiteral
-                                      trans:TeXLiteral
-                                      rdf:XMLLiteral
+                        owl:unionOf ( rdf:XMLLiteral
+                                      <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
+                                      <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
                                     )
                       ] .
 
 
-###  http://www.example.de/qod#OutOfDateIf
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#OutOfDateIf
 :OutOfDateIf rdf:type owl:DatatypeProperty ;
              rdfs:subPropertyOf owl:topDataProperty ;
              rdfs:domain :RecencyInterpretation ;
              rdfs:range [ rdf:type rdfs:Datatype ;
-                          owl:unionOf ( trans:MathMLLiteral
-                                        trans:TeXLiteral
-                                        rdf:XMLLiteral
+                          owl:unionOf ( rdf:XMLLiteral
+                                        <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
+                                        <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
                                       )
                         ] .
 
 
-###  http://www.example.de/qod#SufficientIf
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#SufficientIf
 :SufficientIf rdf:type owl:DatatypeProperty ;
               rdfs:subPropertyOf owl:topDataProperty ;
               rdfs:domain :AccuracyInterpretation ,
@@ -646,118 +651,101 @@ dsi:hasStandardUncertainty rdfs:range xsd:float .
                           :MeasurementUncertaintyInterpretation ,
                           :TimelinessInterpretation ;
               rdfs:range [ rdf:type rdfs:Datatype ;
-                           owl:unionOf ( trans:MathMLLiteral
-                                         trans:TeXLiteral
-                                         rdf:XMLLiteral
+                           owl:unionOf ( rdf:XMLLiteral
+                                         <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
+                                         <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
                                        )
                          ] .
 
 
-###  http://www.example.de/qod#hasDate
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#hasDate
 :hasDate rdf:type owl:DatatypeProperty ;
          rdfs:domain :LastCalibrationDate ;
          rdfs:range xsd:dateTime .
 
 
-###  http://www.example.de/qod#hasLiteralExpression
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#hasLiteralExpression
 :hasLiteralExpression rdf:type owl:DatatypeProperty .
 
 
-###  http://www.example.de/qod#hasTeXExpression
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#hasTeXExpression
 :hasTeXExpression rdf:type owl:DatatypeProperty ;
                   rdfs:subPropertyOf :hasLiteralExpression ;
-                  rdfs:domain trans:MathematicalObject ;
-                  rdfs:range trans:TeXLiteral .
-
-
-###  http://www.example.de/trans#hasCovarianceMatrix
-trans:hasCovarianceMatrix rdf:type owl:DatatypeProperty ;
-                          rdfs:subPropertyOf om-2:hasNumericalValue ;
-                          rdfs:range [ rdf:type rdfs:Datatype ;
-                                       owl:unionOf ( trans:MathMLLiteral
-                                                     trans:TeXLiteral
-                                                     rdf:XMLLiteral
-                                                   )
-                                     ] .
-
-
-###  http://www.example.de/trans#hasMathMLexpression
-trans:hasMathMLexpression rdf:type owl:DatatypeProperty ;
-                          rdfs:subPropertyOf :hasLiteralExpression ;
-                          rdfs:range trans:MathMLLiteral .
-
-
-###  http://www.example.de/trans#hasTeXExpression
-trans:hasTeXExpression rdf:type owl:DatatypeProperty ;
-                       rdfs:range trans:TeXLiteral .
-
-
-###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue
-om-2:hasNumericalValue rdfs:domain dsi:Uncertainty .
+                  rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ;
+                  rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral> .
 
 
 ###  http://www.w3.org/ns/sosa/resultTime
-sosa:resultTime rdfs:isDefinedBy sosa: .
+sosa:resultTime rdf:type owl:DatatypeProperty ;
+                rdfs:isDefinedBy sosa: .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageFactor
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageFactor> rdf:type owl:DatatypeProperty ;
+                                                                               rdfs:range xsd:double .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageProbability
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageProbability> rdf:type owl:DatatypeProperty ;
+                                                                                    rdfs:range xsd:double .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasIntervalMax
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasIntervalMax> rdf:type owl:DatatypeProperty ;
+                                                                            rdfs:range xsd:double .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasIntervalMin
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasIntervalMin> rdf:type owl:DatatypeProperty ;
+                                                                            rdfs:range xsd:double .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasStandardUncertainty
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasStandardUncertainty> rdf:type owl:DatatypeProperty ;
+                                                                                    rdfs:range xsd:float .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCovarianceMatrix
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCovarianceMatrix> rdf:type owl:DatatypeProperty ;
+                                                                                   rdfs:subPropertyOf om-2:hasNumericalValue ;
+                                                                                   rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MultivariateUncertainty> ;
+                                                                                   rdfs:range [ rdf:type rdfs:Datatype ;
+                                                                                                owl:unionOf ( rdf:XMLLiteral
+                                                                                                              <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
+                                                                                                              <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
+                                                                                                            )
+                                                                                              ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasMathMLexpression
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasMathMLexpression> rdf:type owl:DatatypeProperty ;
+                                                                                   rdfs:subPropertyOf :hasLiteralExpression ;
+                                                                                   rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasTeXExpression
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasTeXExpression> rdf:type owl:DatatypeProperty ;
+                                                                                rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral> .
 
 
 #################################################################
 #    Classes
 #################################################################
 
-###  http://cll.niimm.ksu.ru/ontologies/mathematics#E1547
-mathematics1:E1547 rdf:type owl:Class .
-
-
-###  http://cll.niimm.ksu.ru/ontologies/mathematics#E1706
-mathematics1:E1706 rdf:type owl:Class .
-
-
-###  http://cll.niimm.ksu.ru/ontologies/mathematics#E1995
-mathematics1:E1995 rdf:type owl:Class ;
-                   owl:equivalentClass trans:Polynomial .
-
-
-###  http://cll.niimm.ksu.ru/ontologies/mathematics#E2822
-mathematics1:E2822 rdf:type owl:Class ;
-                   owl:equivalentClass trans:LinearOrdinaryDifferentialEquation .
-
-
-###  http://cll.niimm.ksu.ru/ontologies/mathematics#E34
-mathematics1:E34 rdf:type owl:Class ;
-                 owl:equivalentClass trans:MathematicalObject .
-
-
 ###  http://purl.org/vocommons/voaf#Vocabulary
 <http://purl.org/vocommons/voaf#Vocabulary> rdf:type owl:Class .
 
 
-###  http://www.example.com/ns/dsi#ExpandedUncertainty
-dsi:ExpandedUncertainty rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                          owl:onProperty om-2:hasNumericalValue ;
-                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                          owl:onDataRange xsd:double
-                                        ] .
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Date
+om-2:Date rdf:type owl:Class .
 
 
-###  http://www.example.com/ns/dsi#MeasureWithUncertainty
-dsi:MeasureWithUncertainty rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                             owl:onProperty dsi:hasUncertainty ;
-                                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                             owl:onClass dsi:Uncertainty
-                                           ] ;
-                           rdfs:label "Measure with Uncertainty"@en .
+###  http://www.ontology-of-units-of-measure.org/resource/om-2/Measure
+om-2:Measure rdf:type owl:Class ;
+             owl:equivalentClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Parameter> .
 
 
-###  http://www.example.com/ns/dsi#Uncertainty
-dsi:Uncertainty owl:equivalentClass :MeasurementUncertainty ;
-                rdfs:comment "Uncertainty object as specified in the D-SI standard"@en .
-
-
-###  http://www.example.com/ns/scal#CalibratedSensor
-scal:CalibratedSensor rdf:type owl:Class .
-
-
-###  http://www.example.de/qod#Accuracy
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Accuracy
 :Accuracy rdf:type owl:Class ;
           owl:equivalentClass <http://www.w3.org/ns/ssn/systems/Accuracy> ;
           rdfs:subClassOf :Indicator ,
@@ -767,7 +755,7 @@ scal:CalibratedSensor rdf:type owl:Class .
                           ] .
 
 
-###  http://www.example.de/qod#AccuracyInterpretation
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#AccuracyInterpretation
 :AccuracyInterpretation rdf:type owl:Class ;
                         rdfs:subClassOf :Interpretation ,
                                         [ rdf:type owl:Restriction ;
@@ -776,7 +764,7 @@ scal:CalibratedSensor rdf:type owl:Class .
                                         ] .
 
 
-###  http://www.example.de/qod#AccuracyMetric
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#AccuracyMetric
 :AccuracyMetric rdf:type owl:Class ;
                 rdfs:subClassOf :QualityMetric ,
                                 [ rdf:type owl:Restriction ;
@@ -785,7 +773,7 @@ scal:CalibratedSensor rdf:type owl:Class .
                                 ] .
 
 
-###  http://www.example.de/qod#Battery
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Battery
 :Battery rdf:type owl:Class ;
          rdfs:subClassOf :Indicator ,
                          [ rdf:type owl:Restriction ;
@@ -794,7 +782,7 @@ scal:CalibratedSensor rdf:type owl:Class .
                          ] .
 
 
-###  http://www.example.de/qod#BatteryInterpretation
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#BatteryInterpretation
 :BatteryInterpretation rdf:type owl:Class ;
                        rdfs:subClassOf :Interpretation ,
                                        [ rdf:type owl:Restriction ;
@@ -807,12 +795,12 @@ scal:CalibratedSensor rdf:type owl:Class .
                                        ] .
 
 
-###  http://www.example.de/qod#BatteryLevelInterpretation
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#BatteryLevelInterpretation
 :BatteryLevelInterpretation rdf:type owl:Class ;
                             rdfs:subClassOf :BatteryInterpretation .
 
 
-###  http://www.example.de/qod#BatteryLevelMetric
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#BatteryLevelMetric
 :BatteryLevelMetric rdf:type owl:Class ;
                     owl:equivalentClass <http://www.w3.org/ns/ssn/systems/BatteryLifetime> ;
                     rdfs:subClassOf :QualityMetric ,
@@ -822,12 +810,12 @@ scal:CalibratedSensor rdf:type owl:Class .
                                     ] .
 
 
-###  http://www.example.de/qod#CalibrationData
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#CalibrationData
 :CalibrationData rdf:type owl:Class ;
                  rdfs:subClassOf :Indicator .
 
 
-###  http://www.example.de/qod#Completeness
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Completeness
 :Completeness rdf:type owl:Class ;
               rdfs:subClassOf :Indicator ,
                               [ rdf:type owl:Restriction ;
@@ -836,7 +824,7 @@ scal:CalibratedSensor rdf:type owl:Class .
                               ] .
 
 
-###  http://www.example.de/qod#CompletenessInterpretation
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#CompletenessInterpretation
 :CompletenessInterpretation rdf:type owl:Class ;
                             rdfs:subClassOf :Interpretation ,
                                             [ rdf:type owl:Restriction ;
@@ -845,7 +833,7 @@ scal:CalibratedSensor rdf:type owl:Class .
                                             ] .
 
 
-###  http://www.example.de/qod#CompletenessMetric
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#CompletenessMetric
 :CompletenessMetric rdf:type owl:Class ;
                     rdfs:subClassOf :QualityMetric ,
                                     [ rdf:type owl:Restriction ;
@@ -854,7 +842,7 @@ scal:CalibratedSensor rdf:type owl:Class .
                                     ] .
 
 
-###  http://www.example.de/qod#Consistency
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Consistency
 :Consistency rdf:type owl:Class ;
              rdfs:subClassOf :Indicator ,
                              [ rdf:type owl:Restriction ;
@@ -863,7 +851,7 @@ scal:CalibratedSensor rdf:type owl:Class .
                              ] .
 
 
-###  http://www.example.de/qod#ConsistencyInterpretation
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#ConsistencyInterpretation
 :ConsistencyInterpretation rdf:type owl:Class ;
                            rdfs:subClassOf :Interpretation ,
                                            [ rdf:type owl:Restriction ;
@@ -872,7 +860,7 @@ scal:CalibratedSensor rdf:type owl:Class .
                                            ] .
 
 
-###  http://www.example.de/qod#ConsistencyMetric
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#ConsistencyMetric
 :ConsistencyMetric rdf:type owl:Class ;
                    rdfs:subClassOf :QualityMetric ,
                                    [ rdf:type owl:Restriction ;
@@ -881,7 +869,7 @@ scal:CalibratedSensor rdf:type owl:Class .
                                    ] .
 
 
-###  http://www.example.de/qod#Indicator
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Indicator
 :Indicator rdf:type owl:Class ;
            owl:equivalentClass <http://www.w3.org/ns/ssn/systems/SystemProperty> ;
            rdfs:subClassOf [ rdf:type owl:Restriction ;
@@ -892,7 +880,7 @@ scal:CalibratedSensor rdf:type owl:Class .
            rdfs:comment "A property of a sensor or system that can be used to assess quality of data" .
 
 
-###  http://www.example.de/qod#Interpretation
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Interpretation
 :Interpretation rdf:type owl:Class ;
                 rdfs:subClassOf [ rdf:type owl:Restriction ;
                                   owl:onProperty :Interprets ;
@@ -905,7 +893,7 @@ scal:CalibratedSensor rdf:type owl:Class .
 value out of range""" .
 
 
-###  http://www.example.de/qod#LastCalibrationDate
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#LastCalibrationDate
 :LastCalibrationDate rdf:type owl:Class ;
                      rdfs:subClassOf :CalibrationData ,
                                      [ rdf:type owl:Restriction ;
@@ -919,8 +907,9 @@ value out of range""" .
                                      ] .
 
 
-###  http://www.example.de/qod#MeasurementUncertainty
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MeasurementUncertainty
 :MeasurementUncertainty rdf:type owl:Class ;
+                        owl:equivalentClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> ;
                         rdfs:subClassOf :QualityMetric ,
                                         [ rdf:type owl:Restriction ;
                                           owl:onProperty :hasInterpretation ;
@@ -928,7 +917,7 @@ value out of range""" .
                                         ] .
 
 
-###  http://www.example.de/qod#MeasurementUncertaintyInterpretation
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MeasurementUncertaintyInterpretation
 :MeasurementUncertaintyInterpretation rdf:type owl:Class ;
                                       rdfs:subClassOf :Interpretation ,
                                                       [ rdf:type owl:Restriction ;
@@ -937,7 +926,7 @@ value out of range""" .
                                                       ] .
 
 
-###  http://www.example.de/qod#QualityMetric
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#QualityMetric
 :QualityMetric rdf:type owl:Class ;
                rdfs:subClassOf [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasInterpretation ;
@@ -947,17 +936,17 @@ value out of range""" .
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :isMetricOf ;
                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onClass mathematics1:E1547
+                                 owl:onClass <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1547>
                                ] ,
                                [ rdf:type owl:Restriction ;
-                                 owl:onProperty trans:isExpressedBy ;
+                                 owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> ;
                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onClass trans:MathematicalObject
+                                 owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject>
                                ] ;
                rdfs:comment "A metric corresponding to a given quality indicator that assigns a value to it" .
 
 
-###  http://www.example.de/qod#RecencyInterpretation
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#RecencyInterpretation
 :RecencyInterpretation rdf:type owl:Class ;
                        rdfs:subClassOf :Interpretation ,
                                        [ rdf:type owl:Restriction ;
@@ -966,7 +955,7 @@ value out of range""" .
                                        ] .
 
 
-###  http://www.example.de/qod#RecencyMetric
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#RecencyMetric
 :RecencyMetric rdf:type owl:Class ;
                rdfs:subClassOf :QualityMetric ,
                                [ rdf:type owl:Restriction ;
@@ -980,17 +969,17 @@ value out of range""" .
                                ] .
 
 
-###  http://www.example.de/qod#RemainingLifetimeInterpretation
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#RemainingLifetimeInterpretation
 :RemainingLifetimeInterpretation rdf:type owl:Class ;
                                  rdfs:subClassOf :BatteryInterpretation .
 
 
-###  http://www.example.de/qod#SamplingRate
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#SamplingRate
 :SamplingRate rdf:type owl:Class ;
               rdfs:subClassOf :Indicator .
 
 
-###  http://www.example.de/qod#Timeliness
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Timeliness
 :Timeliness rdf:type owl:Class ;
             rdfs:subClassOf :Indicator ,
                             [ rdf:type owl:Restriction ;
@@ -999,7 +988,7 @@ value out of range""" .
                             ] .
 
 
-###  http://www.example.de/qod#TimelinessInterpretation
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#TimelinessInterpretation
 :TimelinessInterpretation rdf:type owl:Class ;
                           rdfs:subClassOf :Interpretation ,
                                           [ rdf:type owl:Restriction ;
@@ -1008,7 +997,7 @@ value out of range""" .
                                           ] .
 
 
-###  http://www.example.de/qod#TimelinessMetric
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#TimelinessMetric
 :TimelinessMetric rdf:type owl:Class ;
                   rdfs:subClassOf :QualityMetric ,
                                   [ rdf:type owl:Restriction ;
@@ -1017,524 +1006,9 @@ value out of range""" .
                                   ] .
 
 
-###  http://www.example.de/trans#AnalyticDomain
-trans:AnalyticDomain rdf:type owl:Class ;
-                     rdfs:comment "The domain in which the transfer behavior is represented/analyzed"@en .
-
-
-###  http://www.example.de/trans#Array
-trans:Array rdf:type owl:Class ;
-            rdfs:subClassOf trans:MathematicalObject ,
-                            om-2:Measure ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty om-2:hasNumericalValue ;
-                              owl:allValuesFrom [ rdf:type rdfs:Datatype ;
-                                                  owl:unionOf ( trans:MathMLLiteral
-                                                                trans:TeXLiteral
-                                                                rdf:XMLLiteral
-                                                              )
-                                                ]
-                            ] ;
-            rdfs:seeAlso mathematics1:E1687 .
-
-
-###  http://www.example.de/trans#ArrayWithUncertainty
-trans:ArrayWithUncertainty rdf:type owl:Class ;
-                           rdfs:subClassOf dsi:MeasureWithUncertainty ,
-                                           trans:Array .
-
-
-###  http://www.example.de/trans#BandPass
-trans:BandPass rdf:type owl:Class ;
-               rdfs:subClassOf trans:FrequencyBehavior .
-
-
-###  http://www.example.de/trans#BandStop
-trans:BandStop rdf:type owl:Class ;
-               rdfs:subClassOf trans:FrequencyBehavior .
-
-
-###  http://www.example.de/trans#Bessel
-trans:Bessel rdf:type owl:Class ;
-             rdfs:subClassOf trans:FilterType ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty trans:isExpressedBy ;
-                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                               owl:onClass trans:Polynomial
-                             ] .
-
-
-###  http://www.example.de/trans#Butterworth
-trans:Butterworth rdf:type owl:Class ;
-                  rdfs:subClassOf trans:FilterType .
-
-
-###  http://www.example.de/trans#Chebyshev
-trans:Chebyshev rdf:type owl:Class ;
-                rdfs:subClassOf trans:FilterType ,
-                                [ rdf:type owl:Restriction ;
-                                  owl:onProperty trans:isExpressedBy ;
-                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                  owl:onClass trans:Polynomial
-                                ] .
-
-
-###  http://www.example.de/trans#Continuous
-trans:Continuous rdf:type owl:Class ;
-                 rdfs:subClassOf trans:DimensionStructure ;
-                 owl:disjointWith trans:Discrete ;
-                 rdfs:comment "The values along a dimension are represented by continuous points."@en .
-
-
-###  http://www.example.de/trans#ContinuousImpulseResponseModel
-trans:ContinuousImpulseResponseModel rdf:type owl:Class ;
-                                     rdfs:subClassOf trans:ImpulseResponseModel ,
-                                                     [ rdf:type owl:Restriction ;
-                                                       owl:onProperty trans:hasBehavior ;
-                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                       owl:onClass trans:Dynamic
-                                                     ] ,
-                                                     [ rdf:type owl:Restriction ;
-                                                       owl:onProperty trans:isDefinedInDomain ;
-                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                       owl:onClass trans:TimeDomain
-                                                     ] ,
-                                                     [ rdf:type owl:Restriction ;
-                                                       owl:onProperty trans:isExpressedBy ;
-                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                       owl:onClass trans:MathematicalObject
-                                                     ] ,
-                                                     [ rdf:type owl:Restriction ;
-                                                       owl:onProperty trans:isOfSystemType ;
-                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                       owl:onClass trans:LinearSystem
-                                                     ] .
-
-
-###  http://www.example.de/trans#DimensionStructure
-trans:DimensionStructure rdf:type owl:Class .
-
-
-###  http://www.example.de/trans#Discrete
-trans:Discrete rdf:type owl:Class ;
-               rdfs:subClassOf trans:DimensionStructure ;
-               rdfs:comment "The values along a dimension are represented by discrete points."@en .
-
-
-###  http://www.example.de/trans#Dynamic
-trans:Dynamic rdf:type owl:Class ;
-              rdfs:subClassOf trans:TemporalBehavior ;
-              rdfs:comment "System response can depend on the history of input values."@en .
-
-
-###  http://www.example.de/trans#EllipsoidalRegion
-trans:EllipsoidalRegion rdf:type owl:Class ;
-                        rdfs:subClassOf trans:MultivariateUncertainty .
-
-
-###  http://www.example.de/trans#Elliptic
-trans:Elliptic rdf:type owl:Class ;
-               rdfs:subClassOf trans:FilterType ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty trans:isExpressedBy ;
-                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onClass trans:EllipticRationalFunction
-                               ] .
-
-
-###  http://www.example.de/trans#EllipticRationalFunction
-trans:EllipticRationalFunction rdf:type owl:Class ;
-                               rdfs:subClassOf trans:RationalFraction .
-
-
-###  http://www.example.de/trans#FilterType
-trans:FilterType rdf:type owl:Class ;
-                 rdfs:subClassOf trans:TransferModel ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty trans:hasBehavior ;
-                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                   owl:onClass trans:FrequencyBehavior
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty trans:isDefinedInDomain ;
-                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                   owl:onClass trans:FrequencyDomain
-                                 ] .
-
-
-###  http://www.example.de/trans#FiniteImpulseResponseModel
-trans:FiniteImpulseResponseModel rdf:type owl:Class ;
-                                 rdfs:subClassOf trans:ImpulseResponseModel ,
-                                                 [ rdf:type owl:Restriction ;
-                                                   owl:onProperty trans:isDefinedInDomain ;
-                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                   owl:onClass [ rdf:type owl:Class ;
-                                                                 owl:unionOf ( trans:FrequencyDomain
-                                                                               trans:TimeDomain
-                                                                             )
-                                                               ]
-                                                 ] ,
-                                                 [ rdf:type owl:Restriction ;
-                                                   owl:onProperty trans:isExpressedBy ;
-                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                   owl:onClass [ rdf:type owl:Class ;
-                                                                 owl:unionOf ( trans:LinearDifferenceEquation
-                                                                               trans:Polynomial
-                                                                             )
-                                                               ]
-                                                 ] .
-
-
-###  http://www.example.de/trans#FrequencyBehavior
-trans:FrequencyBehavior rdf:type owl:Class ;
-                        rdfs:subClassOf trans:QualitativeBehavior .
-
-
-###  http://www.example.de/trans#FrequencyDomain
-trans:FrequencyDomain rdf:type owl:Class ;
-                      rdfs:subClassOf trans:AnalyticDomain .
-
-
-###  http://www.example.de/trans#FrequencySpectrum
-trans:FrequencySpectrum rdf:type owl:Class ;
-                        rdfs:subClassOf trans:MathematicalObject ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty trans:hasFrequencyArray ;
-                                          owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                          owl:onClass trans:Array
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty trans:hasValueArray ;
-                                          owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                          owl:onClass trans:Array
-                                        ] .
-
-
-###  http://www.example.de/trans#HighPass
-trans:HighPass rdf:type owl:Class ;
-               rdfs:subClassOf trans:FrequencyBehavior .
-
-
-###  http://www.example.de/trans#ImpulseResponseModel
-trans:ImpulseResponseModel rdf:type owl:Class ;
-                           rdfs:subClassOf trans:TransferModel ,
-                                           [ rdf:type owl:Restriction ;
-                                             owl:onProperty trans:isDefinedInDomain ;
-                                             owl:allValuesFrom trans:AnalyticDomain
-                                           ] .
-
-
-###  http://www.example.de/trans#InfiniteImpulseResponseModel
-trans:InfiniteImpulseResponseModel rdf:type owl:Class ;
-                                   rdfs:subClassOf trans:ImpulseResponseModel ,
-                                                   [ rdf:type owl:Restriction ;
-                                                     owl:onProperty trans:isDefinedInDomain ;
-                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                     owl:onClass [ rdf:type owl:Class ;
-                                                                   owl:unionOf ( trans:FrequencyDomain
-                                                                                 trans:TimeDomain
-                                                                               )
-                                                                 ]
-                                                   ] ,
-                                                   [ rdf:type owl:Restriction ;
-                                                     owl:onProperty trans:isExpressedBy ;
-                                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                     owl:onClass [ rdf:type owl:Class ;
-                                                                   owl:unionOf ( trans:LinearDifferenceEquation
-                                                                                 trans:RationalFraction
-                                                                               )
-                                                                 ]
-                                                   ] .
-
-
-###  http://www.example.de/trans#LTISystem
-trans:LTISystem rdf:type owl:Class ;
-                rdfs:subClassOf trans:LinearSystem .
-
-
-###  http://www.example.de/trans#LinearAffineModel
-trans:LinearAffineModel rdf:type owl:Class ;
-                        rdfs:subClassOf trans:TransferModel ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty trans:hasBehavior ;
-                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                          owl:onClass trans:Static
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty trans:isDefinedInDomain ;
-                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                          owl:onClass trans:TimeDomain
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty trans:isExpressedBy ;
-                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                          owl:onClass trans:MathematicalObject
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty trans:isOfSystemType ;
-                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                          owl:onClass trans:NonlinearSystem
-                                        ] .
-
-
-###  http://www.example.de/trans#LinearDifferenceEquation
-trans:LinearDifferenceEquation rdf:type owl:Class ;
-                               rdfs:subClassOf trans:MathematicalObject ,
-                                               [ rdf:type owl:Restriction ;
-                                                 owl:onProperty trans:hasCoefficients ;
-                                                 owl:qualifiedCardinality "2"^^xsd:nonNegativeInteger ;
-                                                 owl:onClass trans:Array
-                                               ] .
-
-
-###  http://www.example.de/trans#LinearOrdinaryDifferentialEquation
-trans:LinearOrdinaryDifferentialEquation rdf:type owl:Class ;
-                                         rdfs:subClassOf trans:MathematicalObject ,
-                                                         [ rdf:type owl:Restriction ;
-                                                           owl:onProperty trans:hasCoefficients ;
-                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                           owl:onClass trans:Array
-                                                         ] .
-
-
-###  http://www.example.de/trans#LinearStateSpaceModel
-trans:LinearStateSpaceModel rdf:type owl:Class ;
-                            rdfs:subClassOf trans:StateSpaceModel ,
-                                            [ rdf:type owl:Restriction ;
-                                              owl:onProperty trans:isExpressedBy ;
-                                              owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                              owl:onClass trans:StateSpaceMatrixNotation
-                                            ] ,
-                                            [ rdf:type owl:Restriction ;
-                                              owl:onProperty trans:isOfSystemType ;
-                                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                              owl:onClass trans:LinearSystem
-                                            ] .
-
-
-###  http://www.example.de/trans#LinearSystem
-trans:LinearSystem rdf:type owl:Class ;
-                   rdfs:subClassOf trans:SystemType ;
-                   owl:disjointWith trans:NonlinearSystem .
-
-
-###  http://www.example.de/trans#LowPass
-trans:LowPass rdf:type owl:Class ;
-              rdfs:subClassOf trans:FrequencyBehavior .
-
-
-###  http://www.example.de/trans#MathematicalObject
-trans:MathematicalObject rdf:type owl:Class ;
-                         rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                           owl:onProperty om-2:hasValue ;
-                                           owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-                                           owl:onClass om-2:Measure
-                                         ] .
-
-
-###  http://www.example.de/trans#MultivariateUncertainty
-trans:MultivariateUncertainty rdf:type owl:Class ;
-                              rdfs:subClassOf dsi:Uncertainty .
-
-
-###  http://www.example.de/trans#NonLinearStateSpaceModel
-trans:NonLinearStateSpaceModel rdf:type owl:Class ;
-                               rdfs:subClassOf trans:StateSpaceModel ,
-                                               [ rdf:type owl:Restriction ;
-                                                 owl:onProperty trans:isOfSystemType ;
-                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                 owl:onClass trans:NonlinearSystem
-                                               ] .
-
-
-###  http://www.example.de/trans#NonlinearSystem
-trans:NonlinearSystem rdf:type owl:Class ;
-                      rdfs:subClassOf trans:SystemType .
-
-
-###  http://www.example.de/trans#Parameter
-trans:Parameter rdf:type owl:Class ;
-                owl:equivalentClass om-2:Measure .
-
-
-###  http://www.example.de/trans#Polynomial
-trans:Polynomial rdf:type owl:Class ;
-                 rdfs:subClassOf trans:MathematicalObject ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty trans:hasCoefficients ;
-                                   owl:allValuesFrom trans:Array
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty trans:hasPolynomialRoots ;
-                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                   owl:onClass trans:Array
-                                 ] ;
-                 rdfs:comment "An expression consisting of variables (also called indeterminates) and coefficients, that involves only the operations of addition, subtraction, multiplication, and non-negative integer exponentiation of variables"@en .
-
-
-###  http://www.example.de/trans#QualitativeBehavior
-trans:QualitativeBehavior rdf:type owl:Class .
-
-
-###  http://www.example.de/trans#RationalFraction
-trans:RationalFraction rdf:type owl:Class ;
-                       rdfs:subClassOf trans:MathematicalObject ,
-                                       [ rdf:type owl:Restriction ;
-                                         owl:onProperty trans:hasDenominator ;
-                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                         owl:onClass trans:Polynomial
-                                       ] ,
-                                       [ rdf:type owl:Restriction ;
-                                         owl:onProperty trans:hasNumerator ;
-                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                         owl:onClass trans:Polynomial
-                                       ] ;
-                       rdfs:comment "A rational fraction given by its numerator- and denominator-polynomial."@en ;
-                       rdfs:seeAlso mathematics1:E1603 .
-
-
-###  http://www.example.de/trans#RectangularRegion
-trans:RectangularRegion rdf:type owl:Class ;
-                        rdfs:subClassOf trans:MultivariateUncertainty .
-
-
-###  http://www.example.de/trans#StateSpaceMatrixNotation
-trans:StateSpaceMatrixNotation rdf:type owl:Class ;
-                               rdfs:subClassOf trans:MathematicalObject ,
-                                               [ rdf:type owl:Restriction ;
-                                                 owl:onProperty trans:hasFeedthroughMatrix ;
-                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                 owl:onClass trans:Array
-                                               ] ,
-                                               [ rdf:type owl:Restriction ;
-                                                 owl:onProperty trans:hasInputMatrix ;
-                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                 owl:onClass trans:Array
-                                               ] ,
-                                               [ rdf:type owl:Restriction ;
-                                                 owl:onProperty trans:hasOutputMatrix ;
-                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                 owl:onClass trans:Array
-                                               ] ,
-                                               [ rdf:type owl:Restriction ;
-                                                 owl:onProperty trans:hasSystemMatrix ;
-                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                 owl:onClass trans:Array
-                                               ] ;
-                               rdfs:comment """Depending on chosen time-dimension structure (continuous / discrete) the matrices represent a system of differential or difference equations. 
-
-continuous:
-x_dot = A*x + B*u
-y = C*x + D*u
-
-discrete:
-x[n+1] = A*x[n] + B*u[n]
-y[n] = C*x[n] + D*u[n]
-
-with internal state x, state's time derivate x_dot, input u, output y."""@en ,
-                                            "State Space Model represented by its system Matrix A, input matrix B, output matrix C and feedthrough matrix D."@en ;
-                               rdfs:seeAlso mathematics1:E2823 .
-
-
-###  http://www.example.de/trans#StateSpaceModel
-trans:StateSpaceModel rdf:type owl:Class ;
-                      rdfs:subClassOf trans:TransferModel ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty trans:hasBehavior ;
-                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                        owl:onClass trans:Dynamic
-                                      ] ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty trans:isDefinedInDomain ;
-                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                        owl:onClass trans:TimeDomain
-                                      ] .
-
-
-###  http://www.example.de/trans#Static
-trans:Static rdf:type owl:Class ;
-             rdfs:subClassOf trans:TemporalBehavior ;
-             rdfs:comment "System response is only dependent on the last input value."@en .
-
-
-###  http://www.example.de/trans#StepResponseModel
-trans:StepResponseModel rdf:type owl:Class ;
-                        rdfs:subClassOf trans:TransferModel ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty trans:hasBehavior ;
-                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                          owl:onClass trans:Dynamic
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty trans:isDefinedInDomain ;
-                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                          owl:onClass trans:TimeDomain
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty trans:isExpressedBy ;
-                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                          owl:onClass trans:MathematicalObject
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty trans:isOfSystemType ;
-                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                          owl:onClass trans:LinearSystem
-                                        ] .
-
-
-###  http://www.example.de/trans#SystemType
-trans:SystemType rdf:type owl:Class .
-
-
-###  http://www.example.de/trans#TemporalBehavior
-trans:TemporalBehavior rdf:type owl:Class ;
-                       rdfs:subClassOf trans:QualitativeBehavior .
-
-
-###  http://www.example.de/trans#TimeDomain
-trans:TimeDomain rdf:type owl:Class ;
-                 rdfs:subClassOf trans:AnalyticDomain .
-
-
-###  http://www.example.de/trans#TimeSeries
-trans:TimeSeries rdf:type owl:Class ;
-                 rdfs:subClassOf trans:MathematicalObject ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty trans:hasValueArray ;
-                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                   owl:onClass trans:Array
-                                 ] ,
-                                 [ rdf:type owl:Restriction ;
-                                   owl:onProperty trans:hasTimeArray ;
-                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                   owl:onClass trans:Array
-                                 ] .
-
-
-###  http://www.example.de/trans#TransferModel
-trans:TransferModel rdf:type owl:Class ;
-                    rdfs:subClassOf trans:FilterType ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty trans:isExpressedBy ;
-                                      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                      owl:onClass trans:MathematicalObject
-                                    ] ,
-                                    [ rdf:type owl:Restriction ;
-                                      owl:onProperty trans:isOfSystemType ;
-                                      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                      owl:onClass trans:LinearSystem
-                                    ] .
-
-
-###  http://www.example.de/trans#UnivariateUncertainty
-trans:UnivariateUncertainty rdf:type owl:Class ;
-                            rdfs:subClassOf dsi:Uncertainty .
-
-
-###  http://www.ontology-of-units-of-measure.org/resource/om-2/Measure
-
 ###  http://www.w3.org/ns/sosa/ActuatableProperty
-sosa:ActuatableProperty rdfs:subClassOf <http://www.w3.org/ns/ssn/Property> ,
+sosa:ActuatableProperty rdf:type owl:Class ;
+                        rdfs:subClassOf <http://www.w3.org/ns/ssn/Property> ,
                                         [ rdf:type owl:Restriction ;
                                           owl:onProperty sosa:isActedOnBy ;
                                           owl:allValuesFrom sosa:Actuation
@@ -1606,7 +1080,8 @@ sosa:Actuator rdf:type owl:Class ;
 
 
 ###  http://www.w3.org/ns/sosa/FeatureOfInterest
-sosa:FeatureOfInterest rdfs:subClassOf [ rdf:type owl:Restriction ;
+sosa:FeatureOfInterest rdf:type owl:Class ;
+                       rdfs:subClassOf [ rdf:type owl:Restriction ;
                                          owl:onProperty sosa:hasSample ;
                                          owl:allValuesFrom sosa:Sample
                                        ] ,
@@ -1622,7 +1097,8 @@ sosa:FeatureOfInterest rdfs:subClassOf [ rdf:type owl:Restriction ;
 
 
 ###  http://www.w3.org/ns/sosa/ObservableProperty
-sosa:ObservableProperty rdfs:subClassOf <http://www.w3.org/ns/ssn/Property> ,
+sosa:ObservableProperty rdf:type owl:Class ;
+                        rdfs:subClassOf <http://www.w3.org/ns/ssn/Property> ,
                                         [ rdf:type owl:Restriction ;
                                           owl:onProperty sosa:isObservedBy ;
                                           owl:allValuesFrom sosa:Sensor
@@ -1711,7 +1187,8 @@ sosa:Platform rdf:type owl:Class ;
 
 
 ###  http://www.w3.org/ns/sosa/Procedure
-sosa:Procedure rdfs:subClassOf [ rdf:type owl:Restriction ;
+sosa:Procedure rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
                                  owl:onProperty <http://www.w3.org/ns/ssn/hasInput> ;
                                  owl:allValuesFrom <http://www.w3.org/ns/ssn/Input>
                                ] ,
@@ -1727,7 +1204,8 @@ sosa:Procedure rdfs:subClassOf [ rdf:type owl:Restriction ;
 
 
 ###  http://www.w3.org/ns/sosa/Result
-sosa:Result rdfs:subClassOf [ rdf:type owl:Restriction ;
+sosa:Result rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
                               owl:onProperty sosa:isResultOf ;
                               owl:minCardinality "1"^^xsd:nonNegativeInteger
                             ] ;
@@ -1735,7 +1213,8 @@ sosa:Result rdfs:subClassOf [ rdf:type owl:Restriction ;
 
 
 ###  http://www.w3.org/ns/sosa/Sample
-sosa:Sample rdfs:subClassOf sosa:FeatureOfInterest ,
+sosa:Sample rdf:type owl:Class ;
+            rdfs:subClassOf sosa:FeatureOfInterest ,
                             sosa:Result ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty sosa:isResultOf ;
@@ -1757,7 +1236,8 @@ sosa:Sample rdfs:subClassOf sosa:FeatureOfInterest ,
 
 
 ###  http://www.w3.org/ns/sosa/Sampler
-sosa:Sampler rdfs:subClassOf <http://www.w3.org/ns/ssn/System> ,
+sosa:Sampler rdf:type owl:Class ;
+             rdfs:subClassOf <http://www.w3.org/ns/ssn/System> ,
                              [ rdf:type owl:Restriction ;
                                owl:onProperty sosa:madeSampling ;
                                owl:allValuesFrom sosa:Sampling
@@ -2332,71 +1812,573 @@ sosa:Sensor rdf:type owl:Class ;
 foaf:Agent rdf:type owl:Class .
 
 
+###  https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1547
+<https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1547> rdf:type owl:Class .
+
+
+###  https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1706
+<https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1706> rdf:type owl:Class .
+
+
+###  https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1995
+<https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1995> rdf:type owl:Class ;
+                                                                                       owl:equivalentClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Polynomial> .
+
+
+###  https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E2822
+<https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E2822> rdf:type owl:Class ;
+                                                                                       owl:equivalentClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LinearOrdinaryDifferentialEquation> .
+
+
+###  https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E34
+<https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E34> rdf:type owl:Class ;
+                                                                                     owl:equivalentClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#ExpandedUncertainty
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#ExpandedUncertainty> rdf:type owl:Class ;
+                                                                                 rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty om-2:hasNumericalValue ;
+                                                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                   owl:onDataRange xsd:double
+                                                                                                 ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#MeasureWithUncertainty
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#MeasureWithUncertainty> rdf:type owl:Class ;
+                                                                                    rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                                      owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasUncertainty> ;
+                                                                                                      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                      owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty>
+                                                                                                    ] ;
+                                                                                    rdfs:label "Measure with Uncertainty"@en .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> rdf:type owl:Class ;
+                                                                         rdfs:comment "Uncertainty object as specified in the D-SI standard"@en .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#CalibratedSensor
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#CalibratedSensor> rdf:type owl:Class .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#AnalyticDomain
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#AnalyticDomain> rdf:type owl:Class ;
+                                                                              rdfs:comment "The domain in which the transfer behavior is represented/analyzed"@en .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array> rdf:type owl:Class ;
+                                                                     rdfs:subClassOf om-2:Measure ,
+                                                                                     <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ,
+                                                                                     [ rdf:type owl:Restriction ;
+                                                                                       owl:onProperty om-2:hasNumericalValue ;
+                                                                                       owl:allValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                           owl:unionOf ( rdf:XMLLiteral
+                                                                                                                         <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
+                                                                                                                         <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TeXLiteral>
+                                                                                                                       )
+                                                                                                         ]
+                                                                                     ] ;
+                                                                     rdfs:seeAlso mathematics1:E1687 .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#ArrayWithUncertainty
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#ArrayWithUncertainty> rdf:type owl:Class ;
+                                                                                    rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#MeasureWithUncertainty> ,
+                                                                                                    <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#BandPass
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#BandPass> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FrequencyBehavior> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#BandStop
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#BandStop> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FrequencyBehavior> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Bessel
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Bessel> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FilterType> ,
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> ;
+                                                                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                        owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Polynomial>
+                                                                                      ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Butterworth
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Butterworth> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FilterType> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Chebyshev
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Chebyshev> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FilterType> ,
+                                                                                         [ rdf:type owl:Restriction ;
+                                                                                           owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> ;
+                                                                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                           owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Polynomial>
+                                                                                         ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Continuous
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Continuous> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#DimensionStructure> ;
+                                                                          owl:disjointWith <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Discrete> ;
+                                                                          rdfs:comment "The values along a dimension are represented by continuous points."@en .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#ContinuousImpulseResponseModel
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#ContinuousImpulseResponseModel> rdf:type owl:Class ;
+                                                                                              rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#ImpulseResponseModel> ,
+                                                                                                              [ rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasBehavior> ;
+                                                                                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                                owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Dynamic>
+                                                                                                              ] ,
+                                                                                                              [ rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isDefinedInDomain> ;
+                                                                                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                                owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TimeDomain>
+                                                                                                              ] ,
+                                                                                                              [ rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> ;
+                                                                                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                                owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject>
+                                                                                                              ] ,
+                                                                                                              [ rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isOfSystemType> ;
+                                                                                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                                owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LinearSystem>
+                                                                                                              ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#DimensionStructure
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#DimensionStructure> rdf:type owl:Class .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Discrete
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Discrete> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#DimensionStructure> ;
+                                                                        rdfs:comment "The values along a dimension are represented by discrete points."@en .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Dynamic
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Dynamic> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TemporalBehavior> ;
+                                                                       rdfs:comment "System response can depend on the history of input values."@en .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#EllipsoidalRegion
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#EllipsoidalRegion> rdf:type owl:Class ;
+                                                                                 rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MultivariateUncertainty> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Elliptic
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Elliptic> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FilterType> ,
+                                                                                        [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> ;
+                                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                          owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#EllipticRationalFunction>
+                                                                                        ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#EllipticRationalFunction
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#EllipticRationalFunction> rdf:type owl:Class ;
+                                                                                        rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#RationalFraction> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FilterType
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FilterType> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TransferModel> ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasBehavior> ;
+                                                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                            owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FrequencyBehavior>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isDefinedInDomain> ;
+                                                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                            owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FrequencyDomain>
+                                                                                          ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FiniteImpulseResponseModel
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FiniteImpulseResponseModel> rdf:type owl:Class ;
+                                                                                          rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#ImpulseResponseModel> ,
+                                                                                                          [ rdf:type owl:Restriction ;
+                                                                                                            owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isDefinedInDomain> ;
+                                                                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                            owl:onClass [ rdf:type owl:Class ;
+                                                                                                                          owl:unionOf ( <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FrequencyDomain>
+                                                                                                                                        <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TimeDomain>
+                                                                                                                                      )
+                                                                                                                        ]
+                                                                                                          ] ,
+                                                                                                          [ rdf:type owl:Restriction ;
+                                                                                                            owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> ;
+                                                                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                            owl:onClass [ rdf:type owl:Class ;
+                                                                                                                          owl:unionOf ( <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LinearDifferenceEquation>
+                                                                                                                                        <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Polynomial>
+                                                                                                                                      )
+                                                                                                                        ]
+                                                                                                          ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FrequencyBehavior
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FrequencyBehavior> rdf:type owl:Class ;
+                                                                                 rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#QualitativeBehavior> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FrequencyDomain
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FrequencyDomain> rdf:type owl:Class ;
+                                                                               rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#AnalyticDomain> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FrequencySpectrum
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FrequencySpectrum> rdf:type owl:Class ;
+                                                                                 rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ,
+                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasFrequencyArray> ;
+                                                                                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                   owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array>
+                                                                                                 ] ,
+                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasValueArray> ;
+                                                                                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                   owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array>
+                                                                                                 ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#HighPass
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#HighPass> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FrequencyBehavior> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#ImpulseResponseModel
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#ImpulseResponseModel> rdf:type owl:Class ;
+                                                                                    rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TransferModel> ,
+                                                                                                    [ rdf:type owl:Restriction ;
+                                                                                                      owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isDefinedInDomain> ;
+                                                                                                      owl:allValuesFrom <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#AnalyticDomain>
+                                                                                                    ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#InfiniteImpulseResponseModel
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#InfiniteImpulseResponseModel> rdf:type owl:Class ;
+                                                                                            rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#ImpulseResponseModel> ,
+                                                                                                            [ rdf:type owl:Restriction ;
+                                                                                                              owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isDefinedInDomain> ;
+                                                                                                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                              owl:onClass [ rdf:type owl:Class ;
+                                                                                                                            owl:unionOf ( <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FrequencyDomain>
+                                                                                                                                          <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TimeDomain>
+                                                                                                                                        )
+                                                                                                                          ]
+                                                                                                            ] ,
+                                                                                                            [ rdf:type owl:Restriction ;
+                                                                                                              owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> ;
+                                                                                                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                              owl:onClass [ rdf:type owl:Class ;
+                                                                                                                            owl:unionOf ( <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LinearDifferenceEquation>
+                                                                                                                                          <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#RationalFraction>
+                                                                                                                                        )
+                                                                                                                          ]
+                                                                                                            ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LTISystem
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LTISystem> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LinearSystem> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LinearAffineModel
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LinearAffineModel> rdf:type owl:Class ;
+                                                                                 rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TransferModel> ,
+                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasBehavior> ;
+                                                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                   owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Static>
+                                                                                                 ] ,
+                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isDefinedInDomain> ;
+                                                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                   owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TimeDomain>
+                                                                                                 ] ,
+                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> ;
+                                                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                   owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject>
+                                                                                                 ] ,
+                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isOfSystemType> ;
+                                                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                   owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#NonlinearSystem>
+                                                                                                 ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LinearDifferenceEquation
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LinearDifferenceEquation> rdf:type owl:Class ;
+                                                                                        rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ,
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCoefficients> ;
+                                                                                                          owl:qualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                                                                                          owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array>
+                                                                                                        ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LinearOrdinaryDifferentialEquation
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LinearOrdinaryDifferentialEquation> rdf:type owl:Class ;
+                                                                                                  rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ,
+                                                                                                                  [ rdf:type owl:Restriction ;
+                                                                                                                    owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCoefficients> ;
+                                                                                                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                                    owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array>
+                                                                                                                  ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LinearStateSpaceModel
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LinearStateSpaceModel> rdf:type owl:Class ;
+                                                                                     rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#StateSpaceModel> ,
+                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> ;
+                                                                                                       owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                       owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#StateSpaceMatrixNotation>
+                                                                                                     ] ,
+                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isOfSystemType> ;
+                                                                                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                       owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LinearSystem>
+                                                                                                     ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LinearSystem
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LinearSystem> rdf:type owl:Class ;
+                                                                            rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#SystemType> ;
+                                                                            owl:disjointWith <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#NonlinearSystem> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LowPass
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LowPass> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FrequencyBehavior> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> rdf:type owl:Class ;
+                                                                                  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                                    owl:onProperty om-2:hasValue ;
+                                                                                                    owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                                                                    owl:onClass om-2:Measure
+                                                                                                  ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MultivariateUncertainty
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MultivariateUncertainty> rdf:type owl:Class ;
+                                                                                       rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#NonLinearStateSpaceModel
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#NonLinearStateSpaceModel> rdf:type owl:Class ;
+                                                                                        rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#StateSpaceModel> ,
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isOfSystemType> ;
+                                                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                          owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#NonlinearSystem>
+                                                                                                        ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#NonlinearSystem
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#NonlinearSystem> rdf:type owl:Class ;
+                                                                               rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#SystemType> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Parameter
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Parameter> rdf:type owl:Class .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Polynomial
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Polynomial> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCoefficients> ;
+                                                                                            owl:allValuesFrom <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasPolynomialRoots> ;
+                                                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                            owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array>
+                                                                                          ] ;
+                                                                          rdfs:comment "An expression consisting of variables (also called indeterminates) and coefficients, that involves only the operations of addition, subtraction, multiplication, and non-negative integer exponentiation of variables"@en .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#QualitativeBehavior
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#QualitativeBehavior> rdf:type owl:Class .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#RationalFraction
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#RationalFraction> rdf:type owl:Class ;
+                                                                                rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ,
+                                                                                                [ rdf:type owl:Restriction ;
+                                                                                                  owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasDenominator> ;
+                                                                                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                  owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Polynomial>
+                                                                                                ] ,
+                                                                                                [ rdf:type owl:Restriction ;
+                                                                                                  owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasNumerator> ;
+                                                                                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                  owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Polynomial>
+                                                                                                ] ;
+                                                                                rdfs:comment "A rational fraction given by its numerator- and denominator-polynomial."@en ;
+                                                                                rdfs:seeAlso mathematics1:E1603 .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#RectangularRegion
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#RectangularRegion> rdf:type owl:Class ;
+                                                                                 rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MultivariateUncertainty> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#StateSpaceMatrixNotation
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#StateSpaceMatrixNotation> rdf:type owl:Class ;
+                                                                                        rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ,
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasFeedthroughMatrix> ;
+                                                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                          owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array>
+                                                                                                        ] ,
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasInputMatrix> ;
+                                                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                          owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array>
+                                                                                                        ] ,
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasOutputMatrix> ;
+                                                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                          owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array>
+                                                                                                        ] ,
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasSystemMatrix> ;
+                                                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                          owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array>
+                                                                                                        ] ;
+                                                                                        rdfs:comment """Depending on chosen time-dimension structure (continuous / discrete) the matrices represent a system of differential or difference equations. 
+
+continuous:
+x_dot = A*x + B*u
+y = C*x + D*u
+
+discrete:
+x[n+1] = A*x[n] + B*u[n]
+y[n] = C*x[n] + D*u[n]
+
+with internal state x, state's time derivate x_dot, input u, output y."""@en ,
+                                                                                                     "State Space Model represented by its system Matrix A, input matrix B, output matrix C and feedthrough matrix D."@en ;
+                                                                                        rdfs:seeAlso mathematics1:E2823 .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#StateSpaceModel
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#StateSpaceModel> rdf:type owl:Class ;
+                                                                               rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TransferModel> ,
+                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                 owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasBehavior> ;
+                                                                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                 owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Dynamic>
+                                                                                               ] ,
+                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                 owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isDefinedInDomain> ;
+                                                                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                 owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TimeDomain>
+                                                                                               ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Static
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Static> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TemporalBehavior> ;
+                                                                      rdfs:comment "System response is only dependent on the last input value."@en .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#StepResponseModel
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#StepResponseModel> rdf:type owl:Class ;
+                                                                                 rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TransferModel> ,
+                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasBehavior> ;
+                                                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                   owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Dynamic>
+                                                                                                 ] ,
+                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isDefinedInDomain> ;
+                                                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                   owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TimeDomain>
+                                                                                                 ] ,
+                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> ;
+                                                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                   owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject>
+                                                                                                 ] ,
+                                                                                                 [ rdf:type owl:Restriction ;
+                                                                                                   owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isOfSystemType> ;
+                                                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                                   owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LinearSystem>
+                                                                                                 ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#SystemType
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#SystemType> rdf:type owl:Class .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TemporalBehavior
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TemporalBehavior> rdf:type owl:Class ;
+                                                                                rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#QualitativeBehavior> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TimeDomain
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TimeDomain> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#AnalyticDomain> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TimeSeries
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TimeSeries> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasValueArray> ;
+                                                                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                            owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasTimeArray> ;
+                                                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                            owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array>
+                                                                                          ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TransferModel
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TransferModel> rdf:type owl:Class ;
+                                                                             rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#FilterType> ,
+                                                                                             [ rdf:type owl:Restriction ;
+                                                                                               owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> ;
+                                                                                               owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                               owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject>
+                                                                                             ] ,
+                                                                                             [ rdf:type owl:Restriction ;
+                                                                                               owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isOfSystemType> ;
+                                                                                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                               owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LinearSystem>
+                                                                                             ] .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#UnivariateUncertainty
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#UnivariateUncertainty> rdf:type owl:Class ;
+                                                                                     rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> .
+
+
 #################################################################
 #    Individuals
 #################################################################
-
-###  http://www.example.de/trans#DenominatorArray
-trans:DenominatorArray rdf:type owl:NamedIndividual ,
-                                trans:ArrayWithUncertainty .
-
-
-###  http://www.example.de/trans#MPU9250
-trans:MPU9250 rdf:type owl:NamedIndividual ,
-                       sosa:Sensor ,
-                       <http://www.w3.org/ns/ssn/System> ;
-              scal:hasCalibrationModel trans:MPUcalibrationModel .
-
-
-###  http://www.example.de/trans#MPUDenominatorPolynomial
-trans:MPUDenominatorPolynomial rdf:type owl:NamedIndividual ,
-                                        trans:Polynomial ;
-                               trans:hasCoefficients trans:DenominatorArray .
-
-
-###  http://www.example.de/trans#MPUNumeratorPolynomial
-trans:MPUNumeratorPolynomial rdf:type owl:NamedIndividual ,
-                                      trans:Polynomial ;
-                             trans:hasCoefficients trans:NumeratorArray .
-
-
-###  http://www.example.de/trans#MPURationalFraction
-trans:MPURationalFraction rdf:type owl:NamedIndividual ,
-                                   trans:RationalFraction ;
-                          trans:hasDenominator trans:MPUDenominatorPolynomial ;
-                          trans:hasNumerator trans:MPUNumeratorPolynomial .
-
-
-###  http://www.example.de/trans#MPUcalibrationModel
-trans:MPUcalibrationModel rdf:type owl:NamedIndividual ,
-                                   trans:InfiniteImpulseResponseModel ;
-                          trans:isExpressedBy trans:MPURationalFraction .
-
-
-###  http://www.example.de/trans#NumeratorArray
-trans:NumeratorArray rdf:type owl:NamedIndividual ,
-                              trans:ArrayWithUncertainty .
-
-
-###  http://www.example.de/trans#SmartupUnit
-trans:SmartupUnit rdf:type owl:NamedIndividual ,
-                           sosa:Platform .
-
-
-###  http://www.example.de/trans#calibrationModel
-trans:calibrationModel rdf:type owl:NamedIndividual ,
-                                trans:InfiniteImpulseResponseModel .
-
-
-###  http://www.example.de/trans#covA
-trans:covA rdf:type owl:NamedIndividual ,
-                    mathematics1:E1706 .
-
-
-###  http://www.example.de/trans#covB
-trans:covB rdf:type owl:NamedIndividual ,
-                    mathematics1:E1706 .
-
 
 ###  http://www.w3.org/ns/sosa/
 sosa: rdf:type owl:NamedIndividual .
@@ -2410,6 +2392,68 @@ sosa: rdf:type owl:NamedIndividual .
 ###  http://www.w3.org/ns/ssn/systems/
 <http://www.w3.org/ns/ssn/systems/> rdf:type owl:NamedIndividual ,
                                              <http://purl.org/vocommons/voaf#Vocabulary> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#DenominatorArray
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#DenominatorArray> rdf:type owl:NamedIndividual ,
+                                                                                         <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#ArrayWithUncertainty> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPU9250
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPU9250> rdf:type owl:NamedIndividual ,
+                                                                                sosa:Sensor ,
+                                                                                <http://www.w3.org/ns/ssn/System> ;
+                                                                       <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#hasCalibrationModel> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUcalibrationModel> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUDenominatorPolynomial
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUDenominatorPolynomial> rdf:type owl:NamedIndividual ,
+                                                                                                 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Polynomial> ;
+                                                                                        <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCoefficients> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#DenominatorArray> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUNumeratorPolynomial
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUNumeratorPolynomial> rdf:type owl:NamedIndividual ,
+                                                                                               <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Polynomial> ;
+                                                                                      <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCoefficients> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#NumeratorArray> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPURationalFraction
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPURationalFraction> rdf:type owl:NamedIndividual ,
+                                                                                            <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#RationalFraction> ;
+                                                                                   <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasDenominator> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUDenominatorPolynomial> ;
+                                                                                   <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasNumerator> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUNumeratorPolynomial> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUcalibrationModel
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUcalibrationModel> rdf:type owl:NamedIndividual ,
+                                                                                            <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#InfiniteImpulseResponseModel> ;
+                                                                                   <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPURationalFraction> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#NumeratorArray
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#NumeratorArray> rdf:type owl:NamedIndividual ,
+                                                                                       <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#ArrayWithUncertainty> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#SmartupUnit
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#SmartupUnit> rdf:type owl:NamedIndividual ,
+                                                                                    sosa:Platform .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#calibrationModel
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#calibrationModel> rdf:type owl:NamedIndividual ,
+                                                                                         <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#InfiniteImpulseResponseModel> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#covA
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#covA> rdf:type owl:NamedIndividual ,
+                                                                             <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1706> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#covB
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#covB> rdf:type owl:NamedIndividual ,
+                                                                             <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1706> .
 
 
 [ rdf:type foaf:Agent ;
@@ -2470,21 +2514,21 @@ sosa:isFeatureOfInterestOf rdfs:isDefinedBy sosa: .
 
 
 [ rdf:type owl:AllDisjointClasses ;
-  owl:members ( trans:BandPass
-                trans:BandStop
-                trans:HighPass
-                trans:LowPass
+  owl:members ( <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#BandPass>
+                <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#BandStop>
+                <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#HighPass>
+                <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#LowPass>
               )
 ] .
 
 
 [ rdf:type owl:AllDisjointClasses ;
-  owl:members ( trans:Bessel
-                trans:Butterworth
-                trans:Chebyshev
-                trans:Elliptic
+  owl:members ( <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Bessel>
+                <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Butterworth>
+                <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Chebyshev>
+                <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Elliptic>
               )
 ] .
 
 
-###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi

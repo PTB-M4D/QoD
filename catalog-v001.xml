@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="User Entered Import Resolution" name="http://www.loa.istc.cnr.it/ontologies/DUL.owl" uri="file:/C:/Users/vedurm01/Documents/Ontology/SensorsSpecialIssue/onto/DUL.owl.xml"/>
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/ns/ssn/" uri="file:/C:/Users/vedurm01/Documents/Ontology/SensorsSpecialIssue/onto/ssn.owl"/>
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/ns/ssn/systems/" uri="file:/C:/Users/vedurm01/Documents/Ontology/SensorsSpecialIssue/onto/ssn-system.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://www.example.de/trans" uri="trans.ttl"/>
     <uri id="Imports Wizard Entry" name="https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn" uri="file:/C:/Users/vedurm01/Documents/Ontology/SensorsSpecialIssue/onto/OntoMathPro.omn"/>
     <uri id="Imports Wizard Entry" name="https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf" uri="file:/C:/Users/vedurm01/Documents/Ontology/SensorsSpecialIssue/onto/om-2.0.rdf"/>
     <uri id="Imports Wizard Entry" name="https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn" uri="file:/C:/Users/vedurm01/Documents/Ontology/SensorsSpecialIssue/onto/om-2.0.rdf"/>

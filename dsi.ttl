@@ -6,151 +6,181 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <http://schema.org/> .
-@base <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl> .
 
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl> rdf:type owl:Ontology .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl> a owl:Ontology .
+# 
+# 
+# #################################################################
+# #
+# #    Annotation properties
+# #
+# #################################################################
+# 
+# 
+# http://schema.org/domainIncludes
 
-#################################################################
-#    Annotation properties
-#################################################################
+schema:domainIncludes a owl:AnnotationProperty .
+# 
+# http://schema.org/rangeIncludes
 
-###  http://schema.org/domainIncludes
-schema:domainIncludes rdf:type owl:AnnotationProperty .
+schema:rangeIncludes a owl:AnnotationProperty .
+# 
+# http://www.w3.org/2002/07/owl#minCardinality
 
+owl:minCardinality a owl:AnnotationProperty .
+# 
+# https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasNumericalValue
 
-###  http://schema.org/rangeIncludes
-schema:rangeIncludes rdf:type owl:AnnotationProperty .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasNumericalValue> a owl:AnnotationProperty .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasUncertainty
 
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasUncertainty> a owl:ObjectProperty ;
+	schema:domainIncludes <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#MeasureWithUncertainty> ;
+	schema:rangeIncludes <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae> ;
+	rdfs:comment "Relation between a MeasureWithUncertainty and the assigned Uncertainty."@en ;
+	rdfs:isDefinedBy <http://www.example.com/ns/dsi#> ;
+	rdfs:label "has uncertainty"@en .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Data properties
+# #
+# #################################################################
+# 
+# 
+# https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageFactor
 
-###  http://www.w3.org/2002/07/owl#minCardinality
-owl:minCardinality rdf:type owl:AnnotationProperty .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageFactor> a owl:DatatypeProperty .
+# 
+# https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageProbability
 
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageProbability> a owl:DatatypeProperty .
+# 
+# https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasDistribution
 
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasNumericalValue
-:hasNumericalValue rdf:type owl:AnnotationProperty .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasDistribution> a owl:DatatypeProperty ;
+	schema:domainIncludes <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae> ;
+	schema:rangeIncludes xsd:string ;
+	rdfs:comment "Relation between an Uncertainty and the uncertainty distribution (as string)."@en ;
+	rdfs:isDefinedBy <http://www.example.com/ns/dsi#> ;
+	rdfs:label "has uncertainty distribution"@en .
+# 
+# https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasIntervalMax
 
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasIntervalMax> a owl:DatatypeProperty .
+# 
+# https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasIntervalMin
 
-#################################################################
-#    Object Properties
-#################################################################
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasIntervalMin> a owl:DatatypeProperty .
+# 
+# https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasStandardUncertainty
 
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasUncertainty
-:hasUncertainty rdf:type owl:ObjectProperty ;
-                schema:domainIncludes :MeasureWithUncertainty ;
-                schema:rangeIncludes :OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae ;
-                rdfs:comment "Relation between a MeasureWithUncertainty and the assigned Uncertainty."@en ;
-                rdfs:isDefinedBy <http://www.example.com/ns/dsi#> ;
-                rdfs:label "has uncertainty"@en .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasStandardUncertainty> a owl:DatatypeProperty .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://www.ontology-of-units-of-measure.org/resource/om-2/Measure
 
+om:Measure a owl:Class .
+# 
+# https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#CoverageInterval
 
-#################################################################
-#    Data properties
-#################################################################
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#CoverageInterval> a owl:Class ;
+	rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae> , _:genid1 .
 
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageFactor
-:hasCoverageFactor rdf:type owl:DatatypeProperty .
+_:genid1 a owl:Restriction ;
+	owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasDistribution> ;
+	owl:minCardinality "0"^^xsd:nonNegativeInteger .
 
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#CoverageInterval> rdfs:subClassOf _:genid2 .
 
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageProbability
-:hasCoverageProbability rdf:type owl:DatatypeProperty .
+_:genid2 a owl:Restriction ;
+	owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageProbability> ;
+	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onDataRange xsd:double .
 
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#CoverageInterval> rdfs:subClassOf _:genid3 .
 
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasDistribution
-:hasDistribution rdf:type owl:DatatypeProperty ;
-                 schema:domainIncludes :OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae ;
-                 schema:rangeIncludes xsd:string ;
-                 rdfs:comment "Relation between an Uncertainty and the uncertainty distribution (as string)."@en ;
-                 rdfs:isDefinedBy <http://www.example.com/ns/dsi#> ;
-                 rdfs:label "has uncertainty distribution"@en .
+_:genid3 a owl:Restriction ;
+	owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasIntervalMax> ;
+	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onDataRange xsd:double .
 
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#CoverageInterval> rdfs:subClassOf _:genid4 .
 
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasIntervalMax
-:hasIntervalMax rdf:type owl:DatatypeProperty .
+_:genid4 a owl:Restriction ;
+	owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasIntervalMin> ;
+	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onDataRange xsd:double .
 
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#CoverageInterval> rdfs:subClassOf _:genid5 .
 
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasIntervalMin
-:hasIntervalMin rdf:type owl:DatatypeProperty .
+_:genid5 a owl:Restriction ;
+	owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasStandardUncertainty> ;
+	owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onDataRange xsd:double .
 
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#CoverageInterval> rdfs:comment "Coverage Interval Specification as in Digital-SI"@en ;
+	rdfs:isDefinedBy <http://www.example.com/ns/dsi#> .
+# 
+# https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#ExpandedUncertainty
 
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasStandardUncertainty
-:hasStandardUncertainty rdf:type owl:DatatypeProperty .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#ExpandedUncertainty> a owl:Class ;
+	rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae> , _:genid6 .
 
+_:genid6 a owl:Restriction ;
+	owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageFactor> ;
+	owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onDataRange xsd:double .
 
-#################################################################
-#    Classes
-#################################################################
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#ExpandedUncertainty> rdfs:subClassOf _:genid7 .
 
-###  http://www.ontology-of-units-of-measure.org/resource/om-2/Measure
-om:Measure rdf:type owl:Class .
+_:genid7 a owl:Restriction ;
+	owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasCoverageProbability> ;
+	owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+	owl:onDataRange xsd:double .
 
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#ExpandedUncertainty> rdfs:subClassOf _:genid8 .
 
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#CoverageInterval
-:CoverageInterval rdf:type owl:Class ;
-                  rdfs:subClassOf :OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasDistribution ;
-                                    owl:minCardinality "0"^^xsd:nonNegativeInteger
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasCoverageProbability ;
-                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                    owl:onDataRange xsd:double
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasIntervalMax ;
-                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                    owl:onDataRange xsd:double
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasIntervalMin ;
-                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                    owl:onDataRange xsd:double
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasStandardUncertainty ;
-                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                    owl:onDataRange xsd:double
-                                  ] ;
-                  rdfs:comment "Coverage Interval Specification as in Digital-SI"@en ;
-                  rdfs:isDefinedBy <http://www.example.com/ns/dsi#> .
+_:genid8 a owl:Restriction ;
+	owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasDistribution> ;
+	owl:minCardinality "0"^^xsd:nonNegativeInteger .
 
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#ExpandedUncertainty> rdfs:comment "Expanded Uncertainty Specification as in Digital-SI"@en ;
+	rdfs:isDefinedBy <http://www.example.com/ns/dsi#> .
+# 
+# https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#MeasureWithUncertainty
 
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#ExpandedUncertainty
-:ExpandedUncertainty rdf:type owl:Class ;
-                     rdfs:subClassOf :OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae ,
-                                     [ rdf:type owl:Restriction ;
-                                       owl:onProperty :hasCoverageFactor ;
-                                       owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                       owl:onDataRange xsd:double
-                                     ] ,
-                                     [ rdf:type owl:Restriction ;
-                                       owl:onProperty :hasCoverageProbability ;
-                                       owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                       owl:onDataRange xsd:double
-                                     ] ,
-                                     [ rdf:type owl:Restriction ;
-                                       owl:onProperty :hasDistribution ;
-                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
-                                     ] ;
-                     rdfs:comment "Expanded Uncertainty Specification as in Digital-SI"@en ;
-                     rdfs:isDefinedBy <http://www.example.com/ns/dsi#> .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#MeasureWithUncertainty> a owl:Class ;
+	rdfs:subClassOf om:Measure ;
+	rdfs:comment "Extended om:Measure with uncertainty quantification as in Digital-SI"@en ;
+	rdfs:isDefinedBy <http://www.example.com/ns/dsi#> .
+# 
+# https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae
 
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae> a owl:Class ;
+	rdfs:isDefinedBy <http://www.example.com/ns/dsi#> ;
+	rdfs:label "Uncertainty"@de , "Uncertainty"@en .
+# 
 
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#MeasureWithUncertainty
-:MeasureWithUncertainty rdf:type owl:Class ;
-                        rdfs:subClassOf om:Measure ;
-                        rdfs:comment "Extended om:Measure with uncertainty quantification as in Digital-SI"@en ;
-                        rdfs:isDefinedBy <http://www.example.com/ns/dsi#> .
-
-
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae
-:OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae rdf:type owl:Class ;
-                                                   rdfs:isDefinedBy <http://www.example.com/ns/dsi#> ;
-                                                   rdfs:label "Uncertainty"@de ,
-                                                              "Uncertainty"@en .
-
-
-[ owl:minCardinality "1"^^xsd:nonNegativeInteger
-] .
-
-###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
+_:genid9 owl:minCardinality "1"^^xsd:nonNegativeInteger .
+# Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
