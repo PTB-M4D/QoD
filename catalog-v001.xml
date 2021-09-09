@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="User Entered Import Resolution" name="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl" uri="file:/C:/Users/vedurm01/Documents/Ontology/SensorsSpecialIssue/onto/DUL.owl.xml"/>
+    <uri id="User Entered Import Resolution" name="http://purl.oclc.org/NET/ssnx/ssn" uri="file:/C:/Users/vedurm01/Documents/Ontology/SensorsSpecialIssue/onto/ssn.ttl"/>
+    <uri id="User Entered Import Resolution" name="https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#" uri="trans.ttl"/>
     <uri id="User Entered Import Resolution" name="http://www.loa.istc.cnr.it/ontologies/DUL.owl" uri="file:/C:/Users/vedurm01/Documents/Ontology/SensorsSpecialIssue/onto/DUL.owl.xml"/>
     <uri id="User Entered Import Resolution" name="http://www.w3.org/ns/ssn/" uri="file:/C:/Users/vedurm01/Documents/Ontology/SensorsSpecialIssue/onto/ssn.owl"/>
     <uri id="User Entered Import Resolution" name="http://www.w3.org/ns/ssn/systems/" uri="file:/C:/Users/vedurm01/Documents/Ontology/SensorsSpecialIssue/onto/ssn-system.ttl"/>
