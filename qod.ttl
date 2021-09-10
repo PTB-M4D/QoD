@@ -35,7 +35,6 @@
                                                               terms:creator [ ] ;
 terms:license <http://www.opengeospatial.org/ogc/Software> ,
               <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
-terms:rights "Copyright 2017 W3C/OGC." ;
 terms:title "System capabilities, operating ranges, and survival ranges ontology"@en ;
 vann:preferredNamespacePrefix "ssn-system" ;
 vann:preferredNamespaceUri "http://www.w3.org/ns/ssn/systems/" ;
@@ -707,8 +706,7 @@ sosa:usedProcedure rdf:type owl:ObjectProperty ;
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlhasVariable
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlhasVariable> rdf:type owl:ObjectProperty ;
                                                                          schema:domainIncludes <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlEquationModel> ;
-                                                                         schema:rangeIncludes om-2:Quantity ,
-                                                                                              <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlVariable> ;
+                                                                         schema:rangeIncludes <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlVariable> ;
                                                                          rdfs:comment "Relation between an EquationModel and the Variables(s) used in the mathematical expression."@en ;
                                                                          rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#> ;
                                                                          rdfs:label "has variable"@en .
@@ -1108,10 +1106,6 @@ om-2:Date rdf:type owl:Class .
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/Measure
 om-2:Measure rdf:type owl:Class .
-
-
-###  http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity
-om-2:Quantity rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Accuracy
@@ -2340,7 +2334,6 @@ foaf:Agent rdf:type owl:Class .
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlVariable
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlVariable> rdf:type owl:Class ;
-                                                                      rdfs:subClassOf om-2:Quantity ;
                                                                       rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#> ;
                                                                       rdfs:label "Define a variable."@en .
 
@@ -3033,6 +3026,7 @@ om-2:AngularVelocity rdf:type owl:NamedIndividual .
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MPUBatteryDataSource
 :MPUBatteryDataSource rdf:type owl:NamedIndividual ,
                                :restAPI ;
+                      <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#hasQuantity> <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Ratio> ;
                       :getRequest "http://localhost/database?system=MPU9250&data=battery"^^rdf:HTML .
 
 
