@@ -19,31 +19,29 @@
 @prefix trans: <https://github.com/PTB-M4D/QoD/raw/main/trans.ttl> .
 @prefix schema: <http://schema.org/> .
 @prefix mathematics: <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn> .
-@base <http://www.example.com/ns/db#rest_api> .
+@base <https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl> .
 
-<http://www.example.com/ns/db#rest_api> rdf:type owl:Ontology ;
-                                         owl:imports <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#> ,
-                                                     mathematics: ,
-                                                     <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf> ,
-                                                     <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl> ,
-                                                     <http://www.w3.org/ns/ssn/systems/> ;
-                                         rdfs:label "Sensor Dynamic Transfer Behavior Ontology (trans)"@en ;
-                                         dc:date "2021/09/08" ;
-                                         rdfs:seeAlso <https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology> ;
-                                         terms:license <http://www.opengeospatial.org/ogc/Software> ;
-                                         terms:created "2021-04-15" ,
-                                                       "2021/04/15" ;
-                                         terms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
-                                         vann:preferredNamespaceUri "http://www.w3.org/ns/ssn/systems/" ;
-                                         terms:creator [ rdf:type foaf:Agent ;
-                                                         foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
-                                                       ] ;
-                                         terms:created "2017-05-14"^^xsd:date ;
-                                         terms:description "This ontology describes system capabilities, operating ranges, and survival ranges."@en ;
-                                         terms:rights "Copyright 2017 W3C/OGC." ;
-                                         terms:title "System capabilities, operating ranges, and survival ranges ontology"@en ;
-                                         vann:preferredNamespacePrefix "ssn-system" ;
-                                         rdfs:comment "Please report any errors to the W3C Spatial Data on the Web Working Group via the SDW WG Public List public-sdw-wg@w3.org"@en .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl> rdf:type owl:Ontology ;
+                                                              owl:imports <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ,
+                                                                          rdf: ,
+                                                                          <http://www.w3.org/ns/ssn/systems/> ,
+                                                                          <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn> ,
+                                                                          <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf> ,
+                                                                          <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl> ,
+                                                                          <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#> ;
+                                                              dc:date "2021/09/08" ;
+                                                              terms:created "2021-04-15" ,
+                                                                            "2021/04/15" ;
+                                                              terms:creator [ ] ;
+terms:license <http://www.opengeospatial.org/ogc/Software> ,
+              <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+terms:rights "Copyright 2017 W3C/OGC." ;
+terms:title "System capabilities, operating ranges, and survival ranges ontology"@en ;
+vann:preferredNamespacePrefix "ssn-system" ;
+vann:preferredNamespaceUri "http://www.w3.org/ns/ssn/systems/" ;
+rdfs:comment "Please report any errors to the W3C Spatial Data on the Web Working Group via the SDW WG Public List public-sdw-wg@w3.org"@en ;
+rdfs:label "Sensor Dynamic Transfer Behavior Ontology (trans)"@en ;
+rdfs:seeAlso <https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology> .
 
 #################################################################
 #    Annotation properties
@@ -157,6 +155,10 @@ foaf:name rdf:type owl:AnnotationProperty .
 rdf:PlainLiteral rdf:type rdfs:Datatype .
 
 
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
 ###  http://www.w3.org/2001/XMLSchema#string
 xsd:string rdf:type rdfs:Datatype .
 
@@ -204,6 +206,18 @@ om-2:hasValue rdf:type owl:ObjectProperty ;
            rdfs:range :QualityMetric .
 
 
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#inputAccessibleFrom
+:inputAccessibleFrom rdf:type owl:ObjectProperty ;
+                     rdfs:domain :QualityMetric .
+
+
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#inputHasUnit
+:inputHasUnit rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf owl:topObjectProperty ;
+              rdfs:domain :QualityInterpretation ;
+              rdfs:range <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Unit> .
+
+
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#isMetricOf
 :isMetricOf rdf:type owl:ObjectProperty ;
             rdfs:domain :QualityMetric ;
@@ -242,8 +256,7 @@ sosa:hasFeatureOfInterest rdf:type owl:ObjectProperty ;
 ###  http://www.w3.org/ns/sosa/hasResult
 sosa:hasResult rdf:type owl:ObjectProperty ;
                owl:inverseOf sosa:isResultOf ;
-               schema:rangeIncludes sosa:OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd ,
-                                    sosa:OWLClassImpl_f8dae9b6_5094_43d9_a267_1f31d5992472 ;
+               schema:rangeIncludes sosa:OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd ;
                rdfs:comment "Relation linking an Observation or Actuation or act of Sampling and a Result or Sample."@en ;
                rdfs:isDefinedBy sosa: ,
                                 sosa:OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd ;
@@ -312,8 +325,7 @@ sosa:isObservedBy rdf:type owl:ObjectProperty ;
 
 ###  http://www.w3.org/ns/sosa/isResultOf
 sosa:isResultOf rdf:type owl:ObjectProperty ;
-                schema:domainIncludes sosa:OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd ,
-                                      sosa:OWLClassImpl_f8dae9b6_5094_43d9_a267_1f31d5992472 ;
+                schema:domainIncludes sosa:OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd ;
                 rdfs:comment "Relation linking a Result to the Observation or Actuation or act of Sampling that created or caused it."@en ;
                 rdfs:isDefinedBy sosa: ,
                                  sosa:OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd ;
@@ -704,17 +716,9 @@ sosa:usedProcedure rdf:type owl:ObjectProperty ;
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasUncertainty
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasUncertainty> rdf:type owl:ObjectProperty ;
-                                                                            rdfs:domain om-2:Measure ,
-                                                                                        <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Parameter> ;
+                                                                            rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#MeasureWithUncertainty> ;
                                                                             rdfs:range :MeasurementUncertainty ,
                                                                                        <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> .
-
-
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#inputHasUnit
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#inputHasUnit> rdf:type owl:ObjectProperty ;
-                                                                          rdfs:subPropertyOf owl:topObjectProperty ;
-                                                                          rdfs:domain :QualityInterpretation ;
-                                                                          rdfs:range <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Unit> .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#hasCalibrationModel
@@ -959,10 +963,23 @@ sosa:usedProcedure rdf:type owl:ObjectProperty ;
 om-2:hasNumericalValue rdf:type owl:DatatypeProperty .
 
 
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#LastCalibrationDate
+:LastCalibrationDate rdf:type owl:DatatypeProperty ;
+                     rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#CalibratedSensor> ;
+                     rdfs:range xsd:date ,
+                                xsd:dateTime ,
+                                xsd:dateTimeStamp .
+
+
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#getRequest
+:getRequest rdf:type owl:DatatypeProperty ;
+            rdfs:domain :restAPI ;
+            rdfs:range rdf:HTML .
+
+
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#hasDate
 :hasDate rdf:type owl:DatatypeProperty ;
-         rdfs:domain :LastCalibrationDate ,
-                     <http://www.w3.org/ns/ssn/systems/SystemProperty> ;
+         rdfs:domain <http://www.w3.org/ns/ssn/systems/SystemProperty> ;
          rdfs:range xsd:dateTime .
 
 
@@ -1155,6 +1172,7 @@ om-2:Quantity rdf:type owl:Class .
 
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#BatteryLevel
 :BatteryLevel rdf:type owl:Class ;
+              owl:equivalentClass <http://www.w3.org/ns/ssn/systems/BatteryLifetime> ;
               rdfs:subClassOf :QualityIndicator ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasMetric ;
@@ -1260,30 +1278,10 @@ om-2:Quantity rdf:type owl:Class .
                                    ] .
 
 
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#LastCalibrationDate
-:LastCalibrationDate rdf:type owl:Class ;
-                     rdfs:subClassOf :CalibrationData ,
-                                     [ rdf:type owl:Restriction ;
-                                       owl:onProperty :hasMetric ;
-                                       owl:allValuesFrom :RecencyMetric
-                                     ] ,
-                                     [ rdf:type owl:Restriction ;
-                                       owl:onProperty :hasMetric ;
-                                       owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                       owl:onClass :QualityMetric
-                                     ] ,
-                                     [ rdf:type owl:Restriction ;
-                                       owl:onProperty om-2:hasValue ;
-                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                       owl:onClass om-2:Date
-                                     ] .
-
-
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MeasurementUncertainty
 :MeasurementUncertainty rdf:type owl:Class ;
                         owl:equivalentClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> ;
                         rdfs:subClassOf :QualityMetric ,
-                                        <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> ,
                                         [ rdf:type owl:Restriction ;
                                           owl:onProperty :hasInterpretation ;
                                           owl:allValuesFrom :MeasurementUncertaintyInterpretation
@@ -1423,6 +1421,11 @@ value out of range""" .
                                   ] .
 
 
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#restAPI
+:restAPI rdf:type owl:Class ;
+         rdfs:isDefinedBy "https://en.wikipedia.org/wiki/Representational_state_transfer"^^rdfs:Literal .
+
+
 ###  http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq
 rdf:Seq rdf:type owl:Class .
 
@@ -1530,22 +1533,6 @@ sosa:FeatureOfInterest rdf:type owl:Class ;
                        skos:example "When measuring the height of a tree, the height is the observed ObservableProperty, 20m may be the Result of the Observation, and the tree is the FeatureOfInterest. A window is a FeatureOfInterest for an automatic window control Actuator."@en .
 
 
-###  http://www.w3.org/ns/sosa/OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd
-sosa:OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd rdf:type owl:Class ;
-                                                       rdfs:comment "A Sample is the result from an act of Sampling."@en ,
-                                                                    "Feature which is intended to be representative of a FeatureOfInterest on which Observations may be made."@en ,
-                                                                    "Physical samples are sometimes known as 'specimens'."@en ,
-                                                                    """Samples are artifacts of an observational strategy, and have no significant function outside of their role in the observation process. The characteristics of the samples themselves are of little interest, except perhaps to the manager of a sampling campaign.
-
-A Sample is intended to sample some FatureOfInterest, so there is an expectation of at least one isSampleOf property. However, in some cases the identity, and even the exact type, of the sampled feature may not be known when observations are made using the sampling features."""@en ;
-                                                       rdfs:isDefinedBy sosa:OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd ;
-                                                       rdfs:label "Sample"@en ;
-                                                       skos:definition "Feature which is intended to be representative of a FeatureOfInterest on which Observations may be made."@en ;
-                                                       skos:example "A 'station' is essentially an identifiable locality where a sensor system or Procedure may be deployed and an observation made. In the context of the observation model, it connotes the 'world in the vicinity of the station', so the observed properties relate to the physical medium at the station, and not to any physical artifact such as a mooring, buoy, benchmark, monument, well, etc."@en ,
-                                                                    "A statistical sample is often designed to be characteristic of an entire population, so that observations can be made regarding the sample that provide a good estimate of the properties of the population."@en ;
-                                                       skos:note "A transient sample, such as a ships-track or flight-line, might be identified and described, but is unlikely to be revisited exactly."@en .
-
-
 ###  http://www.w3.org/ns/sosa/OWLClassImpl_28ce790f_8a49_4961_93fa_6944a0d00033
 sosa:OWLClassImpl_28ce790f_8a49_4961_93fa_6944a0d00033 rdf:type owl:Class ;
                                                        rdfs:comment "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
@@ -1562,15 +1549,6 @@ sosa:OWLClassImpl_469f12d2_b0e5_4426_91f4_16e9d18d8832 rdf:type owl:Class ;
                                                        rdfs:label "Actuator"@en ;
                                                        skos:definition "A device that is used by, or implements, an (Actuation) Procedure that changes the state of the world."@en ;
                                                        skos:example "A window actuator for automatic window control, i.e., opening or closing the window."@en .
-
-
-###  http://www.w3.org/ns/sosa/OWLClassImpl_f8dae9b6_5094_43d9_a267_1f31d5992472
-sosa:OWLClassImpl_f8dae9b6_5094_43d9_a267_1f31d5992472 rdf:type owl:Class ;
-                                                       rdfs:comment "The Result of an Observation, Actuation, or act of Sampling. To store an observation's simple result value one can use the hasSimpleResult property."@en ;
-                                                       rdfs:isDefinedBy sosa:OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd ;
-                                                       rdfs:label "Result"@en ;
-                                                       skos:definition "The Result of an Observation, Actuation, or act of Sampling. To store an observation's simple result value one can use the hasSimpleResult property."@en ;
-                                                       skos:example "The value 20 as the height of a certain tree together with the unit, e.g., Meter."@en .
 
 
 ###  http://www.w3.org/ns/sosa/ObservableProperty
@@ -1714,7 +1692,13 @@ sosa:Sample rdf:type owl:Class ;
                               owl:onProperty sosa:isSampleOf ;
                               owl:minCardinality "1"^^xsd:nonNegativeInteger
                             ] ;
-            rdfs:isDefinedBy sosa: .
+            rdfs:comment "A Sample is the result from an act of Sampling."@en ,
+                         "Physical samples are sometimes known as 'specimens'."@en ;
+            rdfs:isDefinedBy sosa:OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd ;
+            skos:definition "Feature which is intended to be representative of a FeatureOfInterest on which Observations may be made."@en ;
+            skos:example "A 'station' is essentially an identifiable locality where a sensor system or Procedure may be deployed and an observation made. In the context of the observation model, it connotes the 'world in the vicinity of the station', so the observed properties relate to the physical medium at the station, and not to any physical artifact such as a mooring, buoy, benchmark, monument, well, etc."@en ,
+                         "A statistical sample is often designed to be characteristic of an entire population, so that observations can be made regarding the sample that provide a good estimate of the properties of the population."@en ;
+            skos:note "A transient sample, such as a ships-track or flight-line, might be identified and described, but is unlikely to be revisited exactly."@en .
 
 
 ###  http://www.w3.org/ns/sosa/Sampler
@@ -2307,6 +2291,10 @@ foaf:Agent rdf:type owl:Class .
 <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1706> rdf:type owl:Class .
 
 
+###  https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1908
+<https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1908> rdf:type owl:Class .
+
+
 ###  https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1995
 <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1995> rdf:type owl:Class ;
                                                                                        owl:equivalentClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Polynomial> .
@@ -2320,6 +2308,10 @@ foaf:Agent rdf:type owl:Class .
 ###  https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E34
 <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E34> rdf:type owl:Class ;
                                                                                      owl:equivalentClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> .
+
+
+###  https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Unit
+<https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Unit> rdf:type owl:Class .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlCalibrationModel
@@ -2375,6 +2367,7 @@ foaf:Agent rdf:type owl:Class .
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> rdf:type owl:Class ;
+                                                                         rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ;
                                                                          rdfs:comment "Uncertainty object as specified in the D-SI standard"@en .
 
 
@@ -3037,6 +3030,101 @@ with internal state x, state's time derivate x_dot, input u, output y."""@en ,
 om-2:AngularVelocity rdf:type owl:NamedIndividual .
 
 
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MPUBatteryDataSource
+:MPUBatteryDataSource rdf:type owl:NamedIndividual ,
+                               :restAPI ;
+                      :getRequest "http://localhost/database?system=MPU9250&data=battery"^^rdf:HTML .
+
+
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MPUBatteryIndicator
+:MPUBatteryIndicator rdf:type owl:NamedIndividual ,
+                              :BatteryLevel ;
+                     :hasMetric :MPUBatteryMetric .
+
+
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MPUBatteryInterpretation
+:MPUBatteryInterpretation rdf:type owl:NamedIndividual ,
+                                   :QualityInterpretation ;
+                          :Interprets :MPUBatteryMetric ;
+                          :inputHasUnit <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Percentage> ;
+                          :isCriticalIf "<apply><lt/><ci>output</ci><cn>15</cn></apply>"^^<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> ;
+                          :isSufficientIf "<apply><gt/><ci>output</ci><cn>30</cn></apply>"^^<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> .
+
+
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MPUBatteryMathObject
+:MPUBatteryMathObject rdf:type owl:NamedIndividual ,
+                               <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1908> ;
+                      <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasMathMLexpression> "<apply><eq/><ci>output</ci><apply><times/>100<ci>input</ci></apply></apply>"^^<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> .
+
+
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MPUBatteryMetric
+:MPUBatteryMetric rdf:type owl:NamedIndividual ,
+                           :BatteryLevelMetric ;
+                  :hasInterpretation :MPUBatteryInterpretation ;
+                  :inputAccessibleFrom :MPUBatteryDataSource ;
+                  :isMetricOf :MPUBatteryIndicator ;
+                  <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> :MPUBatteryMathObject .
+
+
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MPUCalibrationDataSource
+:MPUCalibrationDataSource rdf:type owl:NamedIndividual ,
+                                   :restAPI ;
+                          :getRequest "http://localhost/database?system=MPU9250_xaxis&data=calibration"^^rdf:HTML .
+
+
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MPUCalibrationIndicator
+:MPUCalibrationIndicator rdf:type owl:NamedIndividual ,
+                                  :CalibrationData ;
+                         :hasMetric :MPURecencyMetric ,
+                                    :MPUUncertaintyMetric .
+
+
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MPURecencyInterpretation
+:MPURecencyInterpretation rdf:type owl:NamedIndividual ,
+                                   :RecencyInterpretation ;
+                          :Interprets :MPURecencyMetric ;
+                          :isCriticalIf "<apply><geq/><ci>output</ci><cn>365</cn></apply>"^^<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> ;
+                          :isGoodIf "<apply><leq/><ci>output</ci><cn>180</cn></apply>"^^<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> ;
+                          :isSufficientIf "<apply><lt/><cn>180</cn><cn>output</cn><cn>365</cn></apply>"^^<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> .
+
+
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MPURecencyMetric
+:MPURecencyMetric rdf:type owl:NamedIndividual ,
+                           :RecencyMetric ;
+                  :hasInterpretation :MPURecencyInterpretation ;
+                  :inputAccessibleFrom :MPUCalibrationDataSource ;
+                  <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> :MPURecencyObject .
+
+
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MPURecencyObject
+:MPURecencyObject rdf:type owl:NamedIndividual ,
+                           <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1908> ;
+                  <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasMathMLexpression> "<apply><eq/><ci>output</ci><apply><minus/><apply>current-date</apply><ci>input</ci></apply></apply>"^^<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> .
+
+
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MPUUncertaintyInterpretation
+:MPUUncertaintyInterpretation rdf:type owl:NamedIndividual ,
+                                       :MeasurementUncertaintyInterpretation ;
+                              :Interprets :MPUUncertaintyMetric ;
+                              :isCriticalIf "<apply><geq/><ci>output</ci><cn>0.5</cn></apply>"^^<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> ;
+                              :isGoodIf "<apply><leq/><ci>output</ci><cn>0.01</cn></apply>"^^<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> ;
+                              :isSufficientIf "<apply><lt/><cn>.01</cn><ci>output</ci><cn>.5</cn></apply>"^^<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> .
+
+
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MPUUncertaintyMetric
+:MPUUncertaintyMetric rdf:type owl:NamedIndividual ,
+                               :MeasurementUncertainty ;
+                      :hasInterpretation :MPUUncertaintyInterpretation ;
+                      :inputAccessibleFrom :MPUCalibrationDataSource ;
+                      <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> :MPUUncertaintyObject .
+
+
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MPUUncertaintyObject
+:MPUUncertaintyObject rdf:type owl:NamedIndividual ,
+                               <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1908> ;
+                      <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasMathMLexpression> "<apply><eq/><ci>output</ci><ci>input</ci></apply>"^^<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> .
+
+
 ###  http://www.w3.org/ns/sosa/
 sosa: rdf:type owl:NamedIndividual .
 
@@ -3051,37 +3139,16 @@ sosa: rdf:type owl:NamedIndividual .
                                              <http://purl.org/vocommons/voaf#Vocabulary> .
 
 
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryIndicator
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryIndicator> rdf:type owl:NamedIndividual ,
-                                                                                          :BatteryLevel ;
-                                                                                 :hasMetric <https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryMetric> .
+###  https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#OWLNamedIndividualImpl_2a3a2318_04b5_4baf_a108_c2d767ba8e7e
+<https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#OWLNamedIndividualImpl_2a3a2318_04b5_4baf_a108_c2d767ba8e7e> rdf:type owl:NamedIndividual .
 
 
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryInterpretation
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryInterpretation> rdf:type owl:NamedIndividual ,
-                                                                                               :QualityInterpretation ;
-                                                                                      :Interprets <https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryMetric> ;
-                                                                                      <https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#inputHasUnit> <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Percentage> ;
-                                                                                      :isCriticalIf "<apply><lt/><ci>output</ci><cn>15</cn></apply>"^^<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> ;
-                                                                                      :isSufficientIf "<apply><gt/><ci>output</ci><cn>30</cn></apply>"^^<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> .
+###  https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Percentage
+<https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Percentage> rdf:type owl:NamedIndividual .
 
 
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryMathObject
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryMathObject> rdf:type owl:NamedIndividual ,
-                                                                                           <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ;
-                                                                                  <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasMathMLexpression> "<apply><eq/><ci>output</ci><apply><times/>100<ci>input</ci></apply></apply>"^^<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> .
-
-
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryMetric
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryMetric> rdf:type owl:NamedIndividual ,
-                                                                                       :BatteryLevelMetric ;
-                                                                              :hasInterpretation <https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryInterpretation> ;
-                                                                              :isMetricOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryIndicator> ;
-                                                                              <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryMathObject> .
-
-
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryRawDataSource
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryRawDataSource> rdf:type owl:NamedIndividual .
+###  https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#radianPerSecond-Time
+<https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#radianPerSecond-Time> rdf:type owl:NamedIndividual .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#DenominatorArray
@@ -3121,7 +3188,8 @@ sosa: rdf:type owl:NamedIndividual .
                                                                                                  ] ;
                                                                                   owl:allValuesFrom <http://www.w3.org/ns/ssn/System>
                                                                                 ] ;
-                                                                       :hasIndicator <https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryIndicator> ;
+                                                                       :hasIndicator :MPUBatteryIndicator ,
+                                                                                     :MPUCalibrationIndicator ;
                                                                        sosa:isHostedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#SmartupUnit> ;
                                                                        sosa:observes om-2:AngularVelocity .
 
@@ -3181,9 +3249,10 @@ sosa: rdf:type owl:NamedIndividual .
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUresult
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUresult> rdf:type owl:NamedIndividual ,
-                                                                                  sosa:OWLClassImpl_f8dae9b6_5094_43d9_a267_1f31d5992472 ,
+                                                                                  sosa:Result ,
                                                                                   <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#MeasureWithUncertainty> ;
                                                                          sosa:isResultOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUobservation> ;
+                                                                         <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#hasUnit> <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#radianPerSecond-Time> ;
                                                                          <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasUncertainty> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUresultuncertainty> ;
                                                                          om-2:hasNumericalValue "1.0"^^xsd:double ;
                                                                          om-2:hasUnit om-2:radianPerSecond-Time .
@@ -3192,7 +3261,8 @@ sosa: rdf:type owl:NamedIndividual .
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUresultuncertainty
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUresultuncertainty> rdf:type owl:NamedIndividual ,
                                                                                              <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#ExpandedUncertainty> ;
-                                                                                    om-2:hasNumericalValue "0.1"^^xsd:double .
+                                                                                    <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#hasUnit> <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#radianPerSecond-Time> ;
+                                                                                    om-2:hasNumericalValue "0.005"^^xsd:double .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#NumeratorArray
@@ -3311,27 +3381,35 @@ sosa: rdf:type owl:NamedIndividual .
    foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
  ] .
 
+[ rdf:type foaf:Agent ;
+   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
+
+[ rdf:type foaf:Agent ;
+   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
+
+[ rdf:type foaf:Agent ;
+   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
+
+[ rdf:type foaf:Agent ;
+   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
+
+[ rdf:type foaf:Agent ;
+   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
+
+[ rdf:type foaf:Agent ;
+   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
+
+[ rdf:type foaf:Agent ;
+   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
+
 [ owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
- ] .
-
-[ rdf:type foaf:Agent ;
-   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
- ] .
-
-[ rdf:type foaf:Agent ;
-   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
- ] .
-
-[ rdf:type foaf:Agent ;
-   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
- ] .
-
-[ rdf:type foaf:Agent ;
-   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
- ] .
-
-[ rdf:type foaf:Agent ;
-   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
  ] .
 
 #################################################################
@@ -3387,4 +3465,4 @@ sosa: rdf:type owl:NamedIndividual .
 ] .
 
 
-###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

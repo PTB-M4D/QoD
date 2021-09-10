@@ -14,9 +14,9 @@
 @prefix mathematics: <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn> .
 
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#> a owl:Ontology ;
-	rdfs:label "Sensor Dynamic Transfer Behavior Ontology (trans)"@en ;
 	dc:date "2021/09/08" ;
-	<http://purl.org/dc/terms/created> "2021/04/15" .
+	<http://purl.org/dc/terms/created> "2021/04/15" ;
+	rdfs:label "Sensor Dynamic Transfer Behavior Ontology (trans)"@en .
 # 
 # 
 # #################################################################
@@ -25,6 +25,14 @@
 # #
 # #################################################################
 # 
+# 
+# http://purl.org/dc/elements/1.1/date
+
+dc:date a owl:AnnotationProperty .
+# 
+# http://purl.org/dc/terms/created
+
+<http://purl.org/dc/terms/created> a owl:AnnotationProperty .
 # 
 # http://schema.org/domainIncludes
 
@@ -161,7 +169,7 @@ owl:topObjectProperty a owl:ObjectProperty .
 
 <http://www.w3.org/ns/sosa/hasResult> a owl:ObjectProperty ;
 	owl:inverseOf <http://www.w3.org/ns/sosa/isResultOf> ;
-	schema:rangeIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd> , <http://www.w3.org/ns/sosa/OWLClassImpl_f8dae9b6_5094_43d9_a267_1f31d5992472> ;
+	schema:rangeIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd> ;
 	rdfs:comment "Relation linking an Observation or Actuation or act of Sampling and a Result or Sample."@en ;
 	rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
 	rdfs:label "has result"@en ;
@@ -220,7 +228,7 @@ owl:topObjectProperty a owl:ObjectProperty .
 # http://www.w3.org/ns/sosa/isResultOf
 
 <http://www.w3.org/ns/sosa/isResultOf> a owl:ObjectProperty ;
-	schema:domainIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd> , <http://www.w3.org/ns/sosa/OWLClassImpl_f8dae9b6_5094_43d9_a267_1f31d5992472> ;
+	schema:domainIncludes <http://www.w3.org/ns/sosa/OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd> ;
 	rdfs:comment "Relation linking a Result to the Observation or Actuation or act of Sampling that created or caused it."@en ;
 	rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
 	rdfs:label "is result of"@en ;
@@ -338,9 +346,7 @@ owl:topObjectProperty a owl:ObjectProperty .
 # 
 # https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasBehavior
 
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasBehavior> a owl:ObjectProperty ;
-	rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#TransferModel> ;
-	rdfs:range <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#QualitativeBehavior> .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasBehavior> a owl:ObjectProperty .
 # 
 # https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCoefficients
 
@@ -547,18 +553,6 @@ rdf:Seq a owl:Class .
 	skos:definition "The thing whose property is being estimated or calculated in the course of an Observation to arrive at a Result or whose property is being manipulated by an Actuator, or which is being sampled or transformed in an act of Sampling."@en ;
 	skos:example "When measuring the height of a tree, the height is the observed ObservableProperty, 20m may be the Result of the Observation, and the tree is the FeatureOfInterest. A window is a FeatureOfInterest for an automatic window control Actuator."@en .
 # 
-# http://www.w3.org/ns/sosa/OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd
-
-<http://www.w3.org/ns/sosa/OWLClassImpl_080542bc_4238_4cbd_a036_8217a87850dd> a owl:Class ;
-	rdfs:comment "A Sample is the result from an act of Sampling."@en , "Feature which is intended to be representative of a FeatureOfInterest on which Observations may be made."@en , "Physical samples are sometimes known as 'specimens'."@en , """Samples are artifacts of an observational strategy, and have no significant function outside of their role in the observation process. The characteristics of the samples themselves are of little interest, except perhaps to the manager of a sampling campaign.
-
-A Sample is intended to sample some FatureOfInterest, so there is an expectation of at least one isSampleOf property. However, in some cases the identity, and even the exact type, of the sampled feature may not be known when observations are made using the sampling features."""@en ;
-	rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
-	rdfs:label "Sample"@en ;
-	skos:definition "Feature which is intended to be representative of a FeatureOfInterest on which Observations may be made."@en ;
-	skos:example "A 'station' is essentially an identifiable locality where a sensor system or Procedure may be deployed and an observation made. In the context of the observation model, it connotes the 'world in the vicinity of the station', so the observed properties relate to the physical medium at the station, and not to any physical artifact such as a mooring, buoy, benchmark, monument, well, etc."@en , "A statistical sample is often designed to be characteristic of an entire population, so that observations can be made regarding the sample that provide a good estimate of the properties of the population."@en ;
-	skos:note "A transient sample, such as a ships-track or flight-line, might be identified and described, but is unlikely to be revisited exactly."@en .
-# 
 # http://www.w3.org/ns/sosa/OWLClassImpl_28ce790f_8a49_4961_93fa_6944a0d00033
 
 <http://www.w3.org/ns/sosa/OWLClassImpl_28ce790f_8a49_4961_93fa_6944a0d00033> a owl:Class ;
@@ -577,15 +571,6 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 	skos:definition "A device that is used by, or implements, an (Actuation) Procedure that changes the state of the world."@en ;
 	skos:example "A window actuator for automatic window control, i.e., opening or closing the window."@en .
 # 
-# http://www.w3.org/ns/sosa/OWLClassImpl_f8dae9b6_5094_43d9_a267_1f31d5992472
-
-<http://www.w3.org/ns/sosa/OWLClassImpl_f8dae9b6_5094_43d9_a267_1f31d5992472> a owl:Class ;
-	rdfs:comment "The Result of an Observation, Actuation, or act of Sampling. To store an observation's simple result value one can use the hasSimpleResult property."@en ;
-	rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
-	rdfs:label "Result"@en ;
-	skos:definition "The Result of an Observation, Actuation, or act of Sampling. To store an observation's simple result value one can use the hasSimpleResult property."@en ;
-	skos:example "The value 20 as the height of a certain tree together with the unit, e.g., Meter."@en .
-# 
 # http://www.w3.org/ns/sosa/ObservableProperty
 
 <http://www.w3.org/ns/sosa/ObservableProperty> a owl:Class ;
@@ -594,6 +579,11 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 	rdfs:label "Observable Property"@en ;
 	skos:definition "An observable quality (property, characteristic) of a FeatureOfInterest."@en ;
 	skos:example "The height of a tree, the depth of a water body, or the temperature of a surface are examples of observable properties, while the value of a classic car is not (directly) observable but asserted."@en .
+# 
+# http://www.w3.org/ns/sosa/Sample
+
+<http://www.w3.org/ns/sosa/Sample> a owl:Class ;
+	rdfs:label "Sample"@en .
 # 
 # http://www.w3.org/ns/sosa/Sampler
 
@@ -1188,43 +1178,32 @@ _:genid52 a owl:Restriction ;
 # 
 # https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUDenominatorPolynomial
 
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUDenominatorPolynomial> a owl:NamedIndividual , <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1995> .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUDenominatorPolynomial> a owl:NamedIndividual .
 # 
 # https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUNumeratorPolynomial
 
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUNumeratorPolynomial> a owl:NamedIndividual , <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1995> ;
-	<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCoefficients> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#NumeratorArray> .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUNumeratorPolynomial> a owl:NamedIndividual .
 # 
 # https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPURationalFraction
 
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPURationalFraction> a owl:NamedIndividual , <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#RationalFraction> ;
-	<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasDenominator> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUDenominatorPolynomial> ;
-	<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasNumerator> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUNumeratorPolynomial> .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPURationalFraction> a owl:NamedIndividual .
 # 
 # https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUcalibrationModel
 
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUcalibrationModel> a owl:NamedIndividual , <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#CalibrationModel> , <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#InfiniteImpulseResponseModel> ;
-	<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPURationalFraction> .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUcalibrationModel> a owl:NamedIndividual .
 # 
 # https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUobservation
 
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUobservation> a owl:NamedIndividual ;
-	<http://www.w3.org/ns/sosa/hasResult> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUresult> ;
-	<http://www.w3.org/ns/sosa/madeBySensor> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPU9250> ;
-	<http://www.w3.org/ns/sosa/resultTime> "2021-02-16T13:00:00Z"^^xsd:dateTime .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUobservation> a owl:NamedIndividual .
 # 
 # https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUresult
 
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUresult> a owl:NamedIndividual , <http://www.w3.org/ns/sosa/OWLClassImpl_f8dae9b6_5094_43d9_a267_1f31d5992472> ;
-	<http://www.w3.org/ns/sosa/isResultOf> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUobservation> ;
-	<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasUncertainty> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUresultuncertainty> ;
-	<http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue> "1.0"^^xsd:double ;
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUresult> a owl:NamedIndividual ;
 	<http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit> <http://www.ontology-of-units-of-measure.org/resource/om-2/radianPerSecond-Time> .
 # 
 # https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUresultuncertainty
 
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUresultuncertainty> a owl:NamedIndividual , <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#ExpandedUncertainty> ;
-	<http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue> "0.1"^^xsd:double .
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MPUresultuncertainty> a owl:NamedIndividual .
 # 
 # https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#NumeratorArray
 
@@ -1324,4 +1303,4 @@ _:genid60 a rdf:List ;
 	rdf:first <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Elliptic> ;
 	rdf:rest rdf:nil .
 # 
-# Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
+# Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
