@@ -19,29 +19,31 @@
 @prefix trans: <https://github.com/PTB-M4D/QoD/raw/main/trans.ttl> .
 @prefix schema: <http://schema.org/> .
 @prefix mathematics: <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn> .
-@base <https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl> .
+@base <http://www.example.com/ns/db#rest_api> .
 
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl> rdf:type owl:Ontology ;
-                                                              owl:imports <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#> ,
-                                                                          <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl> ,
-                                                                          <http://www.w3.org/ns/ssn/systems/> ;
-                                                              rdfs:label "Sensor Dynamic Transfer Behavior Ontology (trans)"@en ;
-                                                              dc:date "2021/09/08" ;
-                                                              rdfs:seeAlso <https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology> ;
-                                                              terms:license <http://www.opengeospatial.org/ogc/Software> ;
-                                                              terms:created "2021-04-15" ,
-                                                                            "2021/04/15" ;
-                                                              terms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
-                                                              vann:preferredNamespaceUri "http://www.w3.org/ns/ssn/systems/" ;
-                                                              terms:created "2017-05-14"^^xsd:date ;
-                                                              terms:description "This ontology describes system capabilities, operating ranges, and survival ranges."@en ;
-                                                              terms:rights "Copyright 2017 W3C/OGC." ;
-                                                              terms:creator [ rdf:type foaf:Agent ;
-                                                                              foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
-                                                                            ] ;
-                                                              terms:title "System capabilities, operating ranges, and survival ranges ontology"@en ;
-                                                              vann:preferredNamespacePrefix "ssn-system" ;
-                                                              rdfs:comment "Please report any errors to the W3C Spatial Data on the Web Working Group via the SDW WG Public List public-sdw-wg@w3.org"@en .
+<http://www.example.com/ns/db#rest_api> rdf:type owl:Ontology ;
+                                         owl:imports <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#> ,
+                                                     mathematics: ,
+                                                     <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf> ,
+                                                     <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl> ,
+                                                     <http://www.w3.org/ns/ssn/systems/> ;
+                                         rdfs:label "Sensor Dynamic Transfer Behavior Ontology (trans)"@en ;
+                                         dc:date "2021/09/08" ;
+                                         rdfs:seeAlso <https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology> ;
+                                         terms:license <http://www.opengeospatial.org/ogc/Software> ;
+                                         terms:created "2021-04-15" ,
+                                                       "2021/04/15" ;
+                                         terms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+                                         vann:preferredNamespaceUri "http://www.w3.org/ns/ssn/systems/" ;
+                                         terms:creator [ rdf:type foaf:Agent ;
+                                                         foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
+                                                       ] ;
+                                         terms:created "2017-05-14"^^xsd:date ;
+                                         terms:description "This ontology describes system capabilities, operating ranges, and survival ranges."@en ;
+                                         terms:rights "Copyright 2017 W3C/OGC." ;
+                                         terms:title "System capabilities, operating ranges, and survival ranges ontology"@en ;
+                                         vann:preferredNamespacePrefix "ssn-system" ;
+                                         rdfs:comment "Please report any errors to the W3C Spatial Data on the Web Working Group via the SDW WG Public List public-sdw-wg@w3.org"@en .
 
 #################################################################
 #    Annotation properties
@@ -179,7 +181,7 @@ om-2:hasValue rdf:type owl:ObjectProperty ;
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Interprets
 :Interprets rdf:type owl:ObjectProperty ;
             owl:inverseOf :hasInterpretation ;
-            rdfs:domain :Interpretation ;
+            rdfs:domain :QualityInterpretation ;
             rdfs:range :QualityMetric .
 
 
@@ -192,7 +194,7 @@ om-2:hasValue rdf:type owl:ObjectProperty ;
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#hasInterpretation
 :hasInterpretation rdf:type owl:ObjectProperty ;
                    rdfs:domain :QualityMetric ;
-                   rdfs:range :Interpretation .
+                   rdfs:range :QualityInterpretation .
 
 
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#hasMetric
@@ -708,6 +710,13 @@ sosa:usedProcedure rdf:type owl:ObjectProperty ;
                                                                                        <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> .
 
 
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#inputHasUnit
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#inputHasUnit> rdf:type owl:ObjectProperty ;
+                                                                          rdfs:subPropertyOf owl:topObjectProperty ;
+                                                                          rdfs:domain :QualityInterpretation ;
+                                                                          rdfs:range <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Unit> .
+
+
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#hasCalibrationModel
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#hasCalibrationModel> rdf:type owl:ObjectProperty ;
                                                                                   rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#CalibratedSensor> ;
@@ -717,7 +726,6 @@ sosa:usedProcedure rdf:type owl:ObjectProperty ;
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasArrayDefinition
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasArrayDefinition> rdf:type owl:ObjectProperty ;
                                                                                   rdfs:subPropertyOf om-2:hasValue ;
-                                                                                  rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ;
                                                                                   rdfs:range om-2:Measure ,
                                                                                              <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array> .
 
@@ -764,7 +772,6 @@ sosa:usedProcedure rdf:type owl:ObjectProperty ;
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCovarianceMatrix
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCovarianceMatrix> rdf:type owl:ObjectProperty ;
-                                                                                   rdfs:subPropertyOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasArrayDefinition> ;
                                                                                    rdfs:domain <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E34> ,
                                                                                                <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ,
                                                                                                <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MultivariateUncertainty> ,
@@ -949,8 +956,7 @@ sosa:usedProcedure rdf:type owl:ObjectProperty ;
 #################################################################
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue
-om-2:hasNumericalValue rdf:type owl:DatatypeProperty ;
-                       rdfs:domain <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> .
+om-2:hasNumericalValue rdf:type owl:DatatypeProperty .
 
 
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#hasDate
@@ -966,7 +972,7 @@ om-2:hasNumericalValue rdf:type owl:DatatypeProperty ;
 
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#isCriticalIf
 :isCriticalIf rdf:type owl:DatatypeProperty ;
-              rdfs:domain :Interpretation ;
+              rdfs:domain :QualityInterpretation ;
               rdfs:range [ rdf:type rdfs:Datatype ;
                            owl:unionOf ( rdf:XMLLiteral
                                          <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
@@ -979,7 +985,7 @@ om-2:hasNumericalValue rdf:type owl:DatatypeProperty ;
 
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#isGoodIf
 :isGoodIf rdf:type owl:DatatypeProperty ;
-          rdfs:domain :Interpretation ;
+          rdfs:domain :QualityInterpretation ;
           rdfs:range [ rdf:type rdfs:Datatype ;
                        owl:unionOf ( rdf:XMLLiteral
                                      <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
@@ -992,7 +998,7 @@ om-2:hasNumericalValue rdf:type owl:DatatypeProperty ;
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#isSufficientIf
 :isSufficientIf rdf:type owl:DatatypeProperty ;
                 rdfs:subPropertyOf owl:topDataProperty ;
-                rdfs:domain :Interpretation ;
+                rdfs:domain :QualityInterpretation ;
                 rdfs:range [ rdf:type rdfs:Datatype ;
                              owl:unionOf ( rdf:XMLLiteral
                                            <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
@@ -1047,11 +1053,6 @@ sosa:resultTime rdf:type owl:DatatypeProperty ;
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCovarianceMatrix
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCovarianceMatrix> rdf:type owl:DatatypeProperty ;
                                                                                    rdfs:subPropertyOf om-2:hasNumericalValue ;
-                                                                                   rdfs:domain [ rdf:type owl:Restriction ;
-                                                                                                 owl:onProperty :isMetricOf ;
-                                                                                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                                 owl:onClass <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1547>
-                                                                                               ] ;
                                                                                    rdfs:range [ rdf:type rdfs:Datatype ;
                                                                                                 owl:unionOf ( rdf:XMLLiteral
                                                                                                               <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral>
@@ -1089,8 +1090,7 @@ om-2:Date rdf:type owl:Class .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/Measure
-om-2:Measure rdf:type owl:Class ;
-             owl:equivalentClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Parameter> .
+om-2:Measure rdf:type owl:Class .
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/Quantity
@@ -1114,7 +1114,7 @@ om-2:Quantity rdf:type owl:Class .
 
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#AccuracyInterpretation
 :AccuracyInterpretation rdf:type owl:Class ;
-                        rdfs:subClassOf :Interpretation ,
+                        rdfs:subClassOf :QualityInterpretation ,
                                         [ rdf:type owl:Restriction ;
                                           owl:onProperty :Interprets ;
                                           owl:allValuesFrom :AccuracyMetric
@@ -1131,7 +1131,7 @@ om-2:Quantity rdf:type owl:Class .
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty :hasInterpretation ;
                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                  owl:onClass :Interpretation
+                                  owl:onClass :QualityInterpretation
                                 ] ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty :isMetricOf ;
@@ -1140,18 +1140,9 @@ om-2:Quantity rdf:type owl:Class .
                                 ] .
 
 
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Battery
-:Battery rdf:type owl:Class ;
-         rdfs:subClassOf :QualityIndicator ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty :hasMetric ;
-                           owl:allValuesFrom :BatteryLevelMetric
-                         ] .
-
-
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#BatteryInterpretation
 :BatteryInterpretation rdf:type owl:Class ;
-                       rdfs:subClassOf :Interpretation ,
+                       rdfs:subClassOf :QualityInterpretation ,
                                        [ rdf:type owl:Restriction ;
                                          owl:onProperty :Interprets ;
                                          owl:allValuesFrom [ rdf:type owl:Class ;
@@ -1160,6 +1151,15 @@ om-2:Quantity rdf:type owl:Class .
                                                                          )
                                                            ]
                                        ] .
+
+
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#BatteryLevel
+:BatteryLevel rdf:type owl:Class ;
+              rdfs:subClassOf :QualityIndicator ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasMetric ;
+                                owl:allValuesFrom :BatteryLevelMetric
+                              ] .
 
 
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#BatteryLevelInterpretation
@@ -1207,7 +1207,7 @@ om-2:Quantity rdf:type owl:Class .
 
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#CompletenessInterpretation
 :CompletenessInterpretation rdf:type owl:Class ;
-                            rdfs:subClassOf :Interpretation ,
+                            rdfs:subClassOf :QualityInterpretation ,
                                             [ rdf:type owl:Restriction ;
                                               owl:onProperty :Interprets ;
                                               owl:allValuesFrom :CompletenessMetric
@@ -1239,7 +1239,7 @@ om-2:Quantity rdf:type owl:Class .
 
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#ConsistencyInterpretation
 :ConsistencyInterpretation rdf:type owl:Class ;
-                           rdfs:subClassOf :Interpretation ,
+                           rdfs:subClassOf :QualityInterpretation ,
                                            [ rdf:type owl:Restriction ;
                                              owl:onProperty :Interprets ;
                                              owl:allValuesFrom :ConsistencyMetric
@@ -1258,19 +1258,6 @@ om-2:Quantity rdf:type owl:Class .
                                      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                      owl:onClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject>
                                    ] .
-
-
-###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#Interpretation
-:Interpretation rdf:type owl:Class ;
-                rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                  owl:onProperty :Interprets ;
-                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                  owl:onClass :QualityMetric
-                                ] ;
-                rdfs:comment "Interpretation of the result of applying a quality metric for a given indicator" ;
-                skos:example """Low or sufficient battery level,
-
-value out of range""" .
 
 
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#LastCalibrationDate
@@ -1310,7 +1297,7 @@ value out of range""" .
 
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#MeasurementUncertaintyInterpretation
 :MeasurementUncertaintyInterpretation rdf:type owl:Class ;
-                                      rdfs:subClassOf :Interpretation ,
+                                      rdfs:subClassOf :QualityInterpretation ,
                                                       [ rdf:type owl:Restriction ;
                                                         owl:onProperty :Interprets ;
                                                         owl:allValuesFrom :MeasurementUncertainty
@@ -1328,12 +1315,25 @@ value out of range""" .
                   rdfs:comment "A property of a sensor or system that can be used to assess quality of data" .
 
 
+###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#QualityInterpretation
+:QualityInterpretation rdf:type owl:Class ;
+                       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                         owl:onProperty :Interprets ;
+                                         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                         owl:onClass :QualityMetric
+                                       ] ;
+                       rdfs:comment "Interpretation of the result of applying a quality metric for a given indicator" ;
+                       skos:example """Low or sufficient battery level,
+
+value out of range""" .
+
+
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#QualityMetric
 :QualityMetric rdf:type owl:Class ;
                rdfs:subClassOf [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasInterpretation ;
                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onClass :Interpretation
+                                 owl:onClass :QualityInterpretation
                                ] ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :isMetricOf ;
@@ -1350,7 +1350,7 @@ value out of range""" .
 
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#RecencyInterpretation
 :RecencyInterpretation rdf:type owl:Class ;
-                       rdfs:subClassOf :Interpretation ,
+                       rdfs:subClassOf :QualityInterpretation ,
                                        [ rdf:type owl:Restriction ;
                                          owl:onProperty :Interprets ;
                                          owl:allValuesFrom :RecencyMetric
@@ -1407,7 +1407,7 @@ value out of range""" .
 
 ###  http://www.semanticweb.org/vedurm01/ontologies/2021/3/qod#TimelinessInterpretation
 :TimelinessInterpretation rdf:type owl:Class ;
-                          rdfs:subClassOf :Interpretation ,
+                          rdfs:subClassOf :QualityInterpretation ,
                                           [ rdf:type owl:Restriction ;
                                             owl:onProperty :Interprets ;
                                             owl:allValuesFrom :TimelinessMetric
@@ -1922,7 +1922,7 @@ sosa:Sensor rdf:type owl:Class ;
                                                   ] ,
                                                   [ rdf:type owl:Restriction ;
                                                     owl:onProperty :hasIndicator ;
-                                                    owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+                                                    owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                     owl:onClass :QualityIndicator
                                                   ] ;
                                   rdfs:comment "System is a unit of abstraction for pieces of infrastructure that implement Procedures. A System may have components, its subsystems, which are other systems."@en ;
@@ -2328,11 +2328,6 @@ foaf:Agent rdf:type owl:Class .
                                                                               rdfs:label "Mathematical Calibration Model"@en .
 
 
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlEquation
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlEquation> rdf:type owl:Class ;
-                                                                      rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#> .
-
-
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlEquationModel
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlEquationModel> rdf:type owl:Class ;
                                                                            rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlCalibrationModel> ,
@@ -2349,13 +2344,6 @@ foaf:Agent rdf:type owl:Class .
                                                                                              owl:minCardinality "1"^^xsd:nonNegativeInteger
                                                                                            ] ;
                                                                            rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#> .
-
-
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlParameter
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlParameter> rdf:type owl:Class ;
-                                                                       rdfs:subClassOf om-2:Measure ;
-                                                                       rdfs:comment "Define a parameter."@en ;
-                                                                       rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#> .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlVariable
@@ -2385,10 +2373,6 @@ foaf:Agent rdf:type owl:Class .
                                                                                     rdfs:label "Measure with Uncertainty"@en .
 
 
-###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae> rdf:type owl:Class .
-
-
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> rdf:type owl:Class ;
                                                                          rdfs:comment "Uncertainty object as specified in the D-SI standard"@en .
@@ -2400,6 +2384,16 @@ foaf:Agent rdf:type owl:Class .
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#CalibrationModel
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#CalibrationModel> rdf:type owl:Class .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#Equation
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#Equation> rdf:type owl:Class ;
+                                                                       rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#Parameter
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#Parameter> rdf:type owl:Class ;
+                                                                        owl:equivalentClass <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Parameter> .
 
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#AnalyticDomain
@@ -2430,7 +2424,7 @@ foaf:Agent rdf:type owl:Class .
                                                                                                     <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array> ,
                                                                                                     [ rdf:type owl:Restriction ;
                                                                                                       owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasUncertainty> ;
-                                                                                                      owl:allValuesFrom <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#UnivariateUncertainty>
+                                                                                                      owl:allValuesFrom <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MultivariateUncertainty>
                                                                                                     ] ,
                                                                                                     [ rdf:type owl:Restriction ;
                                                                                                       owl:onProperty om-2:hasValue ;
@@ -2534,7 +2528,6 @@ foaf:Agent rdf:type owl:Class .
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#EllipsoidalRegion
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#EllipsoidalRegion> rdf:type owl:Class ;
                                                                                  rdfs:subClassOf :QualityMetric ,
-                                                                                                 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae> ,
                                                                                                  <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> ,
                                                                                                  <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MultivariateUncertainty> ,
                                                                                                  [ rdf:type owl:Restriction ;
@@ -2813,7 +2806,6 @@ foaf:Agent rdf:type owl:Class .
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MultivariateUncertainty
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MultivariateUncertainty> rdf:type owl:Class ;
                                                                                        rdfs:subClassOf :MeasurementUncertainty ,
-                                                                                                       <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae> ,
                                                                                                        <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> .
 
 
@@ -3034,8 +3026,7 @@ with internal state x, state's time derivate x_dot, input u, output y."""@en ,
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#UnivariateUncertainty
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#UnivariateUncertainty> rdf:type owl:Class ;
-                                                                                     rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae> ,
-                                                                                                     <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> .
+                                                                                     rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#Uncertainty> .
 
 
 #################################################################
@@ -3060,13 +3051,46 @@ sosa: rdf:type owl:NamedIndividual .
                                              <http://purl.org/vocommons/voaf#Vocabulary> .
 
 
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryIndicator
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryIndicator> rdf:type owl:NamedIndividual ,
+                                                                                          :BatteryLevel ;
+                                                                                 :hasMetric <https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryMetric> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryInterpretation
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryInterpretation> rdf:type owl:NamedIndividual ,
+                                                                                               :QualityInterpretation ;
+                                                                                      :Interprets <https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryMetric> ;
+                                                                                      <https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#inputHasUnit> <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Percentage> ;
+                                                                                      :isCriticalIf "<apply><lt/><ci>output</ci><cn>15</cn></apply>"^^<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> ;
+                                                                                      :isSufficientIf "<apply><gt/><ci>output</ci><cn>30</cn></apply>"^^<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryMathObject
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryMathObject> rdf:type owl:NamedIndividual ,
+                                                                                           <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ;
+                                                                                  <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasMathMLexpression> "<apply><eq/><ci>output</ci><apply><times/>100<ci>input</ci></apply></apply>"^^<https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathMLLiteral> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryMetric
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryMetric> rdf:type owl:NamedIndividual ,
+                                                                                       :BatteryLevelMetric ;
+                                                                              :hasInterpretation <https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryInterpretation> ;
+                                                                              :isMetricOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryIndicator> ;
+                                                                              <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#isExpressedBy> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryMathObject> .
+
+
+###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryRawDataSource
+<https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryRawDataSource> rdf:type owl:NamedIndividual .
+
+
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#DenominatorArray
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#DenominatorArray> rdf:type owl:NamedIndividual ,
                                                                                          <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#ArrayWithUncertainty> ,
                                                                                          [ rdf:type owl:Restriction ;
                                                                                            owl:onProperty :hasInterpretation ;
                                                                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                           owl:onClass :Interpretation
+                                                                                           owl:onClass :QualityInterpretation
                                                                                          ] ;
                                                                                 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#hasUncertainty> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#DenominatorUncertainty> ;
                                                                                 om-2:hasNumericalValue """<vector><cn>1.00</cn><cn>355.71</cn>
@@ -3078,12 +3102,11 @@ sosa: rdf:type owl:NamedIndividual .
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#DenominatorUncertainty
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#DenominatorUncertainty> rdf:type owl:NamedIndividual ,
-                                                                                               <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae> ,
                                                                                                <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#EllipsoidalRegion> ,
                                                                                                [ rdf:type owl:Restriction ;
                                                                                                  owl:onProperty :hasInterpretation ;
                                                                                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                                 owl:onClass :Interpretation
+                                                                                                 owl:onClass :QualityInterpretation
                                                                                                ] ;
                                                                                       om-2:hasValue <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#covMatDenominator> ;
                                                                                       <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCovarianceMatrix> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#covMatDenominator> .
@@ -3097,12 +3120,8 @@ sosa: rdf:type owl:NamedIndividual .
                                                                                   owl:onProperty [ owl:inverseOf <http://www.w3.org/ns/ssn/hasSubSystem>
                                                                                                  ] ;
                                                                                   owl:allValuesFrom <http://www.w3.org/ns/ssn/System>
-                                                                                ] ,
-                                                                                [ rdf:type owl:Restriction ;
-                                                                                  owl:onProperty :hasIndicator ;
-                                                                                  owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
-                                                                                  owl:onClass :QualityIndicator
                                                                                 ] ;
+                                                                       :hasIndicator <https://raw.githubusercontent.com/PTB-M4D/QoD/main/qod.ttl#MPUBatteryIndicator> ;
                                                                        sosa:isHostedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#SmartupUnit> ;
                                                                        sosa:observes om-2:AngularVelocity .
 
@@ -3193,7 +3212,6 @@ sosa: rdf:type owl:NamedIndividual .
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#NumeratorUncertainty
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#NumeratorUncertainty> rdf:type owl:NamedIndividual ,
-                                                                                             <https://raw.githubusercontent.com/PTB-M4D/QoD/main/dsi.ttl#OWLClassImpl_8078f9b1_1f22_4f5d_aec0_8ead0bca82ae> ,
                                                                                              <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#EllipsoidalRegion> ;
                                                                                     <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#hasCovarianceMatrix> <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#covMatNumerator> .
 
@@ -3224,6 +3242,7 @@ sosa: rdf:type owl:NamedIndividual .
 
 ###  https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#covMatDenominator
 <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#covMatDenominator> rdf:type owl:NamedIndividual ,
+                                                                                          <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1706> ,
                                                                                           <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Array> ,
                                                                                           <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#MathematicalObject> ,
                                                                                           <https://raw.githubusercontent.com/PTB-M4D/QoD/main/trans.ttl#Parameter> ;
@@ -3253,7 +3272,7 @@ sosa: rdf:type owl:NamedIndividual .
                                                                                         [ rdf:type owl:Restriction ;
                                                                                           owl:onProperty :hasInterpretation ;
                                                                                           owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                          owl:onClass :Interpretation
+                                                                                          owl:onClass :QualityInterpretation
                                                                                         ] ;
                                                                                om-2:hasNumericalValue """<matrix>
 <matrixrow><cn>0.003</cn><cn>0.0</cn><cn>0.0</cn><cn>0.0</cn>
@@ -3292,15 +3311,27 @@ sosa: rdf:type owl:NamedIndividual .
    foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
  ] .
 
-[ rdf:type foaf:Agent ;
-   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
- ] .
-
-[ rdf:type foaf:Agent ;
-   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
- ] .
-
 [ owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
+ ] .
+
+[ rdf:type foaf:Agent ;
+   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
+
+[ rdf:type foaf:Agent ;
+   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
+
+[ rdf:type foaf:Agent ;
+   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
+
+[ rdf:type foaf:Agent ;
+   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
+
+[ rdf:type foaf:Agent ;
+   foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
  ] .
 
 #################################################################
