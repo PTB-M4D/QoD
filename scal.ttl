@@ -10,7 +10,7 @@
 @prefix sosa: <http://www.w3.org/ns/sosa#> .
 @prefix schema: <http://schema.org/> .
 
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl> a owl:Ontology .
+<http://www.example.com/ns/scal#> a owl:Ontology .
 # 
 # 
 # #################################################################
@@ -37,62 +37,9 @@ schema:rangeIncludes a owl:AnnotationProperty .
 # #################################################################
 # 
 # 
-# https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlhasEquation
+# http://www.example.de/ns/scal#hasCalibrationModel
 
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlhasEquation> a owl:ObjectProperty ;
-	schema:domainIncludes <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlEquationModel> ;
-	schema:rangeIncludes <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlEquation> ;
-	rdfs:comment "Relation between an EquationModel and its Equations(s)."@en ;
-	rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#> ;
-	rdfs:label "has equation"@en .
-# 
-# https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlhasEquationModel
-
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlhasEquationModel> a owl:ObjectProperty ;
-	rdfs:subPropertyOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlhasLocation> ;
-	rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl> ;
-	rdfs:label "has equation model"@en .
-# 
-# https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlhasLocation
-
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlhasLocation> a owl:ObjectProperty ;
-	schema:domainIncludes sosa:Sensor ;
-	schema:rangeIncludes geo:SpatialThing , sosa:FeatureOfInterest ;
-	rdfs:comment "Relation between a Sensor and its location."@en ;
-	rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#> ;
-	rdfs:label "has location"@en .
-# 
-# https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlhasMathMLDefinition
-
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlhasMathMLDefinition> a owl:ObjectProperty ;
-	schema:domainIncludes <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlEquation> ;
-	schema:rangeIncludes xsd:string ;
-	rdfs:comment "Relation between an Equation and its MathML-representation string."@en ;
-	rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#> ;
-	rdfs:label "has MathML definition"@en .
-# 
-# https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlhasParameter
-
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlhasParameter> a owl:ObjectProperty ;
-	schema:domainIncludes <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlEquationModel> ;
-	schema:rangeIncludes om:Measure , <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlMeasureWithUncertainty> , <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlParameter> ;
-	rdfs:comment "Relation between an EquationModel and the Parameter(s) used in the mathematical expression."@en ;
-	rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl> ;
-	rdfs:label "has parameter"@en .
-# 
-# https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlhasVariable
-
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlhasVariable> a owl:ObjectProperty ;
-	schema:domainIncludes <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlEquationModel> ;
-	schema:rangeIncludes <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlVariable> ;
-	rdfs:comment "Relation between an EquationModel and the Variables(s) used in the mathematical expression."@en ;
-	rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#> ;
-	rdfs:label "has variable"@en .
-# 
-# https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#hasCalibrationModel
-
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#hasCalibrationModel> a owl:ObjectProperty ;
-	schema:rangeIncludes <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlCalibrationModel> .
+<http://www.example.de/ns/scal#hasCalibrationModel> a owl:ObjectProperty .
 # 
 # 
 # 
@@ -103,6 +50,17 @@ schema:rangeIncludes a owl:AnnotationProperty .
 # #################################################################
 # 
 # 
+# http://www.example.de/ns/scal#Equation
+
+<http://www.example.de/ns/scal#Equation> a owl:Class ;
+	rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#> .
+# 
+# http://www.example.de/ns/scal#Parameter
+
+<http://www.example.de/ns/scal#Parameter> a owl:Class ;
+	rdfs:comment "Define a parameter."@en ;
+	rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#> .
+# 
 # http://www.ontology-of-units-of-measure.org/resource/om-2/Measure
 
 om:Measure a owl:Class .
@@ -110,51 +68,5 @@ om:Measure a owl:Class .
 # http://www.w3.org/ns/sosa/OWLClassImpl_28ce790f_8a49_4961_93fa_6944a0d00033
 
 <http://www.w3.org/ns/sosa/OWLClassImpl_28ce790f_8a49_4961_93fa_6944a0d00033> a owl:Class .
-# 
-# https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlCalibrationModel
-
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlCalibrationModel> a owl:Class ;
-	rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#> ;
-	rdfs:label "Mathematical Calibration Model"@en .
-# 
-# https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlEquationModel
-
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlEquationModel> a owl:Class ;
-	rdfs:subClassOf <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlCalibrationModel> , _:genid1 .
-
-_:genid1 a owl:Restriction ;
-	owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlhasEquation> ;
-	owl:minCardinality "1"^^xsd:nonNegativeInteger .
-
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlEquationModel> rdfs:subClassOf _:genid2 .
-
-_:genid2 a owl:Restriction ;
-	owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlhasParameter> ;
-	owl:minCardinality "0"^^xsd:nonNegativeInteger .
-
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlEquationModel> rdfs:subClassOf _:genid3 .
-
-_:genid3 a owl:Restriction ;
-	owl:onProperty <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlhasVariable> ;
-	owl:minCardinality "1"^^xsd:nonNegativeInteger .
-
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlEquationModel> rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#> .
-# 
-# https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlVariable
-
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttlVariable> a owl:Class ;
-	rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#> ;
-	rdfs:label "Define a variable."@en .
-# 
-# https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#Equation
-
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#Equation> a owl:Class ;
-	rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#> .
-# 
-# https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#Parameter
-
-<https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#Parameter> a owl:Class ;
-	rdfs:comment "Define a parameter."@en ;
-	rdfs:isDefinedBy <https://raw.githubusercontent.com/PTB-M4D/QoD/main/scal.ttl#> .
 # 
 # Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
