@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="http://www.w3.org/ns/sosa/" uri="file:/C:/Users/vedurm01/Documents/Ontology/sosa.ttl"/>
+    <uri id="Imports Wizard Entry" name="http://www.example.de/ns/dsi#" uri="dsi.ttl"/>
+    <uri id="Imports Wizard Entry" name="http://www.example.de/ns/dsi#" uri="dsi.ttl"/>
+    <uri id="Imports Wizard Entry" name="http://www.example.de/ns/dsi#" uri="dsi.ttl"/>
     <uri id="Imports Wizard Entry" name="http://www.example.de/ns/trans#" uri="trans.ttl"/>
     <uri id="Imports Wizard Entry" name="http://www.example.com/ns/scal#" uri="scal.ttl"/>
     <uri id="Imports Wizard Entry" name="http://www.w3.org/1999/02/22-rdf-syntax-ns#" uri="file:/C:/Users/vedurm01/Documents/Ontology/SensorsSpecialIssue/onto/rdf-syntax.owl"/>

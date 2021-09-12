@@ -403,15 +403,6 @@ rdf:Seq a owl:Class .
 	skos:definition "The thing whose property is being estimated or calculated in the course of an Observation to arrive at a Result or whose property is being manipulated by an Actuator, or which is being sampled or transformed in an act of Sampling."@en ;
 	skos:example "When measuring the height of a tree, the height is the observed ObservableProperty, 20m may be the Result of the Observation, and the tree is the FeatureOfInterest. A window is a FeatureOfInterest for an automatic window control Actuator."@en .
 # 
-# http://www.w3.org/ns/sosa/OWLClassImpl_28ce790f_8a49_4961_93fa_6944a0d00033
-
-<http://www.w3.org/ns/sosa/OWLClassImpl_28ce790f_8a49_4961_93fa_6944a0d00033> a owl:Class ;
-	rdfs:comment "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
-	rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
-	rdfs:label "Sensor"@en ;
-	skos:definition "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
-	skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smart phone (which acts as Platform). Other examples of sensors include the human eyes."@en .
-# 
 # http://www.w3.org/ns/sosa/OWLClassImpl_469f12d2_b0e5_4426_91f4_16e9d18d8832
 
 <http://www.w3.org/ns/sosa/OWLClassImpl_469f12d2_b0e5_4426_91f4_16e9d18d8832> a owl:Class ;
@@ -443,6 +434,15 @@ rdf:Seq a owl:Class .
 	rdfs:label "Sampler"@en ;
 	skos:definition "A device that is used by, or implements, a Sampling Procedure to create or transform one or more samples."@en ;
 	skos:example "A ball mill, diamond drill, hammer, hypodermic syringe and needle, image Sensor or a soil auger can all act as sampling devices (i.e., be Samplers). However, sometimes the distinction between the Sampler and the Sensor is not evident, as they are packaged as a unit. A Sampler need not be a physical device."@en .
+# 
+# http://www.w3.org/ns/sosa/Sensor
+
+<http://www.w3.org/ns/sosa/Sensor> a owl:Class ;
+	rdfs:comment "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
+	rdfs:isDefinedBy <http://www.w3.org/ns/sosa/OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd> ;
+	rdfs:label "Sensor"@en ;
+	skos:definition "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
+	skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smart phone (which acts as Platform). Other examples of sensors include the human eyes."@en .
 # 
 # https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1995
 

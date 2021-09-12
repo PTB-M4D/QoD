@@ -1,0 +1,85 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX ssn: <http://www.w3.org/ns/ssn/> 
+PREFIX om:<http://www.ontology-of-units-of-measure.org/resource/om-2/> 
+PREFIX  trans:<http://www.example.de/ns/trans#> 
+PREFIX dsi:<http://www.example.de/ns/dsi#> 
+PREFIX scal:<http://www.example.de/ns/scal#> 
+PREFIX  : <http://www.example.de/ns/qod#> 
+SELECT DISTINCT ?sensor ?interptype ?level ?mathexp
+	WHERE { ?sensor rdf:type ?type  .
+	                  ?type rdfs:subClassOf* ssn:System .
+	                  ?sensor :hasIndicator ?indicator .
+	                  ?indicator a :BatteryLevel .
+	                  ?indicator :hasMetric ?batterymetric .
+                                          ?batterymetric a :BatteryLevelMetric .
+	                  ?batterymetric :hasInterpretation ?interp .
+                                          ?interp a ?interptype .
+	                  ?batterymetric om:hasNumericalValue ?level .
+	                  ?batterymetric trans:isExpressedBy ?mathobj .
+	                  ?mathobj trans:hasMathMLExpression ?mathexp 
+	                  FILTER(?interptype != owl:NamedIndividual)
+}
+ORDER BY ?interptype
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX ssn: <http://www.w3.org/ns/ssn/> 
+PREFIX om:<http://www.ontology-of-units-of-measure.org/resource/om-2/> 
+PREFIX  trans:<http://www.example.de/ns/trans#> 
+PREFIX dsi:<http://www.example.de/ns/dsi#> 
+PREFIX scal:<http://www.example.de/ns/scal#> 
+PREFIX  : <http://www.example.de/ns/qod#> 
+SELECT ?sensor ?interp ?level ?critmin
+	WHERE { ?sensor rdf:type ?type  .
+		?type rdfs:subClassOf* 
+ssn:System .
+	                  ?sensor :hasIndicator ?indicator .		
+	                  ?indicator a :BatteryLevel .
+	                  ?indicator :hasMetric ?metric .
+                                          ?metric :hasInterpretation ?interp .
+	                  ?metric om:hasNumericalValue ?level .
+                                          ?interp :CriticalThresholdMin ?critmin .
+	                  FILTER(?level < ?critmin)
+}
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX ssn: <http://www.w3.org/ns/ssn/> 
+PREFIX om:<http://www.ontology-of-units-of-measure.org/resource/om-2/> 
+PREFIX  trans:<http://www.example.de/ns/trans#> 
+PREFIX dsi:<http://www.example.de/ns/dsi#> 
+PREFIX scal:<http://www.example.de/ns/scal#> 
+PREFIX  : <http://www.example.de/ns/qod#> 
+SELECT ?sensor ?indicator
+	WHERE { ?sensor rdf:type ?type  .
+	                  ?type rdfs:subClassOf* ssn:System .
+	                  ?sensor :hasIndicator ?indicator 
+}
+ORDER BY ?sensor
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX ssn: <http://www.w3.org/ns/ssn/> 
+PREFIX om:<http://www.ontology-of-units-of-measure.org/resource/om-2/> 
+PREFIX  trans:<http://www.example.de/ns/trans#> 
+PREFIX dsi:<http://www.example.de/ns/dsi#> 
+PREFIX scal:<http://www.example.de/ns/scal#> 
+PREFIX  : <http://www.example.de/ns/qod#> 
+SELECT ?indicator ?metric
+	WHERE { ?indicator rdfs:subClassOf :QualityIndicator  .
+	                   ?metric rdfs:subClassOf* :QualityMetric .
+                  	                   ?indicator rdfs:subClassOf ?obj1 .
+	                   ?obj1 rdf:type owl:Restriction ;
+	                              owl:onProperty :hasMetric ;
+		      owl:someValuesFrom|owl:allValuesFrom ?metric ;
+}
+ORDER BY ?indicator

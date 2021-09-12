@@ -23,12 +23,11 @@
 
 <http://www.example.de/ns/qod#> rdf:type owl:Ontology ;
                                  owl:imports scal: ,
+                                             <http://www.example.de/ns/dsi#> ,
                                              trans: ,
                                              <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ,
                                              rdf: ,
-                                             <http://www.w3.org/ns/ssn/systems/> ,
-                                             <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn> ,
-                                             <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf> ;
+                                             <http://www.w3.org/ns/ssn/systems/> ;
                                  dc:date "2021/09/08" ;
                                  terms:created "2021-04-15" ,
                                                "2021/04/15" ;
@@ -178,6 +177,7 @@ xsd:string rdf:type rdfs:Datatype .
 
 ###  http://www.example.de/ns/qod#hasIndicator
 :hasIndicator rdf:type owl:ObjectProperty ;
+              owl:inverseOf :isIndicatorOf ;
               rdfs:domain <http://www.w3.org/ns/ssn/System> ;
               rdfs:range :QualityIndicator .
 
@@ -204,14 +204,23 @@ xsd:string rdf:type rdfs:Datatype .
 
 ###  http://www.example.de/ns/qod#inputAccessibleFrom
 :inputAccessibleFrom rdf:type owl:ObjectProperty ;
-                     rdfs:domain :QualityMetric .
+                     rdfs:domain :QualityMetric ;
+                     rdfs:comment "Data source from which the input necessary to calculate the quality metric is accessible from." ;
+                     skos:example "A REST API service that provides sensor information like calibration data." .
 
 
 ###  http://www.example.de/ns/qod#inputHasUnit
 :inputHasUnit rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf owl:topObjectProperty ;
               rdfs:domain :QualityInterpretation ;
-              rdfs:range <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Unit> .
+              rdfs:range <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Unit> ;
+              rdfs:comment "Information regarding the unit of the quantity used to interpret a given quality metric." .
+
+
+###  http://www.example.de/ns/qod#isIndicatorOf
+:isIndicatorOf rdf:type owl:ObjectProperty ;
+               rdfs:domain :QualityIndicator ;
+               rdfs:range <http://www.w3.org/ns/ssn/System> .
 
 
 ###  http://www.example.de/ns/qod#isMetricOf
@@ -329,8 +338,7 @@ trans:hasCovarianceMatrix rdf:type owl:ObjectProperty ;
                                         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                         owl:onClass <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1547>
                                       ] ;
-                          rdfs:range trans:MathematicalObject ,
-                                     <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E34> .
+                          rdfs:range <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1706> .
 
 
 ###  http://www.example.de/ns/trans#hasDenominator
@@ -933,9 +941,57 @@ sosa:usedProcedure rdf:type owl:ObjectProperty ;
                                                                                                      rdfs:label "reference"@en .
 
 
+###  https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#hasQuantity
+<https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#hasQuantity> rdf:type owl:ObjectProperty .
+
+
+###  https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#hasUnit
+<https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#hasUnit> rdf:type owl:ObjectProperty .
+
+
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://www.example.de/ns/qod#CriticalIf
+:CriticalIf rdf:type owl:DatatypeProperty ;
+            rdfs:domain :QualityInterpretation ;
+            rdfs:range [ rdf:type rdfs:Datatype ;
+                         owl:unionOf ( trans:MathMLLiteral
+                                       trans:TeXLiteral
+                                       rdf:XMLLiteral
+                                     )
+                       ] ;
+            owl:propertyDisjointWith :GoodIf ,
+                                     :SufficientIf .
+
+
+###  http://www.example.de/ns/qod#CriticalThreshold
+:CriticalThreshold rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :QualityInterpretation .
+
+
+###  http://www.example.de/ns/qod#CriticalThresholdMax
+:CriticalThresholdMax rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf :CriticalThreshold .
+
+
+###  http://www.example.de/ns/qod#CriticalThresholdMin
+:CriticalThresholdMin rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf :CriticalThreshold .
+
+
+###  http://www.example.de/ns/qod#GoodIf
+:GoodIf rdf:type owl:DatatypeProperty ;
+        rdfs:domain :QualityInterpretation ;
+        rdfs:range [ rdf:type rdfs:Datatype ;
+                     owl:unionOf ( trans:MathMLLiteral
+                                   trans:TeXLiteral
+                                   rdf:XMLLiteral
+                                 )
+                   ] ;
+        owl:propertyDisjointWith :SufficientIf .
+
 
 ###  http://www.example.de/ns/qod#LastCalibrationDate
 :LastCalibrationDate rdf:type owl:DatatypeProperty ;
@@ -943,6 +999,34 @@ sosa:usedProcedure rdf:type owl:ObjectProperty ;
                      rdfs:range xsd:date ,
                                 xsd:dateTime ,
                                 xsd:dateTimeStamp .
+
+
+###  http://www.example.de/ns/qod#SufficientIf
+:SufficientIf rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty ;
+              rdfs:domain :QualityInterpretation ;
+              rdfs:range [ rdf:type rdfs:Datatype ;
+                           owl:unionOf ( trans:MathMLLiteral
+                                         trans:TeXLiteral
+                                         rdf:XMLLiteral
+                                       )
+                         ] .
+
+
+###  http://www.example.de/ns/qod#SufficientThreshold
+:SufficientThreshold rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf owl:topDataProperty ;
+                     rdfs:domain :QualityInterpretation .
+
+
+###  http://www.example.de/ns/qod#SufficientThresholdMax
+:SufficientThresholdMax rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf :SufficientThreshold .
+
+
+###  http://www.example.de/ns/qod#SufficientThresholdMin
+:SufficientThresholdMin rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf :SufficientThreshold .
 
 
 ###  http://www.example.de/ns/qod#getRequest
@@ -984,54 +1068,6 @@ sosa:usedProcedure rdf:type owl:ObjectProperty ;
                         rdfs:range xsd:float .
 
 
-###  http://www.example.de/ns/qod#isCriticalIf
-:isCriticalIf rdf:type owl:DatatypeProperty ;
-              rdfs:domain :QualityInterpretation ;
-              rdfs:range [ rdf:type rdfs:Datatype ;
-                           owl:unionOf ( trans:MathMLLiteral
-                                         trans:TeXLiteral
-                                         rdf:XMLLiteral
-                                       )
-                         ] ;
-              owl:propertyDisjointWith :isGoodIf ,
-                                       :isSufficientIf .
-
-
-###  http://www.example.de/ns/qod#isGoodIf
-:isGoodIf rdf:type owl:DatatypeProperty ;
-          rdfs:domain :QualityInterpretation ;
-          rdfs:range [ rdf:type rdfs:Datatype ;
-                       owl:unionOf ( trans:MathMLLiteral
-                                     trans:TeXLiteral
-                                     rdf:XMLLiteral
-                                   )
-                     ] ;
-          owl:propertyDisjointWith :isSufficientIf .
-
-
-###  http://www.example.de/ns/qod#isSufficientIf
-:isSufficientIf rdf:type owl:DatatypeProperty ;
-                rdfs:subPropertyOf owl:topDataProperty ;
-                rdfs:domain :QualityInterpretation ;
-                rdfs:range [ rdf:type rdfs:Datatype ;
-                             owl:unionOf ( trans:MathMLLiteral
-                                           trans:TeXLiteral
-                                           rdf:XMLLiteral
-                                         )
-                           ] .
-
-
-###  http://www.example.de/ns/trans#hasCovarianceMatrix
-trans:hasCovarianceMatrix rdf:type owl:DatatypeProperty ;
-                          rdfs:subPropertyOf om-2:hasNumericalValue ;
-                          rdfs:range [ rdf:type rdfs:Datatype ;
-                                       owl:unionOf ( trans:MathMLLiteral
-                                                     trans:TeXLiteral
-                                                     rdf:XMLLiteral
-                                                   )
-                                     ] .
-
-
 ###  http://www.example.de/ns/trans#hasMathMLexpression
 trans:hasMathMLexpression rdf:type owl:DatatypeProperty ;
                           rdfs:subPropertyOf :hasLiteralExpression ;
@@ -1045,7 +1081,13 @@ trans:hasTeXExpression rdf:type owl:DatatypeProperty ;
 
 
 ###  http://www.ontology-of-units-of-measure.org/resource/om-2/hasNumericalValue
-om-2:hasNumericalValue rdf:type owl:DatatypeProperty .
+om-2:hasNumericalValue rdf:type owl:DatatypeProperty ;
+                       rdfs:range [ rdf:type rdfs:Datatype ;
+                                    owl:unionOf ( trans:MathMLLiteral
+                                                  trans:TeXLiteral
+                                                  rdf:XMLLiteral
+                                                )
+                                  ] .
 
 
 ###  http://www.w3.org/ns/sosa/hasSimpleResult
@@ -1086,11 +1128,6 @@ bibo:Standard rdf:type owl:Class .
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :hasMetric ;
                             owl:allValuesFrom :AccuracyMetric
-                          ] ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty :hasMetric ;
-                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                            owl:onClass :QualityMetric
                           ] .
 
 
@@ -1114,11 +1151,6 @@ bibo:Standard rdf:type owl:Class .
                                   owl:onProperty :hasInterpretation ;
                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                   owl:onClass :QualityInterpretation
-                                ] ,
-                                [ rdf:type owl:Restriction ;
-                                  owl:onProperty :isMetricOf ;
-                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                  owl:onClass <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1547>
                                 ] .
 
 
@@ -1141,7 +1173,7 @@ bibo:Standard rdf:type owl:Class .
               rdfs:subClassOf :QualityIndicator ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :hasMetric ;
-                                owl:allValuesFrom :BatteryLevelMetric
+                                owl:allValuesFrom :BatteryMetric
                               ] .
 
 
@@ -1152,17 +1184,39 @@ bibo:Standard rdf:type owl:Class .
 
 ###  http://www.example.de/ns/qod#BatteryLevelMetric
 :BatteryLevelMetric rdf:type owl:Class ;
-                    owl:equivalentClass <http://www.w3.org/ns/ssn/systems/BatteryLifetime> ;
-                    rdfs:subClassOf :QualityMetric ,
+                    rdfs:subClassOf :BatteryMetric ,
                                     [ rdf:type owl:Restriction ;
                                       owl:onProperty :hasInterpretation ;
                                       owl:allValuesFrom :BatteryInterpretation
                                     ] .
 
 
+###  http://www.example.de/ns/qod#BatteryLifetimeMetric
+:BatteryLifetimeMetric rdf:type owl:Class ;
+                       rdfs:subClassOf :BatteryMetric ,
+                                       :QualityMetric ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :hasInterpretation ;
+                                         owl:allValuesFrom :BatteryInterpretation
+                                       ] .
+
+
+###  http://www.example.de/ns/qod#BatteryMetric
+:BatteryMetric rdf:type owl:Class ;
+               rdfs:subClassOf :QualityMetric .
+
+
 ###  http://www.example.de/ns/qod#CalibrationData
 :CalibrationData rdf:type owl:Class ;
-                 rdfs:subClassOf :QualityIndicator .
+                 rdfs:subClassOf :QualityIndicator ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasMetric ;
+                                   owl:someValuesFrom :MeasurementUncertainty
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasMetric ;
+                                   owl:someValuesFrom :RecencyMetric
+                                 ] .
 
 
 ###  http://www.example.de/ns/qod#Completeness
@@ -1268,8 +1322,13 @@ bibo:Standard rdf:type owl:Class .
                         owl:equivalentClass :Uncertainty ;
                         rdfs:subClassOf :QualityMetric ,
                                         [ rdf:type owl:Restriction ;
+                                          owl:onProperty :isMetricOf ;
+                                          owl:allValuesFrom :CalibrationData
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
                                           owl:onProperty :hasInterpretation ;
-                                          owl:allValuesFrom :MeasurementUncertaintyInterpretation
+                                          owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                          owl:onClass :MeasurementUncertaintyInterpretation
                                         ] ,
                                         [ rdf:type owl:Restriction ;
                                           owl:onProperty trans:isExpressedBy ;
@@ -1345,7 +1404,8 @@ value out of range""" .
                rdfs:subClassOf :QualityMetric ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasInterpretation ;
-                                 owl:allValuesFrom :RecencyInterpretation
+                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :RecencyInterpretation
                                ] ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :isMetricOf ;
@@ -1418,7 +1478,13 @@ value out of range""" .
 
 
 ###  http://www.example.de/ns/scal#CalibratedSensor
-<http://www.example.de/ns/scal#CalibratedSensor> rdf:type owl:Class .
+<http://www.example.de/ns/scal#CalibratedSensor> rdf:type owl:Class ;
+                                                 rdfs:subClassOf sosa:Sensor ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty :hasIndicator ;
+                                                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                   owl:onClass :CalibrationData
+                                                                 ] .
 
 
 ###  http://www.example.de/ns/scal#CalibrationModel
@@ -2212,15 +2278,6 @@ sosa:FeatureOfInterest rdf:type owl:Class ;
                        skos:example "When measuring the height of a tree, the height is the observed ObservableProperty, 20m may be the Result of the Observation, and the tree is the FeatureOfInterest. A window is a FeatureOfInterest for an automatic window control Actuator."@en .
 
 
-###  http://www.w3.org/ns/sosa/OWLClassImpl_28ce790f_8a49_4961_93fa_6944a0d00033
-sosa:OWLClassImpl_28ce790f_8a49_4961_93fa_6944a0d00033 rdf:type owl:Class ;
-                                                       rdfs:comment "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
-                                                       rdfs:isDefinedBy sosa:OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd ;
-                                                       rdfs:label "Sensor"@en ;
-                                                       skos:definition "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
-                                                       skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smart phone (which acts as Platform). Other examples of sensors include the human eyes."@en .
-
-
 ###  http://www.w3.org/ns/sosa/OWLClassImpl_469f12d2_b0e5_4426_91f4_16e9d18d8832
 sosa:OWLClassImpl_469f12d2_b0e5_4426_91f4_16e9d18d8832 rdf:type owl:Class ;
                                                        rdfs:comment "A device that is used by, or implements, an (Actuation) Procedure that changes the state of the world."@en ;
@@ -2454,8 +2511,18 @@ sosa:Sensor rdf:type owl:Class ;
                             [ rdf:type owl:Restriction ;
                               owl:onProperty <http://www.w3.org/ns/ssn/implements> ;
                               owl:minCardinality "1"^^xsd:nonNegativeInteger
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasIndicator ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :BatteryLevel
                             ] ;
-            rdfs:isDefinedBy sosa: .
+            rdfs:comment "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
+            rdfs:isDefinedBy sosa: ,
+                             sosa:OWLNamedIndividualImpl_51c882d3_408d_4166_b77e_c01d2efb27fd ;
+            rdfs:label "Sensor"@en ;
+            skos:definition "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
+            skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smart phone (which acts as Platform). Other examples of sensors include the human eyes."@en .
 
 
 ###  http://www.w3.org/ns/ssn/Deployment
@@ -2994,6 +3061,56 @@ foaf:Agent rdf:type owl:Class .
 #    Individuals
 #################################################################
 
+###  http://www.example.de/ns/qod#DummyBatteryDataSource
+:DummyBatteryDataSource rdf:type owl:NamedIndividual ,
+                                 :restAPI ;
+                        <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#hasQuantity> <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Time> ;
+                        :getRequest "http://localhost/database?system=Dummy&data=battery"^^rdf:HTML .
+
+
+###  http://www.example.de/ns/qod#DummyBatteryIndicator
+:DummyBatteryIndicator rdf:type owl:NamedIndividual ,
+                                :BatteryLevel ;
+                       :hasMetric :DummyBatteryMetric ;
+                       :isIndicatorOf :DummySensor .
+
+
+###  http://www.example.de/ns/qod#DummyBatteryInterpretation
+:DummyBatteryInterpretation rdf:type owl:NamedIndividual ,
+                                     :RemainingLifetimeInterpretation ;
+                            :inputHasUnit <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#OWLNamedIndividualImpl_f2095826_25d7_4663_8da5_c21a259ffd03> ;
+                            :CriticalIf "<apply><lt/><ci>output</ci><cn>1</cn></apply>"^^trans:MathMLLiteral ;
+                            :CriticalThresholdMin "2.0"^^xsd:double ;
+                            :SufficientIf "<apply><gt/><ci>output</ci><cn>24</cn></apply>"^^trans:MathMLLiteral ;
+                            :SufficientThresholdMin "24.0"^^xsd:double .
+
+
+###  http://www.example.de/ns/qod#DummyBatteryMathObject
+:DummyBatteryMathObject rdf:type owl:NamedIndividual ,
+                                 trans:MathematicalObject ,
+                                 <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1908> ;
+                        :inputHasUnit <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#second-Time> ;
+                        trans:hasMathMLexpression "<apply><eq/><ci>output</ci><apply><divide/>input<ci>3600</ci></apply></apply>"^^trans:MathMLLiteral .
+
+
+###  http://www.example.de/ns/qod#DummyBatteryMetric
+:DummyBatteryMetric rdf:type owl:NamedIndividual ,
+                             :BatteryLevelMetric ;
+                    :hasInterpretation :DummyBatteryInterpretation ;
+                    :inputAccessibleFrom :DummyBatteryDataSource ;
+                    :isMetricOf :DummyBatteryIndicator ;
+                    trans:isExpressedBy :DummyBatteryMathObject ;
+                    om-2:hasNumericalValue "0.5"^^xsd:double .
+
+
+###  http://www.example.de/ns/qod#DummySensor
+:DummySensor rdf:type owl:NamedIndividual ,
+                      <http://www.example.de/ns/scal#CalibratedSensor> ;
+             :hasIndicator :DummyBatteryIndicator ;
+             sosa:isHostedBy trans:SmartupUnit ;
+             sosa:observes <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Pressure> .
+
+
 ###  http://www.example.de/ns/qod#MPUBatteryDataSource
 :MPUBatteryDataSource rdf:type owl:NamedIndividual ,
                                :restAPI ;
@@ -3004,21 +3121,26 @@ foaf:Agent rdf:type owl:Class .
 ###  http://www.example.de/ns/qod#MPUBatteryIndicator
 :MPUBatteryIndicator rdf:type owl:NamedIndividual ,
                               :BatteryLevel ;
-                     :hasMetric :MPUBatteryMetric .
+                     :hasMetric :MPUBatteryMetric ;
+                     :isIndicatorOf trans:MPU9250 .
 
 
 ###  http://www.example.de/ns/qod#MPUBatteryInterpretation
 :MPUBatteryInterpretation rdf:type owl:NamedIndividual ,
-                                   :QualityInterpretation ;
+                                   :BatteryLevelInterpretation ;
                           :Interprets :MPUBatteryMetric ;
                           :inputHasUnit <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Percentage> ;
-                          :isCriticalIf "<apply><lt/><ci>output</ci><cn>15</cn></apply>"^^trans:MathMLLiteral ;
-                          :isSufficientIf "<apply><gt/><ci>output</ci><cn>30</cn></apply>"^^trans:MathMLLiteral .
+                          :CriticalIf "<apply><lt/><ci>output</ci><cn>15</cn></apply>"^^trans:MathMLLiteral ;
+                          :CriticalThresholdMin "5.0"^^xsd:double ;
+                          :SufficientIf "<apply><gt/><ci>output</ci><cn>30</cn></apply>"^^trans:MathMLLiteral ;
+                          :SufficientThresholdMin "30.0"^^xsd:double .
 
 
 ###  http://www.example.de/ns/qod#MPUBatteryMathObject
 :MPUBatteryMathObject rdf:type owl:NamedIndividual ,
+                               trans:MathematicalObject ,
                                <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1908> ;
+                      <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#hasQuantity> <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Ratio> ;
                       trans:hasMathMLexpression "<apply><eq/><ci>output</ci><apply><times/>100<ci>input</ci></apply></apply>"^^trans:MathMLLiteral .
 
 
@@ -3028,7 +3150,8 @@ foaf:Agent rdf:type owl:Class .
                   :hasInterpretation :MPUBatteryInterpretation ;
                   :inputAccessibleFrom :MPUBatteryDataSource ;
                   :isMetricOf :MPUBatteryIndicator ;
-                  trans:isExpressedBy :MPUBatteryMathObject .
+                  trans:isExpressedBy :MPUBatteryMathObject ;
+                  om-2:hasNumericalValue "70.0"^^xsd:double .
 
 
 ###  http://www.example.de/ns/qod#MPUCalibrationDataSource
@@ -3041,16 +3164,17 @@ foaf:Agent rdf:type owl:Class .
 :MPUCalibrationIndicator rdf:type owl:NamedIndividual ,
                                   :CalibrationData ;
                          :hasMetric :MPURecencyMetric ,
-                                    :MPUUncertaintyMetric .
+                                    :MPUUncertaintyMetric ;
+                         :isIndicatorOf trans:MPU9250 .
 
 
 ###  http://www.example.de/ns/qod#MPURecencyInterpretation
 :MPURecencyInterpretation rdf:type owl:NamedIndividual ,
                                    :RecencyInterpretation ;
                           :Interprets :MPURecencyMetric ;
-                          :isCriticalIf "<apply><geq/><ci>output</ci><cn>365</cn></apply>"^^trans:MathMLLiteral ;
-                          :isGoodIf "<apply><leq/><ci>output</ci><cn>180</cn></apply>"^^trans:MathMLLiteral ;
-                          :isSufficientIf "<apply><lt/><cn>180</cn><cn>output</cn><cn>365</cn></apply>"^^trans:MathMLLiteral .
+                          :CriticalIf "<apply><geq/><ci>output</ci><cn>365</cn></apply>"^^trans:MathMLLiteral ;
+                          :GoodIf "<apply><leq/><ci>output</ci><cn>180</cn></apply>"^^trans:MathMLLiteral ;
+                          :SufficientIf "<apply><lt/><cn>180</cn><cn>output</cn><cn>365</cn></apply>"^^trans:MathMLLiteral .
 
 
 ###  http://www.example.de/ns/qod#MPURecencyMetric
@@ -3063,6 +3187,7 @@ foaf:Agent rdf:type owl:Class .
 
 ###  http://www.example.de/ns/qod#MPURecencyObject
 :MPURecencyObject rdf:type owl:NamedIndividual ,
+                           trans:MathematicalObject ,
                            <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1908> ;
                   trans:hasMathMLexpression "<apply><eq/><ci>output</ci><apply><minus/><apply>current-date</apply><ci>input</ci></apply></apply>"^^trans:MathMLLiteral .
 
@@ -3071,9 +3196,9 @@ foaf:Agent rdf:type owl:Class .
 :MPUUncertaintyInterpretation rdf:type owl:NamedIndividual ,
                                        :MeasurementUncertaintyInterpretation ;
                               :Interprets :MPUUncertaintyMetric ;
-                              :isCriticalIf "<apply><geq/><ci>output</ci><cn>0.5</cn></apply>"^^trans:MathMLLiteral ;
-                              :isGoodIf "<apply><leq/><ci>output</ci><cn>0.01</cn></apply>"^^trans:MathMLLiteral ;
-                              :isSufficientIf "<apply><lt/><cn>.01</cn><ci>output</ci><cn>.5</cn></apply>"^^trans:MathMLLiteral .
+                              :CriticalIf "<apply><geq/><ci>output</ci><cn>0.5</cn></apply>"^^trans:MathMLLiteral ;
+                              :GoodIf "<apply><leq/><ci>output</ci><cn>0.01</cn></apply>"^^trans:MathMLLiteral ;
+                              :SufficientIf "<apply><lt/><cn>.01</cn><ci>output</ci><cn>.5</cn></apply>"^^trans:MathMLLiteral .
 
 
 ###  http://www.example.de/ns/qod#MPUUncertaintyMetric
@@ -3086,42 +3211,15 @@ foaf:Agent rdf:type owl:Class .
 
 ###  http://www.example.de/ns/qod#MPUUncertaintyObject
 :MPUUncertaintyObject rdf:type owl:NamedIndividual ,
+                               trans:MathematicalObject ,
                                <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1908> ;
                       trans:hasMathMLexpression "<apply><eq/><ci>output</ci><ci>input</ci></apply>"^^trans:MathMLLiteral .
-
-
-###  http://www.example.de/ns/trans#DenominatorArray
-trans:DenominatorArray rdf:type owl:NamedIndividual ,
-                                trans:ArrayWithUncertainty ,
-                                [ rdf:type owl:Restriction ;
-                                  owl:onProperty :hasInterpretation ;
-                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                  owl:onClass :QualityInterpretation
-                                ] ;
-                       :hasUncertainty trans:DenominatorUncertainty ;
-                       om-2:hasNumericalValue """<vector><cn>1.00</cn><cn>355.71</cn>
-<cn>71865.05</cn><cn>6361231.00</cn>
-<cn>-2555989.83</cn><cn>102273.71</cn>
-<cn>6653441.80</cn><cn>-3131762.12</cn></vector>"""^^trans:MathMLLiteral ;
-                       om-2:hasUnit om-2:OWLNamedIndividualImpl_87ed9e1e_1e6b_492b_8c21_6f8cf0996e37 .
-
-
-###  http://www.example.de/ns/trans#DenominatorUncertainty
-trans:DenominatorUncertainty rdf:type owl:NamedIndividual ,
-                                      trans:EllipsoidalRegion ,
-                                      [ rdf:type owl:Restriction ;
-                                        owl:onProperty :hasInterpretation ;
-                                        owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                        owl:onClass :QualityInterpretation
-                                      ] ;
-                             trans:hasCovarianceMatrix trans:covMatDenominator ;
-                             om-2:hasValue trans:covMatDenominator .
 
 
 ###  http://www.example.de/ns/trans#MPU9250
 trans:MPU9250 rdf:type owl:NamedIndividual ,
                        <http://www.example.de/ns/scal#CalibratedSensor> ,
-                       sosa:Sensor ,
+                       <http://www.w3.org/ns/ssn/System> ,
                        [ rdf:type owl:Restriction ;
                          owl:onProperty [ owl:inverseOf <http://www.w3.org/ns/ssn/hasSubSystem>
                                         ] ;
@@ -3133,19 +3231,68 @@ trans:MPU9250 rdf:type owl:NamedIndividual ,
               sosa:observes om-2:AngularVelocity .
 
 
+###  http://www.example.de/ns/trans#MPUDenominatorArray
+trans:MPUDenominatorArray rdf:type owl:NamedIndividual ,
+                                   trans:ArrayWithUncertainty ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasInterpretation ;
+                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                     owl:onClass :QualityInterpretation
+                                   ] ;
+                          :hasUncertainty trans:MPUDenominatorUncertainty ;
+                          om-2:hasNumericalValue """<vector><cn>1.00</cn><cn>355.71</cn>
+<cn>71865.05</cn><cn>6361231.00</cn>
+<cn>-2555989.83</cn><cn>102273.71</cn>
+<cn>6653441.80</cn><cn>-3131762.12</cn></vector>"""^^trans:MathMLLiteral ;
+                          om-2:hasUnit om-2:OWLNamedIndividualImpl_87ed9e1e_1e6b_492b_8c21_6f8cf0996e37 .
+
+
 ###  http://www.example.de/ns/trans#MPUDenominatorPolynomial
 trans:MPUDenominatorPolynomial rdf:type owl:NamedIndividual ,
                                         trans:Polynomial ,
                                         <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1995> ,
                                         <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E34> ;
-                               trans:hasCoefficients trans:DenominatorArray .
+                               trans:hasCoefficients trans:MPUDenominatorArray .
+
+
+###  http://www.example.de/ns/trans#MPUDenominatorUncertainty
+trans:MPUDenominatorUncertainty rdf:type owl:NamedIndividual ,
+                                         trans:EllipsoidalRegion ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty :hasInterpretation ;
+                                           owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                           owl:onClass :QualityInterpretation
+                                         ] ;
+                                trans:hasCovarianceMatrix trans:covMatDenominator ;
+                                om-2:hasValue trans:covMatDenominator .
+
+
+###  http://www.example.de/ns/trans#MPUNumeratorArray
+trans:MPUNumeratorArray rdf:type owl:NamedIndividual ,
+                                 trans:ArrayWithUncertainty ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasInterpretation ;
+                                   owl:allValuesFrom :MeasurementUncertaintyInterpretation
+                                 ] ;
+                        :hasUncertainty trans:MPUNumeratorUncertainty ;
+                        om-2:hasNumericalValue """<vector><cn>0.04</cn><cn>33.76</cn>
+<cn>-19885.32</cn><cn>6428406.45</cn>
+<cn>-3393935.03</cn><cn>-153413.50</cn>
+<cn>-6432435.78</cn><cn>3054910.80</cn></vector>"""^^trans:MathMLLiteral ;
+                        om-2:hasUnit om-2:OWLNamedIndividualImpl_87ed9e1e_1e6b_492b_8c21_6f8cf0996e37 .
 
 
 ###  http://www.example.de/ns/trans#MPUNumeratorPolynomial
 trans:MPUNumeratorPolynomial rdf:type owl:NamedIndividual ,
                                       trans:Polynomial ,
                                       <https://raw.githubusercontent.com/CLLKazan/OntoMathPro/develop/OntoMathPro.omn#E1995> ;
-                             trans:hasCoefficients trans:NumeratorArray .
+                             trans:hasCoefficients trans:MPUNumeratorArray .
+
+
+###  http://www.example.de/ns/trans#MPUNumeratorUncertainty
+trans:MPUNumeratorUncertainty rdf:type owl:NamedIndividual ,
+                                       trans:EllipsoidalRegion ;
+                              trans:hasCovarianceMatrix trans:covMatNumerator .
 
 
 ###  http://www.example.de/ns/trans#MPURationalFraction
@@ -3202,27 +3349,6 @@ trans:MPUresultuncertainty rdf:type owl:NamedIndividual ,
                                     :ExpandedUncertainty ;
                            <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#hasUnit> <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#radianPerSecond-Time> ;
                            om-2:hasNumericalValue "0.005"^^xsd:double .
-
-
-###  http://www.example.de/ns/trans#NumeratorArray
-trans:NumeratorArray rdf:type owl:NamedIndividual ,
-                              trans:ArrayWithUncertainty ,
-                              [ rdf:type owl:Restriction ;
-                                owl:onProperty :hasInterpretation ;
-                                owl:allValuesFrom :MeasurementUncertaintyInterpretation
-                              ] ;
-                     :hasUncertainty trans:NumeratorUncertainty ;
-                     om-2:hasNumericalValue """<vector><cn>0.04</cn><cn>33.76</cn>
-<cn>-19885.32</cn><cn>6428406.45</cn>
-<cn>-3393935.03</cn><cn>-153413.50</cn>
-<cn>-6432435.78</cn><cn>3054910.80</cn></vector>"""^^trans:MathMLLiteral ;
-                     om-2:hasUnit om-2:OWLNamedIndividualImpl_87ed9e1e_1e6b_492b_8c21_6f8cf0996e37 .
-
-
-###  http://www.example.de/ns/trans#NumeratorUncertainty
-trans:NumeratorUncertainty rdf:type owl:NamedIndividual ,
-                                    trans:EllipsoidalRegion ;
-                           trans:hasCovarianceMatrix trans:covMatNumerator .
 
 
 ###  http://www.example.de/ns/trans#SmartupUnit
@@ -3322,20 +3448,69 @@ sosa: rdf:type owl:NamedIndividual .
                                              <http://purl.org/vocommons/voaf#Vocabulary> .
 
 
-###  https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#OWLNamedIndividualImpl_2a3a2318_04b5_4baf_a108_c2d767ba8e7e
-<https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#OWLNamedIndividualImpl_2a3a2318_04b5_4baf_a108_c2d767ba8e7e> rdf:type owl:NamedIndividual .
+###  https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#OWLNamedIndividualImpl_f2095826_25d7_4663_8da5_c21a259ffd03
+<https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#OWLNamedIndividualImpl_f2095826_25d7_4663_8da5_c21a259ffd03> rdf:type owl:NamedIndividual .
 
 
 ###  https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Percentage
 <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Percentage> rdf:type owl:NamedIndividual .
 
 
+###  https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Pressure
+<https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Pressure> rdf:type owl:NamedIndividual .
+
+
+###  https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Ratio
+<https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Ratio> rdf:type owl:NamedIndividual .
+
+
+###  https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Time
+<https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#Time> rdf:type owl:NamedIndividual .
+
+
 ###  https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#radianPerSecond-Time
 <https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#radianPerSecond-Time> rdf:type owl:NamedIndividual .
 
 
-[ foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
+###  https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#second-Time
+<https://raw.githubusercontent.com/HajoRijgersberg/OM/master/om-2.0.rdf#second-Time> rdf:type owl:NamedIndividual .
+
+
+[ rdf:type foaf:Agent
 ] .
+
+[ rdf:type foaf:Agent
+ ] .
+
+[ rdf:type foaf:Agent
+ ] .
+
+[ rdf:type foaf:Agent
+ ] .
+
+[ rdf:type foaf:Agent
+ ] .
+
+[ rdf:type foaf:Agent
+ ] .
+
+[ rdf:type foaf:Agent
+ ] .
+
+[ rdf:type foaf:Agent
+ ] .
+
+[ rdf:type foaf:Agent
+ ] .
+
+[ rdf:type foaf:Agent
+ ] .
+
+[ rdf:type foaf:Agent
+ ] .
+
+[ foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
+ ] .
 
 [ foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en
  ] .
@@ -3368,39 +3543,6 @@ sosa: rdf:type owl:NamedIndividual .
  ] .
 
 [ owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger
- ] .
-
-[ rdf:type foaf:Agent
- ] .
-
-[ rdf:type foaf:Agent
- ] .
-
-[ rdf:type foaf:Agent
- ] .
-
-[ rdf:type foaf:Agent
- ] .
-
-[ rdf:type foaf:Agent
- ] .
-
-[ rdf:type foaf:Agent
- ] .
-
-[ rdf:type foaf:Agent
- ] .
-
-[ rdf:type foaf:Agent
- ] .
-
-[ rdf:type foaf:Agent
- ] .
-
-[ rdf:type foaf:Agent
- ] .
-
-[ rdf:type foaf:Agent
  ] .
 
 #################################################################
